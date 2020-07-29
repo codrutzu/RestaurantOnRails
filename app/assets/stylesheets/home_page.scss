@@ -6,8 +6,8 @@
 $color-blue: #659dbd;
 $color-red: #dc143c;
 $color-orange: #e89853;
-$color-grey: #D3D3D3;
-$color-grey-dark: #A9A9A9; 
+$color-grey: #d3d3d3;
+$color-grey-dark: #a9a9a9;
 $color-white: #fff;
 $color-black: #000;
 
@@ -153,7 +153,7 @@ a {
             height: 5px;
 
             .ui-slider-handle {
-                background:  $color-grey asset-url("handle.svg") no-repeat scroll 50% 50%;
+                background: $color-grey asset-url("handle.svg") no-repeat scroll 50% 50%;
                 border: none;
                 outline: none;
                 box-shadow: -1px 1px 3px $color-grey-dark;
@@ -203,7 +203,7 @@ a {
                 transition: transform 0.3s ease-in-out;
                 padding-top: 3em;
 
-                .plate-img{
+                .plate-img {
                     width: 200px;
                     height: 200px;
                 }
@@ -214,19 +214,17 @@ a {
                     font-weight: 600;
                     margin-bottom: 0.3em;
                 }
-                
+
                 .meal-type {
                     color: grey;
                     font-size: 13px;
                     margin-bottom: 0.5em;
                 }
-                
+
                 .price {
                     color: orange;
                     font-weight: 800;
                 }
-                
-                
             }
 
             li:hover {
@@ -248,3 +246,6 @@ a {
     }
 }
 
+.new-product {
+    color: $color-black;
+}
