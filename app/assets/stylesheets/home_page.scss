@@ -1,0 +1,99 @@
+// Place all the styles related to the HomePage controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
+$color-blue: #659dbd;
+$color-red: #dc143c;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: "Montserrat", sans-serif;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+.hero-wrapper {
+    background: url("/assets/bg.jpg");
+    background-size: cover;
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo {
+            display: flex;
+            align-items: center;
+            padding: 2.5em 10em;
+            font-size: 14px;
+
+            .logo-text {
+                padding-left: 0.7em;
+                font-weight: 600;
+            }
+        }
+
+        nav ul {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            padding: 1.5em 10em;
+            font-size: 14px;
+
+            li:not(:first-child):before {
+                content: "";
+                background: url("/assets/menudot.png") no-repeat;
+                opacity: 1;
+                background-size: 6px 6px;
+                background-position: 50% 50%;
+                padding: 0 1em;
+            }
+        }
+    }
+}
+
+.hero-content {
+    width: 40%;
+    justify-content: center;
+    margin: 0 auto;
+    text-align: center;
+
+    .site-adv {
+        align-self: center;
+        font-size: 40px;
+        font-weight: 600;
+        padding-bottom: 1em;
+    }
+
+    .submain {
+        padding: 3em 0 6em 0;
+        font-family: "Nunito", sans-serif;
+    }
+
+    .banner {
+        img {
+            object-fit: cover;
+            width: 600px;
+            height: 15px;
+        }
+    }
+}
