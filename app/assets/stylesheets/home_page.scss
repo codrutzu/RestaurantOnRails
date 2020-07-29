@@ -32,7 +32,7 @@ a {
 }
 
 .hero-wrapper {
-    background: url("/assets/bg.jpg");
+    background: asset-url("bg.jpg");
     background-size: cover;
 
     header {
@@ -61,7 +61,7 @@ a {
 
             li:not(:first-child):before {
                 content: "";
-                background: url("/assets/menudot.png") no-repeat;
+                background: asset-url("menudot.png") no-repeat;
                 opacity: 1;
                 background-size: 6px 6px;
                 background-position: 50% 50%;
