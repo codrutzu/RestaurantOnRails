@@ -5,6 +5,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap");
 $color-blue: #659dbd;
 $color-red: #dc143c;
+$color-orange: #e89853;
+$color-grey: #D3D3D3;
+$color-white: #fff;
+$color-black: #000;
 
 * {
     box-sizing: border-box;
@@ -94,6 +98,88 @@ a {
             object-fit: cover;
             width: 600px;
             height: 15px;
+        }
+    }
+}
+
+.filter-wrapper {
+    display: flex;
+    vertical-align: top;
+    background-color: #f0f0f2;
+    color: black;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    justify-content: space-between;
+
+    .search-menu {
+        ul {
+            margin: 0;
+            display: flex;
+            padding: 0;
+
+            li {
+                line-height: 50px;
+                padding: 0 1.5em;
+                height: 50px;
+            }
+
+            li:after {
+                content: "";
+                background: asset-url("drop-down.svg") no-repeat;
+                background-size: 12px 12px;
+                background-position: 50% 50%;
+                padding: 0 1em;
+            }
+
+            li:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+        }
+    }
+
+    .slider-wrapper {
+        display: flex;
+        align-items: center;
+
+        label {
+            padding-right: 1em;
+            position: relative;
+        }
+
+        #slider {
+            width: 200px;
+            height: 5px;
+
+            .ui-slider-handle {
+                background:  $color-grey asset-url("handle.svg") no-repeat scroll 50% 50%;
+                border: none;
+                outline: none;
+            }
+
+            .ui-widget-header {
+                background: $color-orange;
+            }
+
+            &.ui-widget-content {
+                background: $color-grey;
+            }
+
+            &.ui-widget.ui-widget-content {
+                border: none;
+            }
+
+            
+        }
+
+        #first-price {
+            padding-right: 2em;
+            font-weight: 400;
+        }
+
+        #second-price {
+            padding: 0 2em;
+            font-weight: 400;
         }
     }
 }
