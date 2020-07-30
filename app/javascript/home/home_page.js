@@ -1,6 +1,6 @@
 var slider;
 
-$(document).ready(function() {
+$(document).on('turbolinks:load',function() {
   slider = $("#slider").slider({
       range: true,
       min: 0,

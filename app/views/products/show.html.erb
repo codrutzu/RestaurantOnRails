@@ -1,8 +1,4 @@
-<div class="plates">
-  <p> <%= image_tag @product.image, class: "plate-img" %></p>
-  <p class="dish"> <%= @product.title %></p>
-  <p class="meal-type"> <%= @product.description %></p>
-  <p class="price"> <%= @product.price %></p>
+<div class="product-shown">
+  <h1>The product has been added!</h1>
+  <%= link_to 'Back', :root, class: "back-link" %>
 </div>
-
-<%= link_to 'Back', :root, class: "back-link" %>

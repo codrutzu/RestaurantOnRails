@@ -247,7 +247,16 @@ a {
 }
 
 .new-product {
-    color: $color-black;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    a {
+        margin-top: 1em;
+        font-size: 18px;
+        font-family: "Nunito";
+        font-weight: 600;
+        color: $color-black;
+    }
 }
 
 .form {
@@ -255,18 +264,33 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+
     .fields {
-        display:flex;
+        display: flex;
         flex-direction: column;
     }
     .field {
         margin: 1em 2em;
-        display:flex;
+        display: flex;
         justify-content: space-between;
     }
-    .actions{
-        display:flex;
+    .actions {
+        display: flex;
         align-self: center;
+    }
+}
+
+h1 {
+    color: black;
+}
+
+.product-shown{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+
+    .back-link {
+        color: black;
+        font-size: 30px;     
     }
 }
