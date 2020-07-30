@@ -16,6 +16,9 @@ $color-black: #000;
 }
 
 body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
     margin: 0;
     padding: 0;
     color: white;
@@ -327,4 +330,8 @@ footer {
         height: 100%;
         width: 100%;
     }
+}
+
+.container {
+    flex: 1;
 }
