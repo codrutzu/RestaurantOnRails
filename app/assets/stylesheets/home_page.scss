@@ -22,11 +22,6 @@ body {
     font-family: "Montserrat", sans-serif;
 }
 
-img {
-    width: 40px;
-    height: 40px;
-}
-
 ul {
     list-style: none;
 }
@@ -51,6 +46,13 @@ a {
             padding: 2.5em 0;
             font-size: 14px;
 
+            .logo-mark {
+                img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+
             .logo-text {
                 padding-left: 0.7em;
                 font-weight: 600;
@@ -68,7 +70,7 @@ a {
                 content: "";
                 background: asset-url("menudot.png") no-repeat;
                 opacity: 1;
-                background-size: 6px 6px;
+                background-size: 4px 4px;
                 background-position: 50% 50%;
                 padding: 0 1em;
             }
@@ -185,23 +187,30 @@ a {
 }
 
 .products-wrapper {
+    margin-bottom: 2em;
     .plates {
         padding: 0 10em;
         display: flex;
         justify-content: center;
-        text-align: center;
+        align-items: center;
 
         ul {
             margin: 0;
             padding: 3em;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(4, 300px);
 
             li {
-                padding: 0 3em;
-                transition: transform 0.3s ease-in-out;
-                padding-top: 3em;
+                -webkit-transition: -webkit-transform 0.4s;
+                transition-delay: 250ms;
+                transition: transform 0.5s;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                border-right: 2px solid #e7e7e7;
+                border-bottom: 2px solid #e7e7e7;
+                padding: 0.5rem;
 
                 .plate-img {
                     width: 200px;
@@ -227,27 +236,45 @@ a {
                 }
             }
 
-            li:hover {
-                transform: scale(1.1);
-                background-color: rgba(0, 0, 0, 1);
+            li:nth-last-child(4n + 1):nth-last-child(-n + 4) {
+                border-bottom: none;
+            }
 
-                .dish {
-                    color: White;
-                }
+            li:last-child {
+                border-right: none;
+            }
+
+            li:nth-child(4n) {
+                border-right: none;
+            }
+
+            li:nth-child(4n + 1):nth-last-child(-n + 4) {
+                border-bottom: none;
+            }
+
+            li:nth-child(4n + 1):nth-last-child(-n + 4) ~ li {
+                border-bottom: none;
+            }
+
+            li:hover {
+                transform: scale(1.2);
+                background-color: white;
+                border: 2px solid rgba(247, 247, 247, 0.2);
+                box-shadow: -1px 1px 10px rgba(169, 169, 169, 0.6);
             }
 
             .plate {
                 display: flex;
                 flex-direction: column;
                 justify-content: flex-end;
-                padding-bottom: 5em;
+                padding-bottom: 3em;
             }
         }
     }
 }
 
 .new-product {
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     a {
@@ -284,13 +311,20 @@ h1 {
     color: black;
 }
 
-.product-shown{
-    display:flex;
+.product-shown {
+    display: flex;
     flex-direction: column;
     align-items: center;
 
     .back-link {
         color: black;
-        font-size: 30px;     
+        font-size: 30px;
+    }
+}
+
+footer {
+    img {
+        height: 100%;
+        width: 100%;
     }
 }

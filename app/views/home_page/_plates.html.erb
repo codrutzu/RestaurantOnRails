@@ -2,7 +2,7 @@
   <div class="plates">
     <ul id="products">
       <% @products.each do |product|%>
-        <li>
+        <li class="plate">
           <p> <%= image_tag product.image, class: "plate-img" %></p>
           <p class="dish"> <%= product.title %></p>
           <p class="meal-type"> <%= product.description %></p>
