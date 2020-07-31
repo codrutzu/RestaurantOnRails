@@ -12,12 +12,12 @@
   </head>
 
   <body>
-    <div class="container">
+    <%= render :partial => 'shared/navbar' %>
+    <main class="container">
       <%= yield %>
-    </div>
+    </main>
     <footer>
       <%= image_tag "footer.png" %>
     </footer>
   </body>
-  
 </html>
