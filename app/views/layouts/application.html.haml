@@ -9,6 +9,6 @@
     = stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css'
     = favicon_link_tag asset_path('favicon.png')
   %body
-    = render :partial => 'shared/navbar'
+    = render partial: 'shared/navbar'
     %main.container= yield
-    %footer= image_tag "footer.png"
+    %footer= image_tag 'footer.png'
