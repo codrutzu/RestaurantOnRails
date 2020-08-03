@@ -1,4 +1,4 @@
-%header{:class => "#{current_page?(controller: 'home_page', action: "index") ? 'navbar-absolute' : 'navbar'}"}
+%header{class: "#{current_page?(controller: 'home_page', action: "index") ? 'navbar-absolute' : 'navbar'}"}
   = link_to :root do
     .logo-container
       .logo-mark
@@ -9,12 +9,12 @@
   %nav
     %ul
       %li
-        %a{:href => "#"} HOME
+        %a{href: "#"} HOME
       %li
-        %a{:href => "#"} ABOUT
+        %a{href: "#"} ABOUT
       %li
-        %a{:href => "#"} SERVICE
+        %a{href: "#"} SERVICE
       %li
-        %a{:href => "#"} BLOG
+        %a{href: "#"} BLOG
       %li
-        %a{:href => "#"} CONTACTS
+        %a{href: "#"} CONTACTS
