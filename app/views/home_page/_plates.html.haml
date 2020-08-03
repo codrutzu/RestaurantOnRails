@@ -1,7 +1,7 @@
 .products-wrapper 
   .plates-container 
     %ul#plates-list 
-      = @products.each do |product| 
+      - @products.each do |product| 
         %li.plate 
           %p= image_tag product.image, class: 'plate-img'
           %p.dish= product.title
