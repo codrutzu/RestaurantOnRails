@@ -10,6 +10,7 @@
     = favicon_link_tag asset_path('favicon.png')
   %body
     = render partial: 'shared/navbar'
-    %main.container= yield
-    -# %footer= image_tag 'footer.png'
+    - flash.each do |message_type, message| 
+      %div{class: "alert alert-#{message_type}"}= message
+    %main.content= yield
     = render partial: 'shared/footer'

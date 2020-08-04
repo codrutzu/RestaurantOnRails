@@ -10,9 +10,10 @@ class ProductsController < ApplicationController
   def create 
     @product = Product.new(product_params)
     if @product.save
-        redirect_to @product 
+      redirect_to @product 
     else 
-        render :new 
+      flash[:danger] = "You have to complete all fields"
+      redirect_to new_product_path
     end
   end
   
