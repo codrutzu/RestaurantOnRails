@@ -1,12 +1,4 @@
-.signup-form {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: 400px;
-  margin: 2em auto;
-  height: 500px;
-  background-color: rgba($color-filter, 0.5);
-
+@mixin user-form {
   .header {
     padding-bottom: 1em;
   }
@@ -47,11 +39,6 @@
 
       a:hover {
         text-decoration: none;
-      }
-
-      a:nth-child(2) {
-        margin-left: 20px;
-        border-bottom: 1.5px solid $color-orange;
       }
     }
   }
@@ -110,4 +97,44 @@
     lighten($color-orange, 10%),
     darken($color-orange, 30%)
   );
+}
+
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  margin: 2em auto;
+  height: 500px;
+  background-color: rgba($color-filter, 0.5);
+  @include user-form;
+
+  .options-wrapper { 
+    .options { 
+      a:nth-child(2) {
+        margin-left: 20px;
+        border-bottom: 1.5px solid $color-orange;
+      }
+    }
+  }
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 400px;
+  margin: 2em auto;
+  height: 500px;
+  background-color: rgba($color-filter, 0.5);
+  @include user-form;
+
+  .options-wrapper { 
+    .options { 
+      a:nth-child(1) {
+        margin-right: 20px;
+        border-bottom: 1.5px solid $color-orange;
+      }
+    }
+  }
 }
