@@ -6,9 +6,9 @@
       %p Sign up today 
   .options-wrapper
     .options
-      = link_to :root do 
+      = link_to '/login' do 
         %p Log in 
-      = link_to '/signup' do 
+      = link_to '#' do 
         %p Sign up
   = form_with(model: @user, local: true) do |f|
     .fields
