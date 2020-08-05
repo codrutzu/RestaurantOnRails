@@ -1,13 +1,13 @@
 !!!
 %html
   %head
-    %title Restaurant
+    %title= full_title(yield(:title))
     = csrf_meta_tags
     = csp_meta_tag
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
     = stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css'
-    = favicon_link_tag asset_path('favicon.png')
+    = favicon_link_tag asset_path('logo.svg')
   %body
     = render partial: 'shared/navbar'
     - flash.each do |message_type, message| 

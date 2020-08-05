@@ -18,3 +18,10 @@
         %a{href: "#"} BLOG
       %li
         %a{href: "#"} CONTACTS
+    .dropdown
+      = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true"
+      .dropdown-menu
+        = link_to "Sign up", '/signup', class: "dropdown-item"
+        
+      
+
