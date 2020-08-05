@@ -3,7 +3,8 @@
     %ul#plates-list 
       - @products.each do |product| 
         %li.plate 
-          %p= image_tag product.image, class: 'plate-img'
+          %p.plate-img
+            = cl_image_tag(product.image.key)
           %p.dish= product.title
           %p.meal-type= product.description
           %p.price= product.price
