@@ -21,6 +21,10 @@ footer {
         a {
           color: $color-black;
         }
+
+        a:hover {
+          text-decoration: none;
+        }
       }
     }
 
