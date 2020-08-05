@@ -10,6 +10,12 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
- *= require_self
  */
+
+@import "bootstrap/scss/bootstrap";
+@import "utils/variables";
+@import "utils/form";
+@import "application/navbar";
+@import "application/footer";
+@import "home_page/top_section.scss";
+@import "home_page/main_section.scss";

@@ -1,0 +1,20 @@
+%header{class: "#{current_page?(controller: 'home_page', action: "index") ? 'navbar-absolute' : 'navbar'}"}
+  = link_to :root do
+    .logo-container
+      .logo-mark
+        = image_tag "logo.svg"
+      .logo-text
+        %div EUREKA
+        %div CAFFE
+  %nav
+    %ul
+      %li
+        %a{href: "#"} HOME
+      %li
+        %a{href: "#"} ABOUT
+      %li
+        %a{href: "#"} SERVICE
+      %li
+        %a{href: "#"} BLOG
+      %li
+        %a{href: "#"} CONTACTS
