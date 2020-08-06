@@ -1,0 +1,6 @@
+- unless @cart.products.count == 0
+  - @cart.products.each do |product|
+    %h1= product.title
+- else 
+  %h1 Whoops, your cart is empty!
+  

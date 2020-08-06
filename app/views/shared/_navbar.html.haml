@@ -20,15 +20,13 @@
         %a{href: "#"} CONTACTS
     .dropdown
       - if logged_in?
-        .user-name
+        .user-icon
           = current_user.name 
         .dropdown-menu
           = link_to 'Logout', '/logout', method: :delete, class: "dropdown-item"
+        = link_to image_tag("cart.svg"), '/cart'
       - else
         .dropdown-menu
           = link_to 'Log in', '/login', class: "dropdown-item"
           = link_to "Sign up", '/signup', class: "dropdown-item"
       = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true"
-        
-      
-

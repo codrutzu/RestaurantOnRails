@@ -5,7 +5,7 @@ RSpec.configure do |c|
   c.include UsersHelper
 end
 
-RSpec.describe "Users", type: :request do
+RSpec.describe "Login", type: :request do
 
   fixtures :all
   before do 
@@ -31,6 +31,7 @@ RSpec.describe "Users", type: :request do
       follow_redirect!
       expect(response).to render_template('users/show')
       delete logout_path
+      expect(response).to redirect_to(root_path)
       expect(is_logged_in?).to be(false)
     end
   end

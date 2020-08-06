@@ -1,3 +1,4 @@
+// TODO: make button_to as a form with hidden field 
 .products-wrapper 
   .plates-container 
     %ul#plates-list 
@@ -7,4 +8,7 @@
             = cl_image_tag(product.image.key)
           %p.dish= product.title
           %p.meal-type= product.description
-          %p.price= product.price
+          %p.price= "$  #{product.price}" 
+          - if logged_in? 
+            = button_to "Add to cart", "/add_product/#{product.id}", class: "btn btn-primary"
+          
