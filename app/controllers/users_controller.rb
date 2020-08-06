@@ -13,6 +13,7 @@ class UsersController < ApplicationController
       reset_session
       log_in @user
       flash.now[:success] = "Congratulations! Your account has been created."
+      create_cart_for_user @user
       redirect_to @user
     else 
       flash.now[:danger] = @user.errors.full_messages
