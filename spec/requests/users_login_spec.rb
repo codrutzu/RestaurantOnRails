@@ -7,7 +7,7 @@ end
 
 RSpec.describe "Login", type: :request do
 
-  fixtures :all
+  fixtures :users
   before do 
     @user = users(:michael)
   end
@@ -16,7 +16,11 @@ RSpec.describe "Login", type: :request do
     it "should not login with invalid information" do
       get login_path
       expect(response).to render_template('sessions/new')
-      post login_path, params: { session: {email: "invalid", password: "invalid"}}
+      post login_path, params: { session: 
+        {
+          email: "invalid", 
+          password: "invalid"
+        }}
       expect(response).to render_template('sessions/new')
       expect(flash.empty?).to be(false)
       get root_path
@@ -25,7 +29,11 @@ RSpec.describe "Login", type: :request do
 
     it "should login with valid information" do
       get login_path
-      post login_path, params: { session: {email: @user.email, password: 'password'} }
+      post login_path, params: { session: 
+        { 
+          email: @user.email, 
+          password: 'password'
+        }}
       expect(is_logged_in?).to be(true)
       expect(response).to redirect_to(@user)
       follow_redirect!

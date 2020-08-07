@@ -7,7 +7,8 @@ RSpec.describe "Signup", type: :request do
       get signup_path
       expect do
         post users_path, params: { user: 
-          { name: "Example User", 
+          { 
+            name: "Example User", 
             email: "user@example.com", 
             password: "password", 
             password_confirmation: "password" 

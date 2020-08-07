@@ -18,15 +18,17 @@
         %a{href: "#"} BLOG
       %li
         %a{href: "#"} CONTACTS
+    - if logged_in? 
+      = current_user.name
     .dropdown
       - if logged_in?
-        .user-icon
-          = current_user.name 
         .dropdown-menu
-          = link_to 'Logout', '/logout', method: :delete, class: "dropdown-item"
-        = link_to image_tag("cart.svg"), '/cart'
+          = link_to 'Logout', '/logout', method: :delete, class: 'dropdown-item'
+        = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'user'
+        = link_to image_tag("cart.svg"), '/cart', class: 'cart'
       - else
+        = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'guest'
         .dropdown-menu
-          = link_to 'Log in', '/login', class: "dropdown-item"
-          = link_to "Sign up", '/signup', class: "dropdown-item"
-      = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true"
+          = link_to 'Log in', '/login', class: 'dropdown-item'
+          = link_to "Sign up", '/signup', class: 'dropdown-item'
+      
