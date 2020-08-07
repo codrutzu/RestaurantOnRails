@@ -1,6 +1,23 @@
-- unless @cart.products.count == 0
-  - @cart.products.each do |product|
-    %h1= product.title
-- else 
-  %h1 Whoops, your cart is empty!
+%header.cart-header
+  %h2 Cart
+.products-container
+  .informations
+    %p PRODUCT DETAILS 
+    %p QUANTITY
+    %p PRICE
+    %p TOTAL
+  - unless @cart.products.count == 0
+    - @cart.products.uniq.each do |product|
+      .product-wrapper
+        .details
+          %p.plate-img
+            = cl_image_tag(product.image.key)
+          .description
+            %p.title= product.title
+            %p.category= product.description
+        %p.quantity= no_of_products(product)
+        %p.price= "$ #{product.price}"
+        %p.product-total= "$ #{product.price * no_of_products(product)}"
+  - else 
+    %h1 Whoops, your cart is empty
   

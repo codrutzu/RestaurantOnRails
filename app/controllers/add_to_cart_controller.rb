@@ -1,10 +1,8 @@
 class AddToCartController < ApplicationController
   def add_product_to_cart
     if(logged_in?)
-      logged_user = current_user
-      cart = logged_user.cart
-      product = Product.find(params[:id])
-      cart.products << product
+      cart = current_user.cart
+      cart.products << Product.find(params[:id])
     else 
       flash.now[:danger] = "What kind of sorcery is this??"
     end

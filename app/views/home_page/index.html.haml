@@ -1,5 +1,6 @@
 = render partial: 'header'
 = render partial: 'filter'
-.new-product
-  = link_to "New product", new_product_path
+- unless current_user.nil? || current_user.name != "Codreanu Andrei"
+  .new-product
+    = link_to "New product", new_product_path
 = render partial: 'plates'

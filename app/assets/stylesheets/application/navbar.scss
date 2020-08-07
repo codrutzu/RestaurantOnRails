@@ -2,7 +2,7 @@
 .navbar-absolute {
     height: 70px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
 
     a {
@@ -10,6 +10,7 @@
     }
 
     .logo-container {
+        margin-left: 10em;
         display: flex;
         font-size: 12px;
 
@@ -32,7 +33,8 @@
 
         ul {
             margin: 0;
-            margin-top: 3px;
+            margin-right: 2em;
+            margin-top: 4px;
             display: flex;
             font-size: 14px;
             font-weight: 600;
@@ -70,13 +72,20 @@
         .dropdown {
             display: flex;
             cursor: pointer;
-            margin-left: 30px;
             align-items: center;
 
             img {
                 width: 24px;
                 height: 24px;
-                margin-left: 10px;
+            }
+
+            .guest { 
+                margin-right: 2em;
+                margin-right: 6em;
+            }
+
+            .user {
+                margin-left: 0.6em; 
             }
 
             img:hover {
@@ -100,6 +109,10 @@
                 a:hover {
                     background-color: rgba($color-black-satin, 0);
                 }
+            }
+
+            .cart { 
+                padding: 0 2em;
             }
         }
     }
