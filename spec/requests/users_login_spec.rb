@@ -41,6 +41,21 @@ RSpec.describe "Login", type: :request do
       delete logout_path
       expect(response).to redirect_to(root_path)
       expect(is_logged_in?).to be(false)
+      # Simulate a user clicking logout in a second window.
+      delete logout_path
+    end
+  end
+
+  describe "testing remembering" do
+    it "should remember the user" do
+      log_in_as(@user, remember_me: '1')
+      expect(cookies[:remember_token]).not_to be_empty 
+    end
+
+    it "should not remember the user" do 
+      log_in_as(@user, remember_me: '1')
+      log_in_as(@user, remember_me: '0')
+      expect(cookies[:remember_token]).to be_empty
     end
   end
 end
