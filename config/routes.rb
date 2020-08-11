@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   resources :users
   resources :products, only: %i[index new create show]
   resources :carts, only: %i[show]
+  resources :account_activations, only: [:edit]
 end
