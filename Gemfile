@@ -26,7 +26,13 @@ gem 'bcrypt', '~> 3.1', '>= 3.1.15'
 
 gem 'cloudinary'
 
+gem 'faker', '2.11.0'
+
 gem 'rails-controller-testing'
+
+gem 'will_paginate', '3.3.0'
+
+gem 'will_paginate-bootstrap4'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

@@ -1,6 +1,6 @@
 = render partial: 'header'
 = render partial: 'filter'
-- unless current_user.nil? || current_user.name != "Codreanu Andrei"
+- if current_user.admin?
   .new-product
     = link_to "New product", new_product_path
 = render partial: 'plates'
