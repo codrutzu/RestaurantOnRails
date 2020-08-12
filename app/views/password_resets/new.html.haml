@@ -1,11 +1,10 @@
 = provide(:title, "Forgot password")
 .form
-  .form-container 
+  .form-container
     %p Reset password
     = form_with(url: password_resets_path, scope: :password_reset, local: true) do |form|
       .fields
-        .form-group 
+        .form-group
           = form.label :email
           = form.email_field :email, class: 'field last-border'
         = form.submit "Submit", class: 'btn btn-primary'
-          

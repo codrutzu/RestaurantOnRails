@@ -4,12 +4,12 @@
       .logo-mark
         = image_tag "logo.svg"
       .logo-text
-        %div EUREKA
-        %div CAFFE
+        %div#eureka EUREKA
+        %div#caffe CAFFE
   %nav
     %ul
       %li
-        %a{href: "#"} HOME
+        %a{href: root_url, class: "#{active_class(root_url)}"} HOME
       %li
         %a{href: "#"} ABOUT
       %li
@@ -18,8 +18,8 @@
         %a{href: "#"} BLOG
       %li
         %a{href: "#"} CONTACTS
-    - if logged_in? 
-      = current_user.name
+    - if logged_in?
+      %p.current-user= current_user.name
     .dropdown
       - if logged_in?
         .dropdown-menu
@@ -34,4 +34,3 @@
         .dropdown-menu
           = link_to 'Log in', '/login', class: 'dropdown-item'
           = link_to "Sign up", '/signup', class: 'dropdown-item'
-      
