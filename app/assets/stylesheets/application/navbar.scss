@@ -13,6 +13,7 @@
         margin-left: 10em;
         display: flex;
         font-size: 12px;
+        align-items: center;
 
         .logo-mark {
             img {
@@ -34,7 +35,7 @@
         ul {
             margin: 0;
             margin-right: 2em;
-            margin-top: 4px;
+            margin-top: 2px;
             display: flex;
             font-size: 14px;
             font-weight: 600;
@@ -54,19 +55,6 @@
             a:hover {
                 color: $color-footer;
             }
-
-            a:after {
-                content: " ";
-                display: block;
-                width: 0;
-                height: 2px;
-                background: $color-orange;
-                transition: width 0.3s;
-            }
-
-            a:hover:after {
-                width: 100%;
-            }
         }
 
         .dropdown {
@@ -79,13 +67,13 @@
                 height: 24px;
             }
 
-            .guest { 
+            .guest {
                 margin-right: 2em;
                 margin-right: 6em;
             }
 
             .user {
-                margin-left: 0.6em; 
+                margin-left: 0.6em;
             }
 
             img:hover {
@@ -93,11 +81,11 @@
             }
 
             .dropdown-menu {
-                min-width: 40px;
+                min-width: 150px;
                 background-color: $color-black-satin;
 
                 a {
-                    font-size: 13px;
+                    font-size: 15px;
                     color: $color-white;
                     line-height: 0;
                 }
@@ -111,20 +99,74 @@
                 }
             }
 
-            .cart { 
-                padding: 0 2em;
+            .dropdown-item {
+                text-align: center;
+                padding: 0.5rem 1rem;
+            }
+
+            .cart {
+                margin: 0 2em;
             }
         }
+    }
+
+    .current-user {
+        margin: 0;
     }
 }
 
 .navbar {
     padding: 0;
-    background-color: rgba($color-black-satin, 0.8);
-    box-shadow: 4px 0px 3px $color-black;
+
+    div.dropdown-menu.show {
+        left: -2.7rem !important;
+        top: 30px !important;
+    }
+
+    a {
+        color: $color-black;
+    }
+
+    .dropdown {
+        img {
+            filter: invert(1);
+        }
+
+        img:hover {
+            filter: invert(0.1);
+        }
+    }
+
+    .logo-text {
+
+        div {
+            font-weight: 700;
+        }
+
+        #eureka {
+            color: $color-black;
+        }
+
+        #caffe {
+            color: $color-orange;
+        }
+    }
 }
 
 .navbar-absolute {
     position: absolute;
     width: 100%;
+
+    div.dropdown-menu.show {
+        left: -2rem !important;
+        top: 5px !important;
+    }
+
+    .current-user {
+        color: $color-white;
+    }
+}
+
+.current-page {
+    color: $color-orange;
 }

@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   def authorize_user!
     if !logged_in?
-      flash[:danger] = "You have to log in"
+      flash.now[:danger] = "You have to log in"
       redirect_to root_url
     end
   end
