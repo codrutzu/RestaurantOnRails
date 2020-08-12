@@ -8,6 +8,6 @@ module UsersHelper
 
   def no_of_products(product)
     user = current_user
-    user.cart.products.where('product_id = ?', product.id).count
+    user.cart.products.where('id = ?', product.id).count
   end
 end

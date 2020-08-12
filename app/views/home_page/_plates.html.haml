@@ -5,7 +5,10 @@
       - @products.each do |product| 
         %li.plate 
           %p.plate-img
-            = cl_image_tag(product.image.key)
+            - if Rails.env.production?
+              = cl_image_tag(product.image.key)
+            - else 
+              = image_tag product.image
           %p.dish= product.title
           %p.meal-type= product.description
           %p.price= "$  #{product.price}" 

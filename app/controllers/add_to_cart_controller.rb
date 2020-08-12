@@ -1,10 +1,8 @@
 class AddToCartController < ApplicationController
-  def add_product_to_cart
-    if(logged_in?)
+  before_action :authorize_user!, only: :create
+
+  def create
       cart = current_user.cart
       cart.products << Product.find(params[:id])
-    else 
-      flash.now[:danger] = "What kind of sorcery is this??"
-    end
   end
 end

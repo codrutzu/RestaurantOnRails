@@ -28,7 +28,6 @@ gem 'cloudinary'
 
 gem 'faker', '2.11.0'
 
-gem 'rails-controller-testing'
 
 gem 'will_paginate', '3.3.0'
 
@@ -53,6 +52,8 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   # gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
+
+  gem 'rails-controller-testing'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 end
