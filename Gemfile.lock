@@ -74,6 +74,8 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
     erubis (2.7.0)
+    faker (2.11.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -235,6 +237,9 @@ GEM
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.3.0)
+    will_paginate-bootstrap4 (0.2.2)
+      will_paginate (~> 3.0, >= 3.0.0)
     zeitwerk (2.4.0)
 
 PLATFORMS
@@ -245,6 +250,7 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   cloudinary
+  faker (= 2.11.0)
   haml-rails
   jbuilder (~> 2.7)
   pg (= 1.2.3)
@@ -260,6 +266,8 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   webdrivers
   webpacker (~> 4.0)
+  will_paginate (= 3.3.0)
+  will_paginate-bootstrap4
 
 RUBY VERSION
    ruby 2.6.6p146

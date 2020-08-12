@@ -11,13 +11,17 @@
       .product-wrapper
         .details
           %p.plate-img
-            = cl_image_tag(product.image.key)
+            - if Rails.env.production?
+              = cl_image_tag(product.image.key)
+            - else 
+              = image_tag product.image
           .description
             %p.title= product.title
             %p.category= product.description
         %p.quantity= no_of_products(product)
         %p.price= "$ #{product.price}"
         %p.product-total= "$ #{product.price * no_of_products(product)}"
+    %p= @cart.products.sum(:price)    
   - else 
     %h1 Whoops, your cart is empty
   

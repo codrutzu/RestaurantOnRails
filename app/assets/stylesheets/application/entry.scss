@@ -103,10 +103,10 @@
 .signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   width: 400px;
   margin: 2em auto;
-  height: 500px;
+  height: 600px;
   background-color: rgba($color-filter, 0.5);
   @include user-form;
 
@@ -123,10 +123,10 @@
 .login-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   width: 400px;
   margin: 2em auto;
-  height: 500px;
+  height: 400px;
   background-color: rgba($color-filter, 0.5);
   @include user-form;
 
@@ -137,5 +137,10 @@
         border-bottom: 1.5px solid $color-orange;
       }
     }
+  }
+
+  .checkbox {
+    margin-top: 20px;
+    color: $color-black;
   }
 }

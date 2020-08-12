@@ -1,19 +1,7 @@
 ---
-development:
-  cloud_name: ddgjr1vra
-  api_key: '449374544161443'
-  api_secret: NGK267mJjV4V1STNxXFGVTdCKUQ
-  enhance_image_tag: true
-  static_file_support: false
 production:
   cloud_name: ddgjr1vra
   api_key: '449374544161443'
   api_secret: NGK267mJjV4V1STNxXFGVTdCKUQ
   enhance_image_tag: true
   static_file_support: true
-test:
-  cloud_name: ddgjr1vra
-  api_key: '449374544161443'
-  api_secret: NGK267mJjV4V1STNxXFGVTdCKUQ
-  enhance_image_tag: true
-  static_file_support: false

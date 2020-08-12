@@ -4,7 +4,6 @@ class CartsController < ApplicationController
   end
   
   def show 
-    user = User.find(current_user.id)
-    @cart = user.cart
+    @cart = current_user.cart
   end
 end
