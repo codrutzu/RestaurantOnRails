@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .hero-wrapper {
   background: asset-url("bg.jpg");
   background-size: cover;
