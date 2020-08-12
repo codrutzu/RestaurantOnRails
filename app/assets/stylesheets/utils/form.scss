@@ -1,37 +1,75 @@
 .form {
+  background-color: rgba($color-filter, 0.5);
   color: $color-black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 500px;
+  margin: 2em auto;
 
-  .fields {
+  .form-container {
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em 0;
+
+    p {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .fields {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      .form-group {
+        color: $color-black;
+        font-size: 12px;
+        font-weight: 700;
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: 1.2em 0;
+
+        label {
+          margin-bottom: 0.3em;
+        }
+
+        .field {
+          border: 0;
+          border-bottom: 2px solid $color-grey;
+          background: transparent;
+        }
+
+        .field:focus {
+          border-width: 3px;
+          outline: 0;
+          border-bottom: 2px solid $color-orange;
+        }
+      }
+
+      div:nth-last-child(2) {
+        margin-bottom: 4em;
+
+        .field {
+          border: 0;
+        }
+      }
+
+      .actions {
+        display: flex;
+        align-self: center;
+      }
+    }
+  }
+
+  .product-shown {
     display: flex;
     flex-direction: column;
-  }
+    align-items: center;
 
-  .field {
-    margin: 1em 2em;
-    display: flex;
-    justify-content: space-between;
-  }
-
-  .actions {
-    display: flex;
-    align-self: center;
-  }
-}
-
-h1 {
-  color: $color-black;
-}
-
-.product-shown {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  .back-link {
-    color: $color-black;
-    font-size: 30px;
+    .back-link {
+      color: $color-black;
+      font-size: 30px;
+    }
   }
 }

@@ -15,7 +15,5 @@
 @import "bootstrap/scss/bootstrap";
 @import "utils/variables";
 @import "utils/form";
-@import "application/navbar";
-@import "application/footer";
-@import "home_page/top_section.scss";
-@import "home_page/main_section.scss";
+@import "application/*";
+@import "home_page/*";

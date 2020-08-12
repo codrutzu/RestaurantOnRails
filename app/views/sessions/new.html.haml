@@ -1,0 +1,22 @@
+= provide(:title, "Log in")
+.login-form
+  .header
+    .hero
+      = image_tag "logo.svg"
+      %p Log in  
+  .options-wrapper
+    .options
+      = link_to '#' do 
+        %p Log in 
+      = link_to '/signup' do 
+        %p Sign up
+  = form_with(url: login_path, scope: :session, local: true) do |f|
+    .fields
+      .form-group
+        = f.label :email
+        = f.email_field :email, class: "field"
+      .form-group
+        = f.label :password
+        = f.password_field :password, class: "field"
+      .actions
+        = f.submit "Log in", class: "btn btn-primary"

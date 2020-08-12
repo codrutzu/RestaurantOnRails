@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  color: $color-white;
+  font-family: "Montserrat", sans-serif;
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  color: $color-white;
+  text-decoration: none;
+}
+
+.hero-wrapper {
+  background: asset-url("bg.jpg");
+  background-size: cover;
+}
+
+h1 {
+  color: $color-black;
+}

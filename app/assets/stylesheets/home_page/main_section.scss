@@ -1,5 +1,6 @@
 .products-wrapper {
   margin-bottom: 2em;
+  
   .plates-container {
     padding: 0 10em;
     display: flex;
@@ -25,8 +26,10 @@
         padding: 0.5rem;
 
         .plate-img {
-          width: 200px;
-          height: 200px;
+          img {
+            width: 200px;
+            height: 200px;
+          }
         }
 
         .dish {
@@ -90,7 +93,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   a {
     margin-top: 1em;
     font-size: 18px;
