@@ -13,10 +13,10 @@
           - @cart.products.uniq.each do |product|
             .product-wrapper
               .product-left
-                = link_to '#' do
+                = link_to "/delete_product/#{product.id}", method: :delete do
                   = image_tag 'minus.svg', class: 'delete-one'
                 %p.quantity= no_of_products(product)
-                = link_to '#' do
+                = link_to "/add_product/#{product.id}", method: :post do
                   = image_tag 'plus.svg', class: 'add-one'
                 %p.tite= product.title
               .product-right
@@ -24,9 +24,8 @@
           .cart-footer
             .total
               %p Total:
-              #total-sum= "$ #{@cart.products.sum(:price)}"
+              #total-sum= "$ #{CartProduct.where(cart_id: current_user.cart.id).joins(:product).sum('price * quantity')}"
             = link_to 'CHECKOUT', '#', class: 'btn btn-primary'
-      -# .illustration
       = image_tag 'cart-illustration.png'
 - else
   .empty-wrapper

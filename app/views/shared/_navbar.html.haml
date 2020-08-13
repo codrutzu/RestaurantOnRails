@@ -31,7 +31,7 @@
         - if current_user != nil && current_user.cart.products.count > 0 && !current_page?('/cart')
           = link_to '/cart' do
             = image_tag 'cart.svg',class: 'cart-notify'
-            %span.badge= current_user.cart.products.count
+            %span.badge= CartProduct.where(cart_id: current_user.cart.id).sum(:quantity)
         - else
           = link_to image_tag("cart.svg"), '/cart', class: 'cart'
       - else

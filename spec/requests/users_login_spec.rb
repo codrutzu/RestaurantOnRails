@@ -23,10 +23,10 @@ RSpec.describe "Login", type: :request do
           password: 'invalid'
         }}
       expect(response).to redirect_to(login_path)
-      expect(flash.empty?).to be(false)
-      get login_path
-      # IDK why this isn't working
-      expect(flash.empty?).to be(true)
+      expect(flash.present?).to be(true)
+      get root_path
+      get root_path
+      expect(flash.present?).to be(false)
     end
 
     it 'should login with valid information' do

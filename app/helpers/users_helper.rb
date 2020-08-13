@@ -7,7 +7,6 @@ module UsersHelper
   end
 
   def no_of_products(product)
-    user = current_user
-    user.cart.products.where('id = ?', product.id).count
+    CartProduct.find_by(cart_id: current_user.cart.id, product_id: product.id).quantity
   end
 end
