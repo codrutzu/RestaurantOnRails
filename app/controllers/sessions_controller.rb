@@ -1,8 +1,11 @@
 class SessionsController < ApplicationController
+
   def new
+    @disable_nav = true
+    @disable_footer = true
   end
 
-  def create 
+  def create
     user = User.find_by(email: params[:session][:email].downcase)
     if user&.authenticate(params[:session][:password])
       if user.activated?
@@ -10,20 +13,21 @@ class SessionsController < ApplicationController
         reset_session
         log_in user
         params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        session[:session_token] = user.session_token
         redirect_to forwarding_url || user
-      else 
-        message = "Account not activated."
-        message += "Check your email for the activation link."
+      else
+        message = 'Account not activated.'
+        message += 'Check your email for the activation link.'
         flash[:warning] = message
         redirect_to root_url
       end
-    else 
-      flash.now[:danger] = 'Invalid email/password combination' 
-      render 'new'
+    else
+      flash[:danger] = 'Invalid email/password combination'
+      redirect_to login_path
     end
   end
 
-  def destroy 
+  def destroy
     log_out if logged_in?
     redirect_to :root
   end

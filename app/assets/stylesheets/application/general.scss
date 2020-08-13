@@ -33,3 +33,24 @@ a:hover {
 h1 {
   color: $color-black;
 }
+
+.alert {
+  margin: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus:not(:disabled):not(.disabled),
+.btn:focus,
+.btn:active,
+.btn:hover {
+  color: $color-white;
+  box-shadow: none !important;
+  outline: 0;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  color: $color-white;
+  border: 2px solid $color-button;
+}

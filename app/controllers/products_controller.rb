@@ -1,23 +1,23 @@
 class ProductsController < ApplicationController
   def new
-    @product = Product.new 
+    @product = Product.new
   end
 
-  def show 
+  def show
     @product = Product.find(params[:id])
   end
 
-  def create 
+  def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product 
-    else 
+      redirect_to @product
+    else
       flash[:danger] = "You have to complete all fields"
       redirect_to new_product_path
     end
   end
-  
-  private 
+
+  private
 
   def product_params
     params.require(:product).permit(:title, :description, :price, :image)

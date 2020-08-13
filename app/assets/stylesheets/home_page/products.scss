@@ -143,15 +143,8 @@ ul.pagination {
 }
 
 .pagins-container {
-  display:flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   padding-bottom: 3em;
-
-  .pagin-line {
-    content: '';
-    background: asset_url('paginate-line.png') no-repeat;
-    width: 25%;
-    height: 7px;
-  }
 }

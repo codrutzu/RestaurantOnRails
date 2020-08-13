@@ -2,5 +2,5 @@
 = render partial: 'filter'
 - if current_user != nil && current_user.admin?
   .new-product
-    = link_to "New product", new_product_path
+    = link_to 'New product', new_product_path
 = render partial: 'plates'

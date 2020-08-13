@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "Signup", type: :request do
 
-  before do 
+  before do
     ActionMailer::Base.deliveries.clear
   end
 
@@ -10,12 +10,12 @@ RSpec.describe "Signup", type: :request do
     it "should be valid with account activation" do
       get signup_path
       expect do
-        post users_path, params: { user: 
-          { 
-            name: "Example User", 
-            email: "user@example.com", 
-            password: "password", 
-            password_confirmation: "password" 
+        post users_path, params: { user:
+          {
+            name: "Example User",
+            email: "user@example.com",
+            password: "password",
+            password_confirmation: "password"
           }}
       end.to change{ User.count }
       expect(ActionMailer::Base.deliveries.size).to eq(1)
@@ -36,15 +36,15 @@ RSpec.describe "Signup", type: :request do
     it "shouldn't be valid" do
       get signup_path
       expect do
-        post users_path, params: { user: 
+        post users_path, params: { user:
         {
           name: "",
-          email: "user@invalid", 
+          email: "user@invalid",
           password: "foo",
           password_confirmation: "bar"
         }}
       end.to_not change{ User.count }
-      expect(response).to render_template('users/new')
+      expect(response).to redirect_to(signup_path)
     end
   end
 end

@@ -1,7 +1,7 @@
 .form {
   background-color: rgba($color-filter, 0.5);
   color: $color-black;
-  width: 500px;
+  width: 30%;
   margin: 2em auto;
 
   .form-container {
@@ -75,8 +75,4 @@
       font-size: 30px;
     }
   }
-}
-
-.forgot-link {
-  color: $color-black;
 }

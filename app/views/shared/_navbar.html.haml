@@ -28,7 +28,12 @@
           - if current_user.admin?
             = link_to 'Users', '/users', class: 'dropdown-item'
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'user'
-        = link_to image_tag("cart.svg"), '/cart', class: 'cart'
+        - if current_user != nil && current_user.cart.products.count > 0 && !current_page?('/cart')
+          = link_to '/cart' do
+            = image_tag 'cart.svg',class: 'cart-notify'
+            %span.badge= current_user.cart.products.count
+        - else
+          = link_to image_tag("cart.svg"), '/cart', class: 'cart'
       - else
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'guest'
         .dropdown-menu

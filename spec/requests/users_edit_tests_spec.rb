@@ -5,7 +5,9 @@ RSpec.describe "UsersEditTests", type: :request do
   fixtures :users
   before do
     @user = users(:michael)
+    @user.cart = Cart.new
     @other_user = users(:archer)
+    @other_user.cart = Cart.new
   end
 
   describe 'when editing a user' do
@@ -13,7 +15,7 @@ RSpec.describe "UsersEditTests", type: :request do
       log_in_as(@user)
       get edit_user_path(@user)
       expect(response).to render_template('users/edit')
-      patch user_path(@user), params: { user: 
+      patch user_path(@user), params: { user:
         {
           name: '',
           email: 'foo@invalid',
@@ -29,9 +31,9 @@ RSpec.describe "UsersEditTests", type: :request do
       expect(response).to render_template('users/edit')
       name = "Foo Bar"
       email = "foo@bar.com"
-      patch user_path(@user), params: { user: 
+      patch user_path(@user), params: { user:
         {
-          name: name, 
+          name: name,
           email: email,
           password: '',
           password_confirmation: ''
@@ -50,10 +52,10 @@ RSpec.describe "UsersEditTests", type: :request do
     end
 
     it "should redirect update when not logged in" do
-      patch user_path(@user), params: { user: 
+      patch user_path(@user), params: { user:
         {
           name: @user.name,
-          email: @user.email 
+          email: @user.email
         }}
         expect(flash.empty?).to be(false)
         expect(response).to redirect_to(login_url)
@@ -68,7 +70,7 @@ RSpec.describe "UsersEditTests", type: :request do
 
     it "should redirect update when logged in as wrong user" do
       log_in_as(@other_user)
-      patch user_path(@user), params: { user: 
+      patch user_path(@user), params: { user:
         {
           name: @user.name,
           email: @user.email

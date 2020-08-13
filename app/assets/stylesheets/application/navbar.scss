@@ -104,8 +104,18 @@
                 padding: 0.5rem 1rem;
             }
 
-            .cart {
+            .cart,
+            .cart-notify {
                 margin: 0 2em;
+            }
+
+            .badge {
+                position: absolute;
+                top: -4px;
+                right: 42px;
+                border-radius: 50%;
+                background: red;
+                color: white;
             }
         }
     }
@@ -138,7 +148,6 @@
     }
 
     .logo-text {
-
         div {
             font-weight: 700;
         }

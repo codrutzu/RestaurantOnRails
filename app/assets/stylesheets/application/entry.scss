@@ -1,88 +1,102 @@
 @mixin user-form {
-  .header {
-    padding-bottom: 1em;
-  }
-
-  .hero {
-    padding: 1em 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-      width: 40px;
-      height: 40px;
+  .form-content {
+    .header {
+      margin-bottom: 2em;
+      background-color: rgba($color-black, 0.1);
     }
 
-    p {
-      margin: 0 1em;
-      color: $color-black;
-      font-size: 20px;
-      font-weight: 600;
-    }
-  }
-
-  .options-wrapper {
-    height: 25px;
-    font-size: 13px;
-    display: flex;
-    justify-content: center;
-
-    .options {
+    .hero {
+      padding: 1em 0;
       display: flex;
-      border-bottom: 1px solid $color-grey;
-      width: 80%;
+      align-items: center;
+      justify-content: center;
 
-      a p {
-        color: $color-black;
+      img {
+        width: 40px;
+        height: 40px;
       }
 
-      a:hover {
-        text-decoration: none;
+      p {
+        margin: 0 1em;
+        color: $color-black;
+        font-size: 20px;
+        font-weight: 600;
       }
     }
-  }
 
-  .fields {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-family: "Nunito", sans-serif;
+    .options-wrapper {
+      height: 25px;
+      font-size: 13px;
+      display: flex;
+      justify-content: center;
 
-    .form-group {
-      color: $color-black;
-      font-size: 12px;
-      font-weight: 700;
-      width: 80%;
+      .options {
+        display: flex;
+        border-bottom: 1px solid $color-grey;
+        width: 80%;
+
+        a p {
+          color: $color-black;
+        }
+
+        a:hover {
+          text-decoration: none;
+        }
+      }
+    }
+
+    .fields {
       display: flex;
       flex-direction: column;
-      margin: 1.2em 0;
+      align-items: center;
+      font-family: "Nunito", sans-serif;
+      margin-bottom: 1.5em;
 
-      label {
-        margin-bottom: 0.3em;
+      .forgot-link {
+        font-size: 14px;
+        margin-top: 1em;
+        color: $color-orange-darken;
       }
 
-      .field {
-        border: 0;
-        border-bottom: 2px solid $color-grey;
-        background: transparent;
+      .forgot-link:hover {
+        text-decoration: underline;
       }
 
-      .field:focus {
-        border-width: 3px;
-        outline: 0;
-        border-bottom: 2px solid $color-orange;
-      }
-    }
-
-    .actions {
-      width: 100%;
-      input {
-        display: flex;
-        justify-content: center;
-        align-self: auto;
-        margin: 2em auto 0;
+      .form-group {
+        color: $color-black;
+        font-size: 12px;
+        font-weight: 700;
         width: 80%;
+        display: flex;
+        flex-direction: column;
+        margin: 1.2em 0;
+
+        label {
+          margin-bottom: 0.3em;
+        }
+
+        .field {
+          border: 0;
+          border-bottom: 2px solid $color-grey;
+          background: transparent;
+        }
+
+        .field:focus {
+          border-width: 3px;
+          outline: 0;
+          border-bottom: 2px solid $color-orange;
+        }
+      }
+
+      .actions {
+        width: 100%;
+        input {
+          display: flex;
+          justify-content: center;
+          align-self: auto;
+          margin: 2em auto 0;
+          width: 80%;
+        }
       }
     }
   }
@@ -98,15 +112,20 @@
     lighten($color-orange, 10%),
     darken($color-orange, 30%)
   );
+  border: 2px solid $color-orange;
+  background: none;
+}
+
+.btn-primary:hover {
+  border-color: $color-orange-darken;
 }
 
 .signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-evenly;
   width: 400px;
-  margin: 2em auto;
-  height: 600px;
+  margin: 0 auto;
   background-color: rgba($color-filter, 0.5);
   @include user-form;
 
@@ -125,8 +144,7 @@
   flex-direction: column;
   justify-content: space-evenly;
   width: 400px;
-  margin: 2em auto;
-  height: 400px;
+  margin: 0 auto;
   background-color: rgba($color-filter, 0.5);
   @include user-form;
 

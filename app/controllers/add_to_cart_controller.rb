@@ -4,5 +4,6 @@ class AddToCartController < ApplicationController
   def create
       cart = current_user.cart
       cart.products << Product.find(params[:id])
+      redirect_to root_url
   end
 end
