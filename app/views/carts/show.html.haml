@@ -13,10 +13,10 @@
           - @cart.products.uniq.each do |product|
             .product-wrapper
               .product-left
-                = link_to delete_product_path(id: product.id), method: :delete do
+                = link_to delete_product_path(id: product.id, cart: current_user.cart), method: :delete do
                   = image_tag 'minus.svg', class: 'delete-one'
                 %p.quantity= no_of_products(product)
-                = link_to add_product_path(route: 'cart', id: product.id), method: :post do
+                = link_to add_product_path(route: 'cart', id: product.id, cart: current_user.cart), method: :post do
                   = image_tag 'plus.svg', class: 'add-one'
                 %p.tite= product.title
               .product-right

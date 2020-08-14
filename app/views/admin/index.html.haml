@@ -1,0 +1,4 @@
+.nav-links
+  = link_to 'Logout', '/logout', method: :delete
+  = link_to 'Preview', root_url(preview: User.digest('1'))
+  = link_to 'Users', admin_users_path

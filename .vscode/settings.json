@@ -1,0 +1,11 @@
+{
+  "launch": {
+
+    "configurations": [],
+    "compounds": [],
+
+  },
+  "ruby.rubocop.executePath": "",
+  "ruby.format": "rubocop" // use rubocop for formatting
+
+}

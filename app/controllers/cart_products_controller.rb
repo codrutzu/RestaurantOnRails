@@ -3,7 +3,7 @@ class CartProductsController < ApplicationController
 
   def create
     cart = current_user.cart
-    if (cart_product = CartProduct.find_by(product_id: params[:id]))
+    if (cart_product = CartProduct.find_by(product_id: params[:id], cart_id: params[:cart]))
       cart_product.update_columns(quantity: cart_product.quantity + 1)
     else
       cart.products << Product.find(params[:id])
@@ -17,7 +17,7 @@ class CartProductsController < ApplicationController
 
   def destroy
     cart_product = CartProduct.find_by(product_id: params[:id])
-    if CartProduct.find_by(product_id: params[:id]).quantity > 1
+    if CartProduct.find_by(product_id: params[:id], cart_id: params[:cart]).quantity > 1
       cart_product.update_columns(quantity: cart_product.quantity - 1)
     else
       CartProduct.delete(cart_product)

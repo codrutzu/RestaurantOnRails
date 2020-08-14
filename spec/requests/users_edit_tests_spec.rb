@@ -1,4 +1,9 @@
 require 'rails_helper'
+require './spec/helpers/users_helper_spec'
+
+RSpec.configure do |c|
+  c.include UsersHelper
+end
 
 RSpec.describe "UsersEditTests", type: :request do
 
@@ -22,15 +27,15 @@ RSpec.describe "UsersEditTests", type: :request do
           password: 'foo',
           password_confirmation: 'bar'
         }}
-        expect(response).to render_template('users/edit')
+      expect(response).to render_template('users/edit')
     end
 
     it "should be successful" do
       log_in_as(@user)
       get edit_user_path(@user)
       expect(response).to render_template('users/edit')
-      name = "Foo Bar"
-      email = "foo@bar.com"
+      name = 'Foo Bar'
+      email = 'foo@bar.com'
       patch user_path(@user), params: { user:
         {
           name: name,

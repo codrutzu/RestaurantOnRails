@@ -25,8 +25,7 @@
         .dropdown-menu
           = link_to 'Logout', '/logout', method: :delete, class: 'dropdown-item'
           = link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item'
-          - if current_user.admin?
-            = link_to 'Users', '/users', class: 'dropdown-item'
+          = link_to 'Switch account', logout_path(switch: 1), method: :delete, class: 'dropdown-item'
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'user'
         - if current_user != nil && current_user.cart.products.count > 0 && !current_page?('/cart')
           = link_to '/cart' do
