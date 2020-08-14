@@ -8,10 +8,11 @@ class CartProductsController < ApplicationController
     else
       cart.products << Product.find(params[:id])
     end
-    if params[:route] == 'home'
-      redirect_to root_url
-    else
+    if !params[:id].nil? && params[:route] == 'cart'
       redirect_to '/cart'
+    else
+      redirect_to root_url
+    end
   end
 
   def destroy

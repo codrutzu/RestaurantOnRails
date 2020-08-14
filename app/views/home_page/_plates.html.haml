@@ -12,7 +12,7 @@
           %p.meal-type= product.description
           %p.price= "$  #{product.price}"
           - if logged_in?
-            = button_to 'Add to cart', "/add_product/#{product.id}", class: 'btn btn-primary'
+            = button_to 'Add to cart', "/add_product", class: 'btn btn-primary', params: { id: product.id }
 
 .pagins-container
   = will_paginate @products
