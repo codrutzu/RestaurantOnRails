@@ -19,7 +19,8 @@
       %li
         %a{href: "#"} CONTACTS
     - if logged_in?
-      %p.current-user= current_user.name
+      = link_to user_path(current_user) do
+        %p.current-user= current_user.name
     .dropdown
       - if logged_in?
         .dropdown-menu

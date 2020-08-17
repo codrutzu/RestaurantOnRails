@@ -32,9 +32,11 @@ Rails.application.routes.draw do
   resources :add_to_cart, only: :create
   resources :account_activations, only: :edit
   resources :password_resets, only: %i[new create edit update]
+  resources :orders, only: %i[new create show]
 
   namespace :admin do
     resources :users, only: %i[index destroy]
     resources :products, only: %i[new create show]
+    resources :orders, only: %i[index destroy]
   end
 end

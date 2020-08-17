@@ -10,6 +10,7 @@ class User < ApplicationRecord
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   has_secure_password
   has_one :cart, dependent: :destroy
+  has_many :orders
 
   class << self
     # Returns the hash digest of the given string.

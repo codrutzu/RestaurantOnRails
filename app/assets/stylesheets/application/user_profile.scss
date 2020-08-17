@@ -46,4 +46,23 @@
       }
     }
   }
+
+  .orders {
+    font-weight: 600;
+    background-color: rgba($color-grey, 0.6);
+    display: flex;
+    padding: 1.3em;
+    width: 30%;
+    justify-content: space-around;
+    margin-bottom: 1.5em;
+    margin-left: 2em;
+
+    div {
+      color: $color-black;
+    }
+
+    div:hover {
+      color: $color-black;
+    }
+  }
 }

@@ -1,0 +1,9 @@
+%li
+  %header
+    %p= "Order ##{order.id}"
+    %span= order.user.name
+  - if !order.handled
+    .order-info
+      %p Handle this order
+      = link_to admin_order_url(order), method: :delete do
+        = image_tag 'order/done.svg'

@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   include UsersHelper
   include SessionsHelper
+  include OrdersHelper
 
   def authorize_user!
     unless logged_in?

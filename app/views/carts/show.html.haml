@@ -25,7 +25,7 @@
             .total
               %p Total:
               #total-sum= "$ #{CartProduct.where(cart_id: current_user.cart.id).joins(:product).sum('price * quantity')}"
-            = link_to 'CHECKOUT', '#', class: 'btn btn-primary'
+            = link_to 'CHECKOUT', new_order_path, class: 'btn btn-primary'
       = image_tag 'cart-illustration.png'
 - else
   .empty-wrapper

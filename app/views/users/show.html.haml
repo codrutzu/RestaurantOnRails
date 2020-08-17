@@ -1,8 +1,15 @@
 .user-container
   .user-content
-    %p.order My orders (0)
-    .illustration
-      = image_tag 'no_order.svg'
-      .info
-        %span You have not placed any order yet
-        = link_to 'Place an order now!', root_url
+    %p.order= "My orders (#{Order.where(user_id: @user.id).where.not(handled: true).count})"
+    - if Order.where.not(handled: true).where(user_id: @user.id).count == 0
+      .illustration
+        = image_tag 'no_order.svg'
+        .info
+          %span You have not placed any order yet
+          = link_to 'Place an order now!', root_url
+    - else
+      - @user.orders.where.not(handled: true).each do |order|
+        = link_to order_path(order) do
+          .orders
+            .order-number="Order ##{order.id}"
+            .order-total= "Total: $ #{CartProduct.where(cart_id: @user.cart.id).joins(:product).sum('price * quantity')}"

@@ -1,0 +1,117 @@
+.form-container {
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: 0 auto;
+  padding: 6em 0;
+  justify-content: space-around;
+
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    // width: 60%;
+
+    .back-link {
+      color: $color-paypal;
+      display: flex;
+      font-weight: 800;
+      align-items: center;
+
+      img {
+        width: 15px;
+        margin-right: 0.6em;
+      }
+    }
+
+    .form-content {
+      font-weight: 600;
+
+      .heading {
+        font-size: 30px;
+        text-align: center;
+      }
+
+      .personal-info {
+        .info-heading {
+          font-size: 13px;
+          margin-bottom: 2.5em;
+        }
+
+        .fields-wrapper {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .fields {
+            margin-bottom: 1.5em;
+            display: flex;
+            flex-direction: column;
+
+            .form-group {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+
+              .field {
+                margin-left: 2.5em;
+              }
+            }
+          }
+        }
+      }
+
+      .payment-wrapper {
+        .payment-heading {
+          font-size: 13px;
+          margin-bottom: 2.5em;
+        }
+
+        .payment-content {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+
+          .payment-method {
+            // width: 220px;
+            padding: 1em;
+            border: 1px solid $color-grey-dim;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 1.2em;
+
+            img {
+              width: 40px;
+              margin-right: 20px;
+            }
+            .paypal {
+              width: 60px;
+            }
+          }
+
+          .payment-method:hover {
+            cursor: pointer;
+            border: 2px solid $color-paypal;
+          }
+        }
+      }
+
+      .place-order {
+        display: flex;
+        justify-content: center;
+        margin-top: 3.2em;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .media {
+    img {
+      width: 600px;
+    }
+  }
+}

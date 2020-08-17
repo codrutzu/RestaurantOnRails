@@ -1,0 +1,11 @@
+= provide(:title, 'All orders')
+
+.orders-container
+  %h1 Orders
+
+  = will_paginate @orders
+
+  %ul.orders
+    = render @orders
+
+  = will_paginate @orders

@@ -9,4 +9,8 @@ module UsersHelper
   def no_of_products(product)
     CartProduct.find_by(cart_id: current_user.cart.id, product_id: product.id).quantity
   end
+
+  def delete_user_order(user)
+    CartProduct.where(cart_id: user.cart).delete_all
+  end
 end
