@@ -1,19 +1,19 @@
-.form 
+.form
   .form-container
     %p Add a new product
-    = form_for @product do |form| 
+    = form_for @product do |form|
       .fields
         .form-group
-          = form.label :title 
-          = form.text_field :title, class: "field"
+          = form.label :title
+          = form.text_field :title, class: 'field'
         .form-group
           = form.label :descrption
-          = form.text_field :description, class: "field"
+          = form.text_field :description, class: 'field'
         .form-group
           = form.label :price
-          = form.number_field :price, class: "field"
+          = form.number_field :price, class: 'field'
         .form-group
           = form.label :image
-          = form.file_field :image, class: "field", direct_upload: true
+          = form.file_field :image, class: 'field', direct_upload: true
         .actions
-          = form.submit "Create product", class: "btn btn-primary"
+          = form.submit 'Create product', class: 'btn btn-primary'

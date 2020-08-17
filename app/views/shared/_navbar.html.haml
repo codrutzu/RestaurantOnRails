@@ -4,12 +4,12 @@
       .logo-mark
         = image_tag "logo.svg"
       .logo-text
-        %div EUREKA
-        %div CAFFE
+        %div#eureka EUREKA
+        %div#caffe CAFFE
   %nav
     %ul
       %li
-        %a{href: "#"} HOME
+        %a{href: root_url, class: "#{active_class(root_url)}"} HOME
       %li
         %a{href: "#"} ABOUT
       %li
@@ -18,17 +18,23 @@
         %a{href: "#"} BLOG
       %li
         %a{href: "#"} CONTACTS
-    - if logged_in? 
-      = current_user.name
+    - if logged_in?
+      %p.current-user= current_user.name
     .dropdown
       - if logged_in?
         .dropdown-menu
           = link_to 'Logout', '/logout', method: :delete, class: 'dropdown-item'
+          = link_to 'Settings', edit_user_path(current_user), class: 'dropdown-item'
+          = link_to 'Switch account', logout_path(switch: 1), method: :delete, class: 'dropdown-item'
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'user'
-        = link_to image_tag("cart.svg"), '/cart', class: 'cart'
+        - if current_user != nil && current_user.cart.products.count > 0 && !current_page?('/cart')
+          = link_to '/cart' do
+            = image_tag 'cart.svg',class: 'cart-notify'
+            %span.badge= CartProduct.where(cart_id: current_user.cart.id).sum(:quantity)
+        - else
+          = link_to image_tag("cart.svg"), '/cart', class: 'cart'
       - else
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'guest'
         .dropdown-menu
           = link_to 'Log in', '/login', class: 'dropdown-item'
           = link_to "Sign up", '/signup', class: 'dropdown-item'
-      

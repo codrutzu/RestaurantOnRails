@@ -1,28 +1,30 @@
 = provide(:title, "Sign Up")
 .signup-form
-  .header
-    .hero
-      = image_tag "logo.svg"
-      %p Sign up today 
-  .options-wrapper
-    .options
-      = link_to '/login' do 
-        %p Log in 
-      = link_to '#' do 
-        %p Sign up
-  = form_with(model: @user, local: true) do |f|
-    .fields
-      .form-group
-        = f.label :name
-        = f.text_field :name, class: "field"
-      .form-group
-        = f.label :email
-        = f.email_field :email, class: "field"
-      .form-group
-        = f.label :password
-        = f.password_field :password, class: "field"
-      .form-group
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation, class: "field"
-      .actions
-        = f.submit "Sign Up", class: "btn btn-primary"
+  .form-content
+    .header
+      .hero
+        = link_to root_url do
+          = image_tag "logo.svg"
+        %p Sign up today
+    .options-wrapper
+      .options
+        = link_to '/login' do
+          %p Log in
+        = link_to '#' do
+          %p Sign up
+    = form_with(model: @user, local: true) do |f|
+      .fields
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: "field"
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: "field"
+        .form-group
+          = f.label :password
+          = f.password_field :password, class: "field"
+        .form-group
+          = f.label :password_confirmation
+          = f.password_field :password_confirmation, class: "field"
+        .actions
+          = f.submit "Sign Up", class: "btn btn-primary"

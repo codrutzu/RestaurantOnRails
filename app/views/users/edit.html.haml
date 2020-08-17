@@ -1,0 +1,20 @@
+= provide(:title, "Edit user")
+
+.form
+  .form-container
+    %p Update your profile
+    = form_with(model: @user, local: true) do |f|
+      .fields
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: 'field'
+        .form-group
+          = f.label :email
+          = f.email_field :email, class: 'field'
+        .form-group
+          = f.label :password
+          = f.password_field :password, class: 'field'
+        .form-group
+          = f.label :password_confirmation, 'Confirmation'
+          = f.password_field :passowrd_confirmation, class: 'field last-border'
+        = f.submit "Save changes", class: 'btn btn-primary'

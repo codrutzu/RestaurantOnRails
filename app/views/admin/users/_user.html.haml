@@ -1,0 +1,4 @@
+%li
+  = link_to user.name, user
+  - if !user.admin?
+    = link_to "delete", admin_user_url(user), method: :delete, data: { confirm: "You sure?" }

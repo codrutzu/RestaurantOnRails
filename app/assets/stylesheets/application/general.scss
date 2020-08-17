@@ -8,7 +8,7 @@ body {
   flex-direction: column;
   margin: 0;
   padding: 0;
-  color: $color-white;
+  color: $color-black;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .hero-wrapper {
   background: asset-url("bg.jpg");
   background-size: cover;
@@ -28,4 +32,25 @@ a {
 
 h1 {
   color: $color-black;
+}
+
+.alert {
+  margin: 0;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:active:focus:not(:disabled):not(.disabled),
+.btn:focus,
+.btn:active,
+.btn:hover {
+  color: $color-white;
+  box-shadow: none !important;
+  outline: 0;
+}
+
+.btn-primary:not(:disabled):not(.disabled):active {
+  color: $color-white;
+  border: 2px solid $color-button;
 }
