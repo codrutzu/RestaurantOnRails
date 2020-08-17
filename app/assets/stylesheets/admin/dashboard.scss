@@ -1,0 +1,110 @@
+.dashboard-container {
+  color: $color-white;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 250px;
+  height: 100vh;
+  background-color: $color-dashboard;
+
+  .top-container {
+    header {
+      background-color: rgba($color-black, 0.4);
+
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1em 3.4em;
+        transform: scale(0.8);
+
+        img {
+          width: 50px;
+          height: 50px;
+        }
+
+        .logo-text {
+          margin-top: 10px;
+          font-weight: 600;
+        }
+      }
+    }
+
+    header:hover {
+      div {
+        color: $color-white;
+      }
+    }
+  }
+
+  .bottom-container {
+    .profile-wrapper {
+      padding: 1em 0;
+      background-color: rgba($color-black, 0.12);
+
+      .profile {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2.7em;
+        transform: scale(0.8);
+
+        img {
+          width: 50px;
+        }
+
+        .profile-info {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+
+          .status {
+            font-size: 10px;
+          }
+
+          .status::before {
+            content: "";
+            margin-right: 5px;
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: $color-online-status;
+          }
+        }
+      }
+    }
+  }
+}
+
+.heading {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 1.5em 1.5em;
+}
+
+.routes-container {
+  font-weight: 600;
+
+  .route {
+    display: flex;
+    align-items: center;
+    padding: 1em 5em;
+    font-size: 14px;
+
+    img {
+      width: 16px;
+      margin-right: 1em;
+    }
+  }
+
+  .current-dashboard {
+    background-color: rgba($color-black, 0.2);
+  }
+
+  .route:hover {
+    color: $color-white;
+    background-color: rgba($color-black, 0.2);
+  }
+}

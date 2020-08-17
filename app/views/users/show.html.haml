@@ -1,4 +1,8 @@
-%h1
-  = @user.name
-  , #{@user.email}
-  
+.user-container
+  .user-content
+    %p.order My orders (0)
+    .illustration
+      = image_tag 'no_order.svg'
+      .info
+        %span You have not placed any order yet
+        = link_to 'Place an order now!', root_url

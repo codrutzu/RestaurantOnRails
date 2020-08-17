@@ -1,4 +1,8 @@
 %li
-  = link_to user.name, user
-  - if !user.admin?
-    = link_to "delete", admin_user_url(user), method: :delete, data: { confirm: "You sure?" }
+  = link_to user.name, user, class: 'name'
+  %span.email= user.email
+- if !user.admin?
+  .infos
+    %div.create= "Created at: #{user.created_at}"
+    = link_to admin_user_url(user), method: :delete, data: { confirm: "You sure?" } do
+      = image_tag 'dashboard/delete.svg'

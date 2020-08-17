@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def full_title(page_title = ' ')
     base_title = 'Eureka Caffe'
     if page_title.empty?
@@ -11,5 +10,9 @@ module ApplicationHelper
 
   def active_class(path)
     current_page?(path) ? 'current-page' : ''
+  end
+
+  def active_dashboard(path)
+    current_page?(path) ? 'current-dashboard route' : 'route'
   end
 end

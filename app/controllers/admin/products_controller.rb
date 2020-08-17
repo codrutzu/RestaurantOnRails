@@ -1,4 +1,4 @@
-class ProductsController < ApplicationController
+class Admin::ProductsController < AdminController
   def new
     @product = Product.new
   end
@@ -12,8 +12,8 @@ class ProductsController < ApplicationController
     if @product.save
       redirect_to @product
     else
-      flash[:danger] = "You have to complete all fields"
-      redirect_to new_product_path
+      flash[:danger] = 'You have to complete all fields'
+      redirect_to new_admin_product_path
     end
   end
 
