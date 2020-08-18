@@ -23,6 +23,7 @@
   }
   .order-info {
     padding: 1.5em;
+    margin-bottom: 3.5em;
     display: flex;
     justify-content: space-between;
     font-weight: 600;
@@ -37,22 +38,26 @@
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
-    }
-    .order-heading {
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-      margin-bottom: 0.6em;
-    }
 
-    .order-number {
-      font-size: 30px;
-      font-weight: 800;
-    }
+      p {
+        margin: 0;
+      }
 
-    .order-content {
-      display: flex;
-      justify-content: flex-end;
+      .order-heading {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-bottom: 0.6em;
+      }
+
+      .order-number {
+        font-weight: 800;
+      }
+
+      .order-content {
+        display: flex;
+        justify-content: flex-end;
+      }
     }
   }
 
@@ -67,6 +72,7 @@
 .order-products {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 
   h1 {
     margin-bottom: 1.5em;
@@ -88,8 +94,8 @@
       border-radius: 10px;
       display: flex;
       justify-content: space-around;
-      box-shadow: 0px 0px 8px rgba($color-black, 0.2);
       align-items: center;
+      box-shadow: 0px 0px 8px rgba($color-black, 0.2);
       margin-bottom: 1.5em;
     }
   }
@@ -119,7 +125,6 @@
     font-weight: 800;
     padding: 1em 2em;
     text-align: center;
-    width: 20%;
     background-color: #46b8b0;
     border-radius: 10px;
     box-shadow: 0px 0px 12px rgba($color-black, 0.5);

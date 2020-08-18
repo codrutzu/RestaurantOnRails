@@ -1,6 +1,7 @@
 .orders-details
   %header
-    .heading ORDER
+    .heading
+      %p.name= "NAME: #{@order_products.first.order.user.name}"
     = link_to user_path(current_user) do
       = image_tag 'order/back_arrow.svg'
       %span Orders
@@ -43,6 +44,6 @@
       - else
         %p Pending
         = image_tag 'order/pending.svg'
-  %h1 Total
-  .total-price
-    .total=" #{@order_products.sum('price*quantity')} $"
+      %h1 Total
+      .total-price
+        .total=" #{@order_products.sum('price*quantity')} $"

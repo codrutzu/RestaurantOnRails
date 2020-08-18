@@ -30,7 +30,7 @@ Rails.application.routes.draw do
   # Order products
   get 'order_products/index'
 
-  resources :users, only: %i[create new show edit]
+  resources :users, only: %i[create new show edit update]
   resources :carts, only: %i[show]
   resources :account_activations, only: :edit
   resources :password_resets, only: %i[new create edit update]
