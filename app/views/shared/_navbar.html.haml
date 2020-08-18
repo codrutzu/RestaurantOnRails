@@ -33,7 +33,7 @@
             = image_tag 'cart.svg',class: 'cart-notify'
             %span.badge= CartProduct.where(cart_id: current_user.cart.id).sum(:quantity)
         - else
-          = link_to image_tag("cart.svg"), '/cart', class: 'cart'
+          = link_to image_tag("cart.svg"), cart_path(current_user.cart), class: 'cart'
       - else
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'guest'
         .dropdown-menu

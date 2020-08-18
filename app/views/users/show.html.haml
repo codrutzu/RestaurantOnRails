@@ -15,6 +15,7 @@
               .orders
                 .order-number= "Order ##{order.id}"
                 .order-total= "Total: $ #{OrderProduct.where(order_id: order.id).sum('price * quantity')}"
+                .order-date= order.placed_at.strftime("%m/%d at: %H:%M")
         .handled
           %p.order= "Completed orders (#{Order.where(user_id: @user.id).where(handled: true).count})"
           - @user.orders.where(handled: true).each do |order|
@@ -22,4 +23,4 @@
               .orders
                 .order-number= "Order ##{order.id}"
                 .order-total= "Total: $ #{OrderProduct.where(order_id: order.id).sum('price * quantity')}"
-
+                .order-date= order.placed_at.strftime("%m/%d at: %H:%M")

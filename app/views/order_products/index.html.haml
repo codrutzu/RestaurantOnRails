@@ -13,10 +13,10 @@
         %p.order-number= @order_products.first.order.id
     .order-group
       .order-heading
-        = image_tag 'order/delivery.svg'
-        %span SERVICE
+        = image_tag 'order/phone.svg'
+        %span PHONE NUMBER
       .order-content
-        = image_tag 'order/fancourier.png', class: 'dhl'
+        %p.number= @order_products.first.order.phone
     .order-group
       .order-heading
         = image_tag 'order/calendar.svg'
@@ -46,6 +46,3 @@
   %h1 Total
   .total-price
     .total=" #{@order_products.sum('price*quantity')} $"
-
-
-
