@@ -2,24 +2,24 @@
   %header
     .heading ORDER
     = link_to user_path(current_user) do
-      = image_tag 'order/back_arrow'
+      = image_tag 'order/back_arrow.svg'
       %span Orders
   .order-info
     .order-group
       .order-heading
-        = image_tag 'order/list'
+        = image_tag 'order/list.svg'
         %span ORDER NUMBER
       .order-content
         %p.order-number= @order_products.first.order.id
     .order-group
       .order-heading
-        = image_tag 'order/delivery'
+        = image_tag 'order/delivery.svg'
         %span SERVICE
       .order-content
-        = image_tag 'order/fancourier', class: 'dhl'
+        = image_tag 'order/fancourier.png', class: 'dhl'
     .order-group
       .order-heading
-        = image_tag 'order/calendar'
+        = image_tag 'order/calendar.svg'
         %span DATE OF SUBMISSION
       .order-content
         %p= @order_products.first.order.placed_at
@@ -39,10 +39,10 @@
       %h1 Status
       - if @order_products.first.order.handled
         %p Completed
-        = image_tag 'order/completed'
+        = image_tag 'order/completed.svg'
       - else
         %p Pending
-        = image_tag 'order/pending'
+        = image_tag 'order/pending.svg'
   %h1 Total
   .total-price
     .total=" #{@order_products.sum('price*quantity')} $"
