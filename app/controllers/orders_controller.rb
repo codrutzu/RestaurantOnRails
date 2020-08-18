@@ -2,7 +2,7 @@ require 'rqrcode'
 
 class OrdersController < ApplicationController
   before_action :logged_in_user, only: %i[show]
-  before_action :correct_user, only: %i[show]
+  before_action :correct_order, only: %i[show]
 
   def new
     @order = Order.new
