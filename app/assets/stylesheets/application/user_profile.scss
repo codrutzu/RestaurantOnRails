@@ -47,22 +47,37 @@
     }
   }
 
-  .orders {
-    font-weight: 600;
-    background-color: rgba($color-grey, 0.6);
+  .orders-wrapper {
     display: flex;
-    padding: 1.3em;
-    width: 30%;
-    justify-content: space-around;
-    margin-bottom: 1.5em;
-    margin-left: 2em;
+    justify-content: space-between;
 
-    div {
-      color: $color-black;
+    .pending,
+    .handled {
+      width: 40%;
     }
 
-    div:hover {
-      color: $color-black;
+    .order {
+      margin-bottom: 2.5em;
+    }
+
+    .orders {
+      font-weight: 600;
+      background-color: rgba($color-grey, 0.4);
+      display: flex;
+      padding: 1.3em;
+      width: 400px;
+      justify-content: space-around;
+      margin-bottom: 1.5em;
+      margin-left: 2em;
+      box-shadow: 0px 0px 8px rgba($color-black, 0.3);
+
+      div {
+        color: $color-black;
+      }
+
+      div:hover {
+        color: $color-black;
+      }
     }
   }
 }

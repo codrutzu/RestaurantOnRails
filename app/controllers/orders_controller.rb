@@ -10,6 +10,8 @@ class OrdersController < ApplicationController
     @order.placed_at = Time.zone.now
     @order.user = current_user
     if @order.save
+      add_product_from_order @order
+      empty_user_cart @order.user
       redirect_to @order
     else
       flash[:danger] = 'Something went wrong! Try again.'
@@ -19,7 +21,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    qr_code = @qr_code ||= RQRCode::QRCode.new(request.base_url + '')
+    qr_code = @qr_code ||= RQRCode::QRCode.new(request.base_url + order_products_path(order: @order))
     @svg = qr_code.as_svg
   end
 

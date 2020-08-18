@@ -1,0 +1,51 @@
+.orders-details
+  %header
+    .heading ORDER
+    = link_to user_path(current_user) do
+      = image_tag 'order/back_arrow'
+      %span Orders
+  .order-info
+    .order-group
+      .order-heading
+        = image_tag 'order/list'
+        %span ORDER NUMBER
+      .order-content
+        %p.order-number= @order_products.first.order.id
+    .order-group
+      .order-heading
+        = image_tag 'order/delivery'
+        %span SERVICE
+      .order-content
+        = image_tag 'order/fancourier', class: 'dhl'
+    .order-group
+      .order-heading
+        = image_tag 'order/calendar'
+        %span DATE OF SUBMISSION
+      .order-content
+        %p= @order_products.first.order.placed_at
+  .order-products
+    .products
+      %h1 Products
+      .products-header
+        %p TITLE
+        %p QTY
+        %p PRICE
+      - @order_products.each do |order_product|
+        .product
+          %p.name= Product.find(order_product.product_id).title
+          %p.qty= order_product.quantity
+          %p.price= order_product.price
+    .status
+      %h1 Status
+      - if @order_products.first.order.handled
+        %p Completed
+        = image_tag 'order/completed'
+      - else
+        %p Pending
+        = image_tag 'order/pending'
+  %h1 Total
+  .total-price
+    .total=" #{@order_products.sum('price*quantity')} $"
+
+
+

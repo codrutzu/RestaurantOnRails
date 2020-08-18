@@ -1,15 +1,25 @@
 .user-container
   .user-content
-    %p.order= "My orders (#{Order.where(user_id: @user.id).where.not(handled: true).count})"
-    - if Order.where.not(handled: true).where(user_id: @user.id).count == 0
+    - if Order.where(user_id: @user.id).count == 0
       .illustration
         = image_tag 'no_order.svg'
         .info
           %span You have not placed any order yet
           = link_to 'Place an order now!', root_url
     - else
-      - @user.orders.where.not(handled: true).each do |order|
-        = link_to order_path(order) do
-          .orders
-            .order-number="Order ##{order.id}"
-            .order-total= "Total: $ #{CartProduct.where(cart_id: @user.cart.id).joins(:product).sum('price * quantity')}"
+      .orders-wrapper
+        .pending
+          %p.order= "Pending orders (#{Order.where(user_id: @user.id).where.not(handled: true).count})"
+          - @user.orders.where.not(handled: true).each do |order|
+            = link_to order_path(order) do
+              .orders
+                .order-number= "Order ##{order.id}"
+                .order-total= "Total: $ #{OrderProduct.where(order_id: order.id).sum('price * quantity')}"
+        .handled
+          %p.order= "Completed orders (#{Order.where(user_id: @user.id).where(handled: true).count})"
+          - @user.orders.where(handled: true).each do |order|
+            = link_to order_path(order) do
+              .orders
+                .order-number= "Order ##{order.id}"
+                .order-total= "Total: $ #{OrderProduct.where(order_id: order.id).sum('price * quantity')}"
+
