@@ -24,7 +24,7 @@
           .cart-footer
             .total
               %p Total:
-              #total-sum= "$ #{CartProduct.where(cart_id: current_user.cart.id).joins(:product).sum('price * quantity')}"
+              #total-sum= "$ #{CartProduct.total_sum(current_user.cart.id)}"
             = link_to 'CHECKOUT', new_order_path, class: 'btn btn-primary'
       = image_tag 'cart-illustration.png'
 - else

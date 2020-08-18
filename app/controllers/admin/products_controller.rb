@@ -10,7 +10,7 @@ class Admin::ProductsController < AdminController
   def create
     @product = Product.new(product_params)
     if @product.save
-      redirect_to @product
+      redirect_to root_url
     else
       flash[:danger] = 'You have to complete all fields'
       redirect_to new_admin_product_path
