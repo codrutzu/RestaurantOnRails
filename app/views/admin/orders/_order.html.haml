@@ -5,5 +5,5 @@
   - if !order.handled
     .order-info
       %p Handle this order
-      = link_to admin_order_url(order), method: :delete do
+      = link_to admin_order_path(order), method: :patch do
         = image_tag 'order/done.svg'

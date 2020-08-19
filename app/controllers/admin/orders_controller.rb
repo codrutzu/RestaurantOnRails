@@ -3,10 +3,9 @@ class Admin::OrdersController < AdminController
     @orders = Order.where(handled: false).all.paginate(page: params[:page])
   end
 
-  def destroy
+  def update
     order = Order.find(params[:id])
     order.update_columns(handled: true)
-    flash[:succes] = 'Order handled'
     redirect_to admin_orders_path
   end
 end
