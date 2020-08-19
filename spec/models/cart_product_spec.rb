@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CartProduct, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  fixtures :users
+  before do
+    @user = users(:michael)
+    @user.cart = Cart.new
+  end
 end

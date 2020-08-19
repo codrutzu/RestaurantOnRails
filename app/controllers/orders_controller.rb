@@ -1,8 +1,9 @@
 require 'rqrcode'
 
 class OrdersController < ApplicationController
-  before_action :logged_in_user, only: %i[show]
+  before_action :logged_in_user, only: %i[show create]
   before_action :correct_order, only: %i[show]
+  before_action :products_in_cart, only: :create
 
   def new
     @order = Order.new
@@ -14,7 +15,7 @@ class OrdersController < ApplicationController
     @order.user = current_user
     if @order.save
       add_product_from_order @order
-      empty_user_cart @order.user
+      delete_user_order @order.user
       redirect_to @order
     else
       flash[:danger] = 'Something went wrong! Try again.'
@@ -32,5 +33,9 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:address, :city, :phone)
+  end
+
+  def products_in_cart
+    redirect_to new_order_path unless current_user.cart.products.count != 0
   end
 end

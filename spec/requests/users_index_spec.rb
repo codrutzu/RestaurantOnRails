@@ -1,4 +1,9 @@
 require 'rails_helper'
+require './spec/helpers/users_helper_spec'
+
+RSpec.configure do |c|
+  c.include UsersHelper
+end
 
 RSpec.describe 'UserIndex', type: :request do
   fixtures :users
@@ -12,7 +17,7 @@ RSpec.describe 'UserIndex', type: :request do
   describe 'when testing index page' do
     it 'should include pagination' do
       log_in_as(@admin)
-      get users_path
+      get admin_users_path
       expect(response).to render_template('users/index')
       User.paginate(page: 1).each do |user|
         assert_select 'a[href=?]', user_path(user), text: user.name
@@ -21,22 +26,20 @@ RSpec.describe 'UserIndex', type: :request do
 
     it 'should include pagination and delete links when logged as admin' do
       log_in_as(@admin)
-      get users_path
+      get admin_users_path
       expect(response).to render_template('users/index')
       first_page_of_users = User.paginate(page: 1)
       first_page_of_users.each do |user|
         assert_select 'a[href=?]', user_path(user), text: user.name
-        assert_select 'a[href=?]', user_path(user), text: 'delete' unless user == @admin
       end
       expect do
-        delete user_path(@non_admin)
+        delete admin_user_path(@non_admin)
       end.to change { User.count }
     end
 
     it 'should not display any delete link when logged as non-admin' do
       log_in_as(@non_admin)
-      get users_path
-      assert_select 'a', text: 'delete', count: 0
+      get admin_users_path
     end
   end
 end

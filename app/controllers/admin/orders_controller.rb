@@ -6,7 +6,6 @@ class Admin::OrdersController < AdminController
   def destroy
     order = Order.find(params[:id])
     order.update_columns(handled: true)
-    delete_user_order order.user
     flash[:succes] = 'Order handled'
     redirect_to admin_orders_path
   end
