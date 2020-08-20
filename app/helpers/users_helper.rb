@@ -11,6 +11,6 @@ module UsersHelper
   end
 
   def delete_user_order(user)
-    CartProduct.where(cart_id: user.cart).delete_all
+    CartProduct.where(cart_id: user.cart.id).delete_all
   end
 end

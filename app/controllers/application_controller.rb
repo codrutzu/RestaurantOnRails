@@ -18,12 +18,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def correct_user
+  def authenticate_user
     @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
   end
 
-  def correct_order
+  def authenticate_order
     order = Order.find(params[:id])
     @user = order.user
     redirect_to(root_url) unless current_user?(@user)

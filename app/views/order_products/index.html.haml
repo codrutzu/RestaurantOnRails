@@ -1,7 +1,7 @@
 .orders-details
   %header
     .heading
-      %p.name= "NAME: #{@order_products.first.order.user.name}"
+      %p.name= "NAME: #{@order.user.name}"
     = link_to user_path(current_user) do
       = image_tag 'order/back_arrow.svg'
       %span Orders
@@ -11,19 +11,19 @@
         = image_tag 'order/list.svg'
         %span ORDER NUMBER
       .order-content
-        %p.order-number= @order_products.first.order.id
+        %p.order-number= @order.id
     .order-group
       .order-heading
         = image_tag 'order/phone.svg'
         %span PHONE NUMBER
       .order-content
-        %p.number= @order_products.first.order.phone
+        %p.number= @order.phone
     .order-group
       .order-heading
         = image_tag 'order/calendar.svg'
         %span DATE OF SUBMISSION
       .order-content
-        %p= @order_products.first.order.placed_at
+        %p= @order.placed_at.strftime("%m/%d at: %H:%M")
   .order-products
     .products
       %h1 Products
@@ -38,7 +38,7 @@
           %p.price= order_product.price
     .status
       %h1 Status
-      - if @order_products.first.order.handled
+      - if @order.handled
         %p Completed
         = image_tag 'order/completed.svg'
       - else

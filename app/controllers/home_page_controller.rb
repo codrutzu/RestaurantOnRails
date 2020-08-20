@@ -7,11 +7,11 @@ class HomePageController < ApplicationController
 
   private
 
-  def redirect
-    if current_user&.admin? && params[:preview].nil?
-      redirect_to admin_path
-    else
-      true
+    def redirect
+      if current_user&.admin? && params[:preview].nil?
+        redirect_to admin_path
+      else
+        true
+      end
     end
-  end
 end

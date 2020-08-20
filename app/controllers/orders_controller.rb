@@ -2,7 +2,7 @@ require 'rqrcode'
 
 class OrdersController < ApplicationController
   before_action :logged_in_user, only: %i[show create]
-  before_action :correct_order, only: %i[show]
+  before_action :authenticate_order, only: %i[show]
   before_action :products_in_cart, only: :create
 
   def new
@@ -31,11 +31,11 @@ class OrdersController < ApplicationController
 
   private
 
-  def order_params
-    params.require(:order).permit(:address, :city, :phone)
-  end
+    def order_params
+      params.require(:order).permit(:address, :city, :phone)
+    end
 
-  def products_in_cart
-    redirect_to new_order_path unless current_user.cart.products.count != 0
-  end
+    def products_in_cart
+      redirect_to new_order_path unless current_user.cart.products.count != 0
+    end
 end
