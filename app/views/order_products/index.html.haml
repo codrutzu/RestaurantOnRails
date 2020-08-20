@@ -2,9 +2,6 @@
   %header
     .heading
       %p.name= "NAME: #{@order.user.name}"
-    = link_to user_path(current_user) do
-      = image_tag 'order/back_arrow.svg'
-      %span Orders
   .order-info
     .order-group
       .order-heading

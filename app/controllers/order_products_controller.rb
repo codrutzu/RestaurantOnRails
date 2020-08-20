@@ -10,7 +10,6 @@ class OrderProductsController < ApplicationController
 
   def check_authenticated_order
     @order = Order.find(params[:order])
-    @user = @order.user
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(root_url) unless @order.authenticated?(params[:token])
   end
 end
