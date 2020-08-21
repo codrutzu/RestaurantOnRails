@@ -1,5 +1,4 @@
 class OrderProductsController < ApplicationController
-  # before_action :logged_in_user, only: %i[index]
   before_action :check_authenticated_order, only: :index
 
   def index

@@ -2,7 +2,6 @@ class HomePageController < ApplicationController
   before_action :redirect, only: :index
 
   def index
-    # @products = Product.send(scope).paginate(page: params[:page], per_page: 12)
     @products = Product.all
     if !params[:order].nil?
       @products = @products.send(scope(params[:order]))
