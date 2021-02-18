@@ -28,10 +28,11 @@ gem 'cloudinary'
 
 gem 'faker', '2.11.0'
 
-
 gem 'will_paginate', '3.3.0'
 
 gem 'will_paginate-bootstrap4'
+
+gem 'rqrcode'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -39,7 +40,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3', '1.4.2' 
+  gem 'sqlite3', '1.4.2'
 end
 
 group :development do
@@ -58,7 +59,7 @@ group :test do
   gem 'webdrivers'
 end
 
-group :production do 
+group :production do
   gem 'pg', '1.2.3'
 end
 

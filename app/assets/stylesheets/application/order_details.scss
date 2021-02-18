@@ -1,0 +1,131 @@
+.orders-details {
+  width: 85%;
+  margin: 3em auto;
+
+  a,
+  a:hover {
+    color: $color-paypal;
+  }
+
+  header {
+    border-bottom: 1px solid $color-grey;
+
+    .heading {
+      font-size: 19px;
+      letter-spacing: 2px;
+    }
+
+    img {
+      width: 20px;
+      margin: 0 1.5em;
+    }
+  }
+  .order-info {
+    padding: 1.5em;
+    margin-bottom: 3.5em;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+
+    img {
+      width: 15px;
+      margin-right: 0.6em;
+    }
+
+    .order-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        margin: 0;
+      }
+
+      .order-heading {
+        display: flex;
+        align-items: center;
+        font-size: 14px;
+        margin-bottom: 0.6em;
+      }
+
+      .order-number {
+        font-weight: 800;
+      }
+
+      .order-content {
+        display: flex;
+        justify-content: flex-end;
+      }
+    }
+  }
+
+  h1 {
+    align-self: flex-start;
+    font-size: 20px;
+    font-weight: 600;
+    color: $color-grey;
+  }
+}
+
+.order-products {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h1 {
+    margin-bottom: 1.5em;
+  }
+
+  .products-header {
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-around;
+  }
+  .products {
+    width: 50%;
+
+    .product {
+      font-weight: 700;
+      padding: 2em;
+      background-color: rgba($color-grey, 0.2);
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      box-shadow: 0px 0px 8px rgba($color-black, 0.2);
+      margin-bottom: 1.5em;
+    }
+  }
+  .status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+
+    p {
+      font-size: 25px;
+      font-weight: 600;
+    }
+
+    img {
+      width: 100%;
+      margin-bottom: 5em;
+    }
+  }
+}
+.total-price {
+  margin-top: 2em;
+
+  .total {
+    color: $color-white;
+    font-size: 24px;
+    font-weight: 800;
+    padding: 1em 2em;
+    text-align: center;
+    background-color: #46b8b0;
+    border-radius: 10px;
+    box-shadow: 0px 0px 12px rgba($color-black, 0.5);
+  }
+}

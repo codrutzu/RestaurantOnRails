@@ -1,5 +1,4 @@
 class Admin::UsersController < AdminController
-
   def index
     @users = User.where(activated: true).paginate(page: params[:page])
   end

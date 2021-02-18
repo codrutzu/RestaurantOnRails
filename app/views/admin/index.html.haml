@@ -1,4 +1,10 @@
-.nav-links
-  = link_to 'Logout', '/logout', method: :delete
-  = link_to 'Preview', root_url(preview: User.digest('1'))
-  = link_to 'Users', admin_users_path
+.admin-container
+  %header
+    %h1= "Hi, #{current_user.name}"
+    = image_tag 'dashboard/administration.png'
+    .animations
+      %p.orders HANDLE ORDERS
+      %p.users MANAGE USERS
+  .admin-content
+    %h2 This is the admin dashboard
+    %p Here you can manage orders and users

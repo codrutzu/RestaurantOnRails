@@ -1,0 +1,46 @@
+.orders-details
+  %header
+    .heading
+      %p.name= "NAME: #{@order.user.name}"
+  .order-info
+    .order-group
+      .order-heading
+        = image_tag 'order/list.svg'
+        %span ORDER NUMBER
+      .order-content
+        %p.order-number= @order.id
+    .order-group
+      .order-heading
+        = image_tag 'order/phone.svg'
+        %span PHONE NUMBER
+      .order-content
+        %p.number= @order.phone
+    .order-group
+      .order-heading
+        = image_tag 'order/calendar.svg'
+        %span DATE OF SUBMISSION
+      .order-content
+        %p= @order.placed_at.strftime("%m/%d at: %H:%M")
+  .order-products
+    .products
+      %h1 Products
+      .products-header
+        %p TITLE
+        %p QTY
+        %p PRICE
+      - @order_products.each do |order_product|
+        .product
+          %p.name= Product.find(order_product.product_id).title
+          %p.qty= order_product.quantity
+          %p.price= order_product.price
+    .status
+      %h1 Status
+      - if @order.handled
+        %p Completed
+        = image_tag 'order/completed.svg'
+      - else
+        %p Pending
+        = image_tag 'order/pending.svg'
+      %h1 Total
+      .total-price
+        .total=" #{@order_products.sum('price*quantity')} $"

@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
   def new
     @disable_nav = true
     @disable_footer = true

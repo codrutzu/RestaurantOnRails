@@ -30,6 +30,7 @@ RSpec.describe "Login", type: :request do
     end
 
     it 'should login with valid information' do
+      # Log in as admin
       get login_path
       post login_path, params: { session:
         {
@@ -37,9 +38,7 @@ RSpec.describe "Login", type: :request do
           password: 'password'
         }}
       expect(is_logged_in?).to be(true)
-      expect(response).to redirect_to(@user)
-      follow_redirect!
-      expect(response).to render_template('users/show')
+      expect(response).to redirect_to(root_path)
       delete logout_path
       expect(response).to redirect_to(root_path)
       expect(is_logged_in?).to be(false)

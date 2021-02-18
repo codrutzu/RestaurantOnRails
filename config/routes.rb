@@ -27,14 +27,19 @@ Rails.application.routes.draw do
   # Admin
   get '/admin', to: 'admin#index'
 
-  resources :users, only: %i[create new show edit]
-  resources :products, only: %i[index new create show]
+  # Order products
+  get 'order_products/index'
+
+  resources :users, only: %i[create new show edit update]
   resources :carts, only: %i[show]
-  resources :add_to_cart, only: :create
   resources :account_activations, only: :edit
   resources :password_resets, only: %i[new create edit update]
+  resources :orders, only: %i[new create show]
+  resources :order_products, only: :index
 
   namespace :admin do
     resources :users, only: %i[index destroy]
+    resources :products, only: %i[new create show]
+    resources :orders, only: %i[index update]
   end
 end

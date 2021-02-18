@@ -1,0 +1,36 @@
+.form-container
+  .form-wrapper
+    = link_to cart_path do
+      .back-link
+        = image_tag 'order/back_arrow.svg'
+        .back-text BACK
+    .form-content
+      .heading Complete your purchase
+      = form_with(model: @order, local:true) do |f|
+        .personal-info
+          .info-heading Personal info
+          .fields-wrapper
+            .fields
+              .form-group
+                = f.label :address
+                = f.text_field :address, class: 'field'
+              .form-group
+                = f.label :city
+                = f.text_field :city, class: 'field'
+              .form-group
+                = f.label :phone
+                = f.text_field :phone, class: 'field'
+        .payment-wrapper
+          .payment-heading Payment
+          .payment-content
+            .payment-method
+              = image_tag 'order/card.svg'
+              %span Credit card
+            .payment-method
+              = image_tag 'order/paypal.svg', class: 'paypal'
+              %span Paypal
+          .actions
+            .place-order
+              = f.submit 'Place order', class: 'btn btn-primary'
+  .media
+    = image_tag 'order/card-illustration.svg'

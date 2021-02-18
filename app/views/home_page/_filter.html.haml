@@ -1,9 +1,28 @@
 .filter-wrapper
   .search-menu
     %ul
-      %li CATEGORY
-      %li SORTING
-      %li VEGETARIAN
+      .dropdown
+        %li{ 'data-toggle': 'dropdown', 'data-target': 'category', 'aria-expanded': 'false', 'aria-haspopup': 'true' } CATEGORY
+        .dropdown-menu#category{ 'aria-labelledby': 'category' }
+          = link_to 'Main courses', home_path(category: 'main_course', order: params[:order])
+          = link_to 'Second courses', home_path(category: 'second_course', order: params[:order])
+          = link_to 'Entrees', home_path(category: 'entree',  order: params[:order])
+          = link_to 'Salads', home_path(category: 'salad',  order: params[:order])
+          = link_to 'Desserts', home_path(category: 'dessert',  order: params[:order])
+      .dropdown
+        %li{ 'data-toggle': 'dropdown', 'data-target': 'sorting', 'aria-expanded': 'false', 'aria-haspopup': 'true' } SORTING
+        .dropdown-menu#sorting{ 'aria-labelledby': 'sorting' }
+          = link_to 'Price ascending', home_path(order: 'cheap', category: params[:category])
+          = link_to 'Price descending', home_path(order: 'expensive', category: params[:category])
+          = link_to 'Newest', home_path(order: 'recent', category: params[:category])
+          = link_to 'Oldest', home_path(order: 'oldest', category: params[:category])
+    .filters
+      - if !params[:order].nil?
+        = link_to home_path(category: params[:category]) do
+          .filter= params[:order]
+      - if !params[:category].nil?
+        = link_to home_path(order: params[:order]) do
+          .filter= params[:category]
   .slider-wrapper
     #first-price
     #slider

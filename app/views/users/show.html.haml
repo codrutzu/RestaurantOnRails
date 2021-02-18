@@ -1,4 +1,26 @@
-%h1
-  = @user.name
-  , #{@user.email}
-  
+.user-container
+  .user-content
+    - if Order.where(user_id: @user.id).count == 0
+      .illustration
+        = image_tag 'no_order.svg'
+        .info
+          %span You have not placed any order yet
+          = link_to 'Place an order now!', root_url
+    - else
+      .orders-wrapper
+        .pending
+          %p.order= "Pending orders (#{Order.order_count(@user.id, false)})"
+          - @user.orders.where.not(handled: true).each do |order|
+            = link_to order_path(order) do
+              .orders
+                .order-number= "Order ##{order.id}"
+                .order-total= "Total: $ #{OrderProduct.total_sum(order.id)}"
+                .order-date= order.placed_at.strftime("%m/%d at: %H:%M")
+        .handled
+          %p.order= "Completed orders (#{Order.order_count(@user.id, true)})"
+          - @user.orders.where(handled: true).each do |order|
+            = link_to order_path(order) do
+              .orders
+                .order-number= "Order ##{order.id}"
+                .order-total= "Total: $ #{OrderProduct.total_sum(order.id)}"
+                .order-date= order.placed_at.strftime("%m/%d at: %H:%M")

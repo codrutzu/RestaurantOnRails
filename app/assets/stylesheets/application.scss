@@ -13,8 +13,9 @@
  */
 
 @import "bootstrap/scss/bootstrap";
-@import "utils/variables";
-@import "utils/form";
+@import "variables";
+@import "utils/*";
 @import "application/*";
 @import "admin/*";
 @import "home_page/*";
+@import "order/*";

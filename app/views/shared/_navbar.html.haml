@@ -1,4 +1,4 @@
-%header{class: "#{current_page?(controller: 'home_page', action: "index") ? 'navbar-absolute' : 'navbar'}"}
+%header{class: "#{current_request?(controller: 'home_page', action: "index") ? 'navbar-absolute' : 'navbar'}"}
   = link_to :root do
     .logo-container
       .logo-mark
@@ -19,7 +19,8 @@
       %li
         %a{href: "#"} CONTACTS
     - if logged_in?
-      %p.current-user= current_user.name
+      = link_to user_path(current_user) do
+        %p.current-user= current_user.name
     .dropdown
       - if logged_in?
         .dropdown-menu
@@ -30,9 +31,9 @@
         - if current_user != nil && current_user.cart.products.count > 0 && !current_page?('/cart')
           = link_to '/cart' do
             = image_tag 'cart.svg',class: 'cart-notify'
-            %span.badge= CartProduct.where(cart_id: current_user.cart.id).sum(:quantity)
+            %span.badge= CartProduct.no_of_products(current_user.cart)
         - else
-          = link_to image_tag("cart.svg"), '/cart', class: 'cart'
+          = link_to image_tag("cart.svg"), cart_path(current_user.cart), class: 'cart'
       - else
         = image_tag "user.svg", "data-toggle": "dropdown", "aria-expanded": "false", "aria-haspopup": "true", class: 'guest'
         .dropdown-menu

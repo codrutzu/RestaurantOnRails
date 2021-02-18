@@ -1,9 +1,11 @@
 = provide(:title, 'All users')
-%h1 All users
 
-= will_paginate @users
+.users-container
+  %h1 Users
 
-%ul.users
-  = render @users
+  = will_paginate @users
 
-= will_paginate @users
+  %ul.users
+    = render @users
+
+  = will_paginate @users

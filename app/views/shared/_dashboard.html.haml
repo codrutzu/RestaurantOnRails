@@ -1,0 +1,40 @@
+.dashboard-container
+  .top-container
+    %header
+      = link_to root_url do
+        .header-content
+          = image_tag 'dashboard/logo.png'
+          .logo-text
+            %div EUREKA
+            %div CAFFE
+    .heading RESOURCES
+    .routes-container
+      = link_to admin_users_path do
+        %div{ class: "#{active_dashboard(admin_users_path)}" }
+          = image_tag 'dashboard/user.svg'
+          %div USERS
+      = link_to admin_orders_path do
+        %div{ class: "#{active_dashboard(admin_orders_path)}"}
+          = image_tag 'dashboard/order.svg'
+          %div ORDERS
+      = link_to new_admin_product_path do
+        %div{ class: "#{active_dashboard(new_admin_product_path)}"}
+          = image_tag 'dashboard/add_product.svg'
+          %div ADD PRODUCT
+  .bottom-container
+    .heading EXTRA
+    .routes-container
+      = link_to root_url(preview: User.digest('1')) do
+        .route
+          = image_tag 'dashboard/preview.svg'
+          %div PREVIEW
+      = link_to logout_url, method: :delete do
+        .route
+          = image_tag 'dashboard/logout.svg'
+          %div LOGOUT
+    .profile-wrapper
+      .profile
+        = image_tag 'dashboard/avatar.svg'
+        .profile-info
+          .name= current_user.name
+          .status ONLINE

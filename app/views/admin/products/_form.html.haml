@@ -1,7 +1,7 @@
 .form
   .form-container
     %p Add a new product
-    = form_for @product do |form|
+    = form_for [:admin, @product] do |form|
       .fields
         .form-group
           = form.label :title
