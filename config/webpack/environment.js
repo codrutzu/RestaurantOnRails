@@ -1,4 +1,7 @@
 const { environment } = require('@rails/webpacker')
+const { VueLoaderPlugin } = require('vue-loader')
+const vue = require('./loaders/vue')
+const customConfig = require("./custom")
 
 const webpack = require('webpack')
 environment.plugins.prepend('Provide',
@@ -16,4 +19,8 @@ const aliasConfig = {
 
 environment.config.set('resolve.alias', aliasConfig);
 
+
+environment.plugins.prepend('VueLoaderPlugin', new VueLoaderPlugin())
+environment.config.merge(customConfig)
+environment.loaders.append('vue', vue)
 module.exports = environment

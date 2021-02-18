@@ -13,4 +13,7 @@
     - flash.each do |message_type, message|
       %div{class: "alert alert-#{message_type}"}= message
     %main.content= yield
-    = render partial: 'shared/footer' unless @disable_footer
+    -# = render partial: 'shared/footer' unless @disable_footer
+    %div{ style: 'display: block; height: 30px'}
+      %App#app
+  = javascript_pack_tag 'main'
