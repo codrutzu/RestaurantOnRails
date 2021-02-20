@@ -1,11 +1,19 @@
-<template>
-  <div>
-    Home page
-  </div>
+<template lang="pug">
+  .plates
+    HeroSection
 </template>
 
 <script>
 
+import HeroSection from './HeroSection'
+import DummyComp from './Dummy'
+
 export default {
-  name: 'PlatesIndex'
+
+  name: 'PlatesIndex',
+  components: {   HeroSection,
+                  DummyComp
+              }
 }
+
+</script>
