@@ -17,6 +17,7 @@ export default {
 .hero-section {
   background-image: url('../../images/hero-banner.png');
   height: 100vh;
+  background-size: cover;
 }
 
 .discover {
