@@ -1,39 +1,26 @@
 <template lang="pug">
   .plates
-    v-container(fluid grid-list-xs mt-12)
+    v-container(fluid grid-list-md mt-12)
       v-layout(row wrap)
-        v-card(
-          min-width="250"
-          height="360"
-          class="mt-12 mx-auto"
-        )
-          img(
-            :src="require('../../images/burger.png')"
+        v-hover(v-slot="{hover}")
+          v-card.mt-12.mx-8(
+            min-width="250"
+            height="360"
+            :class="{ 'on-hover': hover }"
           )
+            img(
+              :src="require('../../images/burger.png')"
+            )
 
-          v-card-text
-            .product-title
-              | Burger
-            .price
-              | $ 3.00
+            v-card-text
+              .product-title
+                | Burger
+              .price
+                | $ 3.00
         v-card(
           min-width="250"
           height="360"
-          class="mt-12 mx-auto"
-        )
-          img(
-            :src="require('../../images/pizza.png')"
-          )
-
-          v-card-text
-            .product-title
-              | Burger
-            .price
-              | $ 3.00
-        v-card(
-          min-width="250"
-          height="360"
-          class="mt-12 mx-auto"
+          class="mt-12 mx-8"
         )
           img(
             :src="require('../../images/pizza.png')"
@@ -47,7 +34,21 @@
         v-card(
           min-width="250"
           height="360"
-          class="mt-12 mx-auto"
+          class="mt-12 mx-8"
+        )
+          img(
+            :src="require('../../images/pizza.png')"
+          )
+
+          v-card-text
+            .product-title
+              | Burger
+            .price
+              | $ 3.00
+        v-card(
+          min-width="250"
+          height="360"
+          class="mt-12 mx-8"
         )
           img(
             :src="require('../../images/pizza.png')"
@@ -101,6 +102,15 @@ img {
   font-weight: 600;
   color: white;
   padding-bottom: 65px;
+}
+
+.v-card {
+  transition: transform .4s ease-in-out;
+}
+
+.v-card.on-hover {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .v-card__text .price {
