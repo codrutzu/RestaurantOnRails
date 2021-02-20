@@ -1,6 +1,6 @@
 import VueRouter from 'vue-router'
 
-import PlatesIndex from './components/home_page/index.vue'
+import HomePage from './components/home_page/index.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -8,7 +8,7 @@ const router = new VueRouter({
   routes: [
     {
       path: '/home',
-      component: PlatesIndex,
+      component: HomePage,
       name: 'home_page_path'
     },
     {

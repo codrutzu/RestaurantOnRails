@@ -1,17 +1,26 @@
 <template lang="pug">
-  .plates
+  .homepage
     HeroSection
+    PlatesComponent
 </template>
 
 <script>
 
 import HeroSection from './HeroSection'
+import PlatesComponent from './PlatesComponent'
 
 export default {
 
-  name: 'PlatesIndex',
-  components: {   HeroSection
-              }
+  name: 'HomePage',
+  components: {   HeroSection, PlatesComponent  }
 }
 
 </script>
+
+<style>
+
+* {
+  font-family: 'Montserrat';
+}
+
+</style>
