@@ -6,6 +6,7 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
     "jquery-ui-dist": "^1.12.1",
@@ -15,7 +16,8 @@
     "vue-loader": "^15.9.6",
     "vue-router": "^3.5.1",
     "vue-template-compiler": "^2.6.12",
-    "vuetify": "^2.4.4"
+    "vuetify": "^2.4.4",
+    "vuex": "^3.6.2"
   },
   "version": "0.1.0",
   "devDependencies": {

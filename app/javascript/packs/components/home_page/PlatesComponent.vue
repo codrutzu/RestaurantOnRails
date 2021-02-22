@@ -1,73 +1,58 @@
 <template lang="pug">
   .plates
-    v-container(fluid grid-list-md mt-12)
-      v-layout(row wrap)
-        v-hover(v-slot="{hover}")
-          v-card.mt-12.mx-8(
-            min-width="250"
-            height="360"
-            :class="{ 'on-hover': hover }"
-          )
-            img(
-              :src="require('../../images/burger.png')"
+    v-container(grid-list-md mt-12)
+      v-layout(
+        row
+        wrap
+      )
+        v-flex(
+          v-for="product in products"
+          :key="product.id"
+        )
+          v-hover(v-slot="{hover}")
+            v-card.my-16.mx-6(
+              width="250"
+              height="360"
+              :class="{ 'on-hover': hover }"
             )
+              img(
+                :src="product.image"
+              )
 
-            v-card-text
-              .product-title
-                | Burger
-              .price
-                | $ 3.00
-        v-card(
-          min-width="250"
-          height="360"
-          class="mt-12 mx-8"
-        )
-          img(
-            :src="require('../../images/pizza.png')"
-          )
-
-          v-card-text
-            .product-title
-              | Burger
-            .price
-              | $ 3.00
-        v-card(
-          min-width="250"
-          height="360"
-          class="mt-12 mx-8"
-        )
-          img(
-            :src="require('../../images/pizza.png')"
-          )
-
-          v-card-text
-            .product-title
-              | Burger
-            .price
-              | $ 3.00
-        v-card(
-          min-width="250"
-          height="360"
-          class="mt-12 mx-8"
-        )
-          img(
-            :src="require('../../images/pizza.png')"
-          )
-
-          v-card-text
-            .product-title
-              | Burger
-            .price
-              | $ 3.00
-
+              v-card-text
+                .product-title
+                  | {{ product.title }}
+                .price
+                  | $ {{ product.price }}
 
 
 </template>
 
 
 <script>
+
+import axios from 'axios'
+
 export default {
-  name: 'PlatesComponent'
+  name: 'PlatesComponent',
+
+  data() {
+    return {
+      products: []
+    }
+  },
+
+  mounted() {
+    this.fetchProducts();
+  },
+
+  methods: {
+    fetchProducts() {
+      axios.get('/api/v1/products').then(response => {
+        this.products = response.data
+      })
+    }
+  }
 }
 </script>
 
@@ -84,7 +69,7 @@ export default {
 }
 
 .layout {
-  padding: 5em;
+  justify-content: center;
 }
 
 img {
@@ -105,11 +90,13 @@ img {
 }
 
 .v-card {
-  transition: transform .4s ease-in-out;
+  transition: height .4s ease-in-out;
+  transition: width .4s ease-in-out;
 }
 
 .v-card.on-hover {
-  transform: scale(1.1);
+  height: 400px !important;
+  width: 270px !important;
   cursor: pointer;
 }
 

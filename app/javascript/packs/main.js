@@ -19,12 +19,15 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import router from './routes.js'
 import App from './app.vue'
+import store from './store'
+
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
 
 
 new Vue({
+  store,
   router: router,
   template: '<App/>',
   components: { App },

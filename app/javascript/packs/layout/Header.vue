@@ -28,10 +28,15 @@
             class="menu-item"
           ) {{ item.title }}
 
+        span {{ currentUser }}
+
 </template>
 
 
 <script>
+
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'Header',
   data() {
@@ -42,7 +47,6 @@ export default {
         { title: 'ACCOUNT', name: 'account_index_path' },
         { title: 'CART', name: 'cart_path' }
       ]
-
     }
   },
 
@@ -50,7 +54,9 @@ export default {
     window.onscroll = () => {
       this.changeColor();
     };
+    console.log("Header")
   },
+
   methods: {
     changeColor() {
       if (
@@ -61,8 +67,14 @@ export default {
       } else {
         this.bg = 'notScrolled';
       }
-    },
+    }
   },
+
+  computed: {
+    ...mapGetters({
+      currentUser: 'currentUser'
+    })
+  }
 }
 </script>
 

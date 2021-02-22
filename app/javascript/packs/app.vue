@@ -12,8 +12,25 @@ import Header from './layout/Header'
 import Container from './layout/Container'
 import Footer from './layout/Footer'
 
+import { mapActions } from 'vuex'
+
 export default {
   name: 'App',
-  components: { Header, Container, Footer }
+  components: { Header, Container, Footer },
+
+  created() {
+    console.log('currentUser')
+    this.getCurrentUser();
+  },
+
+  mounted() {
+    console.log("App")
+  },
+
+  methods: {
+    ...mapActions({
+      getCurrentUser: 'currentUser'
+    })
+  }
 };
 </script>

@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  root 'home_page#index'
+  root 'redesign#index'
 
   # Home page
-  get 'home', to: 'home_page#index'
+  get '/home', to: 'redesign#index'
+
+  # Old design
+  get '/old_design', to: 'home_page#index'
 
   # Password reset
   get 'password_resets/new'
@@ -41,5 +44,14 @@ Rails.application.routes.draw do
     resources :users, only: %i[index destroy]
     resources :products, only: %i[new create show]
     resources :orders, only: %i[index update]
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :products, only: %i[index]
+      resources :users, only: %i[show] do
+        get '/current_user', action: :show, on: :collection
+      end
+    end
   end
 end
