@@ -10,7 +10,7 @@
     -# = stylesheet_link_tag '//ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/le-frog/jquery-ui.min.css'
     = favicon_link_tag asset_path('logo.svg')
   %body
-    %main.content= yield
+    -# %main.content= yield
     %div
-      %App#app
+      #app
   = javascript_pack_tag 'main'

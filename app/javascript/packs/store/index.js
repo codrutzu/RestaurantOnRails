@@ -1,12 +1,13 @@
 import Vue from 'vue';
 import Vuex from 'vuex'
 import axios from 'axios';
+import getCurrentUser from './api'
 
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    currentUser: {}
+    currentUser: null
   },
 
 
@@ -23,7 +24,10 @@ const store = new Vuex.Store({
   actions: {
     currentUser(context) {
       let uri = `http://localhost:3000/api/v1/users/current_user`
-      context.commit('currentUser', axios.get(uri).then(resp => { console.log(resp.data); return resp.data } ))
+      const currentUser = getCurrentUser();
+      axios.get(uri).then(resp => {
+        context.commit('currentUser', resp.data);
+      })
     }
   }
 })

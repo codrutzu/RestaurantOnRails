@@ -1,5 +1,5 @@
 <template lang="pug">
-  .navigation
+  .navigation(v-if='currentUser')
     v-app-bar(
       flat
       fixed
@@ -8,7 +8,7 @@
       :class="bg"
     )
       v-img(
-        :src="require('../images/eureka-logo.svg')"
+        :src="require('../images/eureka-logo.png')"
         max-height="40"
         max-width="40"
         contain
@@ -21,14 +21,30 @@
           text
           v-for='item in navbarItems'
           :key='item.title'
-          :to='{ name: item.name}'
+          @click="routeRedirect"
         )
-
           span(
             class="menu-item"
           ) {{ item.title }}
 
-        span {{ currentUser }}
+        v-btn(
+          v-if="currentUser"
+          text
+          :key="currentUser.id"
+        )
+          span(
+            class="menu-item"
+          ) {{ currentUser.name }}
+        v-btn(
+          v-else
+          text
+          key="ACCOUNT"
+        )
+          span(
+            class="menu-item"
+          ) SIGN UP
+
+
 
 </template>
 
@@ -43,10 +59,10 @@ export default {
     return {
       bg: 'notScrolled',
       navbarItems: [
-        { title: 'MENU', name: 'plates_index_path' },
-        { title: 'ACCOUNT', name: 'account_index_path' },
+        { title: 'HOME', name: 'plates_index_path' },
         { title: 'CART', name: 'cart_path' }
-      ]
+      ],
+      userName: ''
     }
   },
 
@@ -67,8 +83,18 @@ export default {
       } else {
         this.bg = 'notScrolled';
       }
+    },
+
+    routeRedirect() {
+      console.log("test")
+      window.location.href = window.location.origin + '/cart'
+    },
+
+    loggedIn(route) {
+      return !(route == 'ACCOUNT' && this.currentUser)
     }
   },
+
 
   computed: {
     ...mapGetters({

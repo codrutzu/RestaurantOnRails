@@ -13,7 +13,7 @@
 // require("home/home_page.js")
 
 
-import Vue from 'vue/dist/vue.esm'
+import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'

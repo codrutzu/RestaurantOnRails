@@ -13,6 +13,10 @@ const router = new VueRouter({
     },
     {
       path: '/', redirect: { name: 'home_page_path' }
+    },
+    {
+      path: '/cart',
+      name: 'cart_path'
     }
   ]
 })

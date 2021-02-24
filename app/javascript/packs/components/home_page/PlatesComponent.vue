@@ -4,27 +4,57 @@
       v-layout(
         row
         wrap
+        p
       )
         v-flex(
-          v-for="product in products"
+          v-for="product, index in products"
           :key="product.id"
+          d-flex
+          justify-center
         )
           v-hover(v-slot="{hover}")
-            v-card.my-16.mx-6(
+            v-card.my-16.mx-6.product-card(
               width="250"
               height="360"
               :class="{ 'on-hover': hover }"
+              v-model="index"
             )
               img(
                 :src="product.image"
               )
-
               v-card-text
                 .product-title
                   | {{ product.title }}
                 .price
                   | $ {{ product.price }}
+                .cart-button
 
+              .add-to-cart(
+                :class="{ 'visible': hover }"
+              )
+                span(
+                  v-on:click="handleAddToCart(product)"
+                ) Add to cart
+                span(
+                  v-on:click="handleIngredients(product)"
+                ) Ingredients
+      v-dialog(v-if="selectedProduct"
+        v-model="ingredientsDialog"
+        max-width='1049'
+        style="position: relative"
+      )
+        v-layout(column align-center)
+          img(
+            :src="selectedProduct.image"
+            class="modal-product-image"
+          )
+          v-card(
+            style="width: 100%; display: flex; flex-direction: column; align-items: center"
+          )
+            span.mt-16
+              | {{ selectedProduct.title }}
+            v-card-text
+              | {{ selectedProduct.description }}
 
 </template>
 
@@ -38,7 +68,9 @@ export default {
 
   data() {
     return {
-      products: []
+      products: [],
+      ingredientsDialog: false,
+      selectedProduct: null
     }
   },
 
@@ -51,6 +83,20 @@ export default {
       axios.get('/api/v1/products').then(response => {
         this.products = response.data
       })
+    },
+
+    handleAddToCart(product) {
+      axios
+        .post('/api/v1/cart_products', { id: product.id }).then(
+          response => {
+            console.log(response)
+          }
+        )
+    },
+
+    handleIngredients(product) {
+      this.selectedProduct = product;
+      this.ingredientsDialog = true;
     }
   }
 }
@@ -58,14 +104,16 @@ export default {
 
 <style scoped>
 
-.v-card {
+.product-card {
   position: relative;
   background: rgb(83,20,20);
   background: linear-gradient(10deg, rgba(83,20,20,1) 0%, rgba(24,24,172,1) 100%);
   border-radius: 20px;
   text-align: center;
   display: flex;
-  align-items: flex-end;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .layout {
@@ -73,37 +121,94 @@ export default {
 }
 
 img {
-  width: 180px;
+  width: 160px;
 }
 
 .v-card img {
   position: absolute;
-  bottom: 200px;
-  right: 35px;
+  top: -30px;
+  right: 45px;
+}
+
+.modal-product-image {
+  position: absolute;
+  z-index: 300;
+  width: 100px;
+  top: 38%;
+  border: 4px solid rgba(A9,A9,A9, 0.6);
+  border-radius: 50%;
+  background: white;
+  padding: .4em;
+}
+
+
+.visible-add-btn {
+  opacity:1;
+  transition: opacity 0.4 ease-in;
+}
+
+.hidden-add-btn {
+  opacity: 0;
 }
 
 .v-card__text .product-title {
   font-size: 40px;
   font-weight: 600;
   color: white;
-  padding-bottom: 65px;
+  padding-bottom: 30px;
 }
 
 .v-card {
-  transition: height .4s ease-in-out;
-  transition: width .4s ease-in-out;
+  perspective: 1000px;
+  backface-visibility: hidden;
 }
 
-.v-card.on-hover {
-  height: 400px !important;
-  width: 270px !important;
-  cursor: pointer;
+.v-card__actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
+
+.v-card__actions{
+  background-color: rgba(0,0,0, 0.1)
+}
+
+.v-btn:hover:before,
+.v-btn:focus:before {
+    color: transparent
+}
+
+.add-to-cart {
+  opacity: 0;
+  background-color: rgba(0,0,0, 0.1);
+  width: 100%;
+  color: white;
+  cursor: pointer;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  transition: opacity 0s;
+}
+
+.add-to-cart.visible {
+  opacity: 1;
+  transition: opacity .6s;
+}
+
+.add-to-cart span {
+  padding: 0.2em 0.7em
+}
+
+.add-to-cart span:hover {
+  color: rgba(255,255,255, 0.7)
+}
+
 
 .v-card__text .price {
   font-size: 28px;
   color: #CBC9C9;
-  padding-bottom: 25px;
+  padding-bottom: 20px;
 }
 
 </style>

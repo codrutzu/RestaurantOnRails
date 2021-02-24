@@ -19,7 +19,6 @@ export default {
   components: { Header, Container, Footer },
 
   created() {
-    console.log('currentUser')
     this.getCurrentUser();
   },
 
