@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   delete 'delete_product', to: 'cart_products#destroy'
 
   # Cart
-  get '/cart', to: 'carts#show'
+  get '/cart', to: 'redesign#index'
 
   # User
   get '/signup', to: 'users#new'
@@ -37,7 +37,7 @@ Rails.application.routes.draw do
   resources :carts, only: %i[show]
   resources :account_activations, only: :edit
   resources :password_resets, only: %i[new create edit update]
-  resources :orders, only: %i[new create show]
+  resources :orders, only: %i[new create]
   resources :order_products, only: :index
 
   namespace :admin do
@@ -45,6 +45,8 @@ Rails.application.routes.draw do
     resources :products, only: %i[new create show]
     resources :orders, only: %i[index update]
   end
+
+  get 'orders/:id', to: 'redesign#index'
 
   namespace :api do
     namespace :v1 do
@@ -54,6 +56,8 @@ Rails.application.routes.draw do
       end
 
       resources :cart_products, only: %i[create]
+
+      resources :orders, only: %i[show create]
     end
   end
 end

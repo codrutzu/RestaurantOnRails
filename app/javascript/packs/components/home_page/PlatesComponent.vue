@@ -4,13 +4,12 @@
       v-layout(
         row
         wrap
-        p
       )
         v-flex(
           v-for="product, index in products"
           :key="product.id"
           d-flex
-          justify-center
+          justify-start
         )
           v-hover(v-slot="{hover}")
             v-card.my-16.mx-6.product-card(
@@ -33,28 +32,25 @@
                 :class="{ 'visible': hover }"
               )
                 span(
+                  v-if="currentUser != 'noUser'"
                   v-on:click="handleAddToCart(product)"
                 ) Add to cart
                 span(
                   v-on:click="handleIngredients(product)"
                 ) Ingredients
-      v-dialog(v-if="selectedProduct"
-        v-model="ingredientsDialog"
-        max-width='1049'
-        style="position: relative"
-      )
-        v-layout(column align-center)
-          img(
-            :src="selectedProduct.image"
-            class="modal-product-image"
+          v-dialog(v-if="selectedProduct"
+            v-model="ingredientsDialog"
+            max-width='1049'
+            style="position: relative"
           )
-          v-card(
-            style="width: 100%; display: flex; flex-direction: column; align-items: center"
-          )
-            span.mt-16
-              | {{ selectedProduct.title }}
-            v-card-text
-              | {{ selectedProduct.description }}
+            v-layout(column align-center)
+              v-card(
+                style="width: 100%; display: flex; flex-direction: column; align-items: center"
+              )
+                span.mt-4
+                  | {{ selectedProduct.title }}
+                v-card-text
+                  | {{ selectedProduct.description }}
 
 </template>
 
@@ -62,6 +58,7 @@
 <script>
 
 import axios from 'axios'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'PlatesComponent',
@@ -89,7 +86,7 @@ export default {
       axios
         .post('/api/v1/cart_products', { id: product.id }).then(
           response => {
-            console.log(response)
+            console.log("bagabontzi")
           }
         )
     },
@@ -98,7 +95,14 @@ export default {
       this.selectedProduct = product;
       this.ingredientsDialog = true;
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      currentUser: 'currentUser'
+    }),
   }
+
 }
 </script>
 
@@ -129,18 +133,6 @@ img {
   top: -30px;
   right: 45px;
 }
-
-.modal-product-image {
-  position: absolute;
-  z-index: 300;
-  width: 100px;
-  top: 38%;
-  border: 4px solid rgba(A9,A9,A9, 0.6);
-  border-radius: 50%;
-  background: white;
-  padding: .4em;
-}
-
 
 .visible-add-btn {
   opacity:1;

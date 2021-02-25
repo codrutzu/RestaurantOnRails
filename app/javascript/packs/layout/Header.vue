@@ -1,8 +1,8 @@
 <template lang="pug">
-  .navigation(v-if='currentUser')
+  .navigation(v-if="currentUser != null")
     v-app-bar(
-      flat
       fixed
+      flat
       prominent
       shrink-on-scroll
       :class="bg"
@@ -17,32 +17,64 @@
       v-spacer
 
       .navigation-items
-        v-btn(
+        v-btn.navItem(
           text
-          v-for='item in navbarItems'
-          :key='item.title'
-          @click="routeRedirect"
+          key="HOME"
+          to="/home"
+
         )
           span(
             class="menu-item"
-          ) {{ item.title }}
+          ) HOME
 
-        v-btn(
-          v-if="currentUser"
+
+        v-btn.navItem(
+          v-if="loggedIn() === true"
+          text
+          key="CART"
+          to="/cart"
+        )
+          v-badge(
+            bordered
+            color="red"
+            overlap
+            right
+            :content="currentUser.items_count"
+          )
+            span(
+              class="menu-item"
+            ) CART
+
+        v-btn.navItem(
+          v-else
+          text
+          key="CART"
+          to="/login"
+          disabled=true
+        )
+          span(
+            class="menu-item-disabled"
+          ) CART
+
+
+        v-btn.navItem(
+          v-if="loggedIn()"
           text
           :key="currentUser.id"
         )
           span(
             class="menu-item"
           ) {{ currentUser.name }}
-        v-btn(
+
+        v-btn.navItem(
           v-else
           text
           key="ACCOUNT"
         )
           span(
             class="menu-item"
-          ) SIGN UP
+          ) LOG IN
+
 
 
 
@@ -58,10 +90,6 @@ export default {
   data() {
     return {
       bg: 'notScrolled',
-      navbarItems: [
-        { title: 'HOME', name: 'plates_index_path' },
-        { title: 'CART', name: 'cart_path' }
-      ],
       userName: ''
     }
   },
@@ -90,8 +118,8 @@ export default {
       window.location.href = window.location.origin + '/cart'
     },
 
-    loggedIn(route) {
-      return !(route == 'ACCOUNT' && this.currentUser)
+    loggedIn() {
+      return (this.currentUser != null && this.currentUser != "noUser")
     }
   },
 
@@ -99,7 +127,11 @@ export default {
   computed: {
     ...mapGetters({
       currentUser: 'currentUser'
-    })
+    }),
+
+    activeRouteName() {
+      return this.$route.name;
+    }
   }
 }
 </script>
@@ -121,7 +153,21 @@ export default {
   background-color: white !important;
 
   transition: 1s;
-  box-shadow: 0 2px 4px 0 rgba(0,0,0,.2);
+  box-shadow: 0 3px 5px -2px gray !important;
+}
+
+.v-active--point {
+  background-color: #fa357b;
+  border-radius: 100%;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  left: -20%;
+}
+
+.navItem {
+  position: relative;
+  padding: 1em;
 }
 
 .notScrolled {
