@@ -7,7 +7,7 @@
             - if Rails.env.production?
               = cl_image_tag(product.image.key)
             - else
-              = image_tag product.image
+              = image_tag product.image.url
           %p.dish= product.title
           %p.meal-type= product.description
           %p.price= "$  #{product.price}"

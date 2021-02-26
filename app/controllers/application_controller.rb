@@ -5,16 +5,14 @@ class ApplicationController < ActionController::Base
 
   def authorize_user!
     unless logged_in?
-      flash.now[:danger] = 'You have to log in'
-      redirect_to root_url
+      render json: { message: 'You have to log in' }, status: :bad_request
     end
   end
 
   def logged_in_user
     unless logged_in?
       store_location
-      flash[:danger] = 'Please log in.'
-      redirect_to login_url
+      render json: { message: 'Please log in' }, status: :bad_request
     end
   end
 
