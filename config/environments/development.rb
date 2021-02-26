@@ -1,5 +1,4 @@
 Rails.application.configure do
-  ENV['BASE_URL'] = "http://localhost:3000"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -28,8 +27,6 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
-
-
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.action_mailer.raise_delivery_errors = true
 
