@@ -56,6 +56,22 @@ export default {
    text-align: center;
 }
 
+.page-scroll-wheel {
+  height: 6px;
+  margin: 2px auto 0;
+  display: block;
+  width: 3px;
+  background-color: white;
+  border-radius: 50%;
+  -webkit-animation: 1.6s ease infinite wheel-up-down;
+ -moz-animation: 1.6s ease infinite wheel-up-down;
+  animation: 1.6s ease infinite wheel-up-down;
+}
+
+
+.bottom-anchor {
+  padding-bottom: 0;
+}
 
 @-webkit-keyframes wheel-up-down {
 	0% {
