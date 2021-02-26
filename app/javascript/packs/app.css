@@ -83,3 +83,57 @@
  -moz-animation: 1.6s ease infinite wheel-up-down;
   animation: 1.6s ease infinite wheel-up-down;
 }
+
+.theme--light.v-btn {
+  color: transparent;
+}
+
+.v-image {
+  margin-left: 5em;
+}
+
+.v-toolbar--prominent {
+  align-items: center !important;
+}
+
+.scrolledNav {
+  background-color: white !important;
+
+  transition: 1s;
+  box-shadow: 0 3px 5px -2px gray !important;
+}
+
+.logout-icon {
+  margin-left: 1.5em;
+  cursor: pointer;
+}
+
+.v-active--point {
+  background-color: #fa357b;
+  border-radius: 100%;
+  width: 6px;
+  height: 6px;
+  position: absolute;
+  left: -20%;
+}
+
+.navItem {
+  position: relative;
+  padding: 1em;
+}
+
+.notScrolled {
+  background-color: transparent !important;
+  transition: 1s;
+  height: 80px;
+}
+
+.navigation-items {
+  display: flex;
+  margin-right: 2em;
+  align-items: center;
+}
+
+.v-toolbar--prominent .v-toolbar__content {
+  align-items: center;
+}
