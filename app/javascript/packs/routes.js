@@ -3,6 +3,8 @@ import VueRouter from 'vue-router'
 import HomePage from './components/home_page/index.vue'
 import CartComponent from './components/cart/index.vue'
 import QrCodeComponent from './components/order/show.vue'
+import LoginComponent from './components/auth/index.vue'
+import RegisterComponent from './components/auth/index.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -25,6 +27,16 @@ const router = new VueRouter({
       path: '/orders/:id',
       component: QrCodeComponent,
       name: 'order_path'
+    },
+    {
+      path: '/login',
+      component: LoginComponent,
+      name: 'login_path'
+    },
+    {
+      path: '/register',
+      component: RegisterComponent,
+      name: 'register_path'
     }
   ]
 })

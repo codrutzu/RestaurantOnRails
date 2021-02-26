@@ -8,7 +8,7 @@
       :class="bg"
     )
       v-img(
-        :src="require('../images/eureka-logo.png')"
+        :src="logoUrl"
         max-height="40"
         max-width="40"
         contain
@@ -35,6 +35,7 @@
           to="/cart"
         )
           v-badge(
+            v-if="currentUser.items_count > 0"
             bordered
             color="red"
             overlap
@@ -44,12 +45,16 @@
             span(
               class="menu-item"
             ) CART
+          span(
+            v-else
+            class="menu-item"
+          ) CART
+
 
         v-btn.navItem(
           v-else
           text
           key="CART"
-          to="/login"
           disabled=true
         )
           span(
@@ -69,11 +74,23 @@
         v-btn.navItem(
           v-else
           text
+          to="/login"
           key="ACCOUNT"
         )
           span(
             class="menu-item"
           ) LOG IN
+        span(
+          @click="handleLogout"
+        )
+          v-img(
+            v-if="loggedIn() === true"
+            :src="require('../images/logout.svg')"
+            contain
+            class="logout-icon"
+            max-height="20"
+            max-width="20"
+          )
 
 
 
@@ -83,7 +100,7 @@
 
 <script>
 
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Header',
@@ -102,6 +119,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      logout: 'logout'
+    }),
+
     changeColor() {
       if (
         document.body.scrollTop > 50 ||
@@ -120,6 +141,10 @@ export default {
 
     loggedIn() {
       return (this.currentUser != null && this.currentUser != "noUser")
+    },
+
+    handleLogout() {
+      this.logout();
     }
   },
 
@@ -128,6 +153,10 @@ export default {
     ...mapGetters({
       currentUser: 'currentUser'
     }),
+
+    logoUrl() {
+      return require('../images/eureka-logo.png')
+    },
 
     activeRouteName() {
       return this.$route.name;
@@ -156,6 +185,11 @@ export default {
   box-shadow: 0 3px 5px -2px gray !important;
 }
 
+.logout-icon {
+  margin-left: 1.5em;
+  cursor: pointer;
+}
+
 .v-active--point {
   background-color: #fa357b;
   border-radius: 100%;
@@ -177,7 +211,9 @@ export default {
 }
 
 .navigation-items {
-  margin-right: 5em;
+  display: flex;
+  margin-right: 2em;
+  align-items: center;
 }
 
 .v-toolbar--prominent .v-toolbar__content {

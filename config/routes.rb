@@ -13,8 +13,7 @@ Rails.application.routes.draw do
 
   # Session
   get 'sessions/new'
-  get '/login', to: 'sessions#new'
-  post '/login', to: 'sessions#create'
+  # get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
 
   # Cart products
@@ -25,7 +24,6 @@ Rails.application.routes.draw do
   get '/cart', to: 'redesign#index'
 
   # User
-  get '/signup', to: 'users#new'
 
   # Admin
   get '/admin', to: 'admin#index'
@@ -33,12 +31,12 @@ Rails.application.routes.draw do
   # Order products
   get 'order_products/index'
 
-  resources :users, only: %i[create new show edit update]
-  resources :carts, only: %i[show]
-  resources :account_activations, only: :edit
-  resources :password_resets, only: %i[new create edit update]
-  resources :orders, only: %i[new create]
-  resources :order_products, only: :index
+  # resources :users, only: %i[create new show edit update]
+  # resources :carts, only: %i[show]
+  # resources :account_activations, only: :edit
+  # resources :password_resets, only: %i[new create edit update]
+  # resources :orders, only: %i[new create]
+  # resources :order_products, only: :index
 
   namespace :admin do
     resources :users, only: %i[index destroy]
@@ -47,17 +45,23 @@ Rails.application.routes.draw do
   end
 
   get 'orders/:id', to: 'redesign#index'
+  get '/login', to: 'redesign#index'
+  get '/register', to: 'redesign#index'
 
   namespace :api do
     namespace :v1 do
       resources :products, only: %i[index]
-      resources :users, only: %i[show] do
+      resources :users, only: %i[show create] do
         get '/current_user', action: :show, on: :collection
       end
 
       resources :cart_products, only: %i[create]
 
       resources :orders, only: %i[show create]
+
+      resources :sessions, only: %i[create destroy] do
+        delete '/', action: :destroy, on: :collection
+      end
     end
   end
 end
