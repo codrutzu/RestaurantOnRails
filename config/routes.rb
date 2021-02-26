@@ -59,6 +59,10 @@ Rails.application.routes.draw do
 
       resources :orders, only: %i[show create]
 
+      resources :confirm_email, only: %i[show] do
+        get '/:activation_token', action: :show, on: :collection
+      end
+
       resources :sessions, only: %i[create destroy] do
         delete '/', action: :destroy, on: :collection
       end
