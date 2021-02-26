@@ -12,7 +12,6 @@
 // require("jquery-ui")
 // require("home/home_page.js")
 
-
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuetify from 'vuetify'
@@ -20,6 +19,7 @@ import 'vuetify/dist/vuetify.min.css'
 import router from './routes.js'
 import App from './app.vue'
 import store from './store'
+import './app.css'
 
 
 Vue.use(Vuetify)

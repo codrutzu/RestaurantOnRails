@@ -9,4 +9,4 @@
 
 %p Welcome to the Eureka Caffe! Click on the link below to activate your account:
 
-= link_to "Activate", "#{ENV['BASE_URL']}/api/v1/user/confirm_email/#{@user.activation_token}
+= link_to "Activate", "#{ENV['BASE_URL']}/api/v1/confirm_email/#{@user.activation_token}"
