@@ -1,4 +1,5 @@
 Rails.application.configure do
+  ENV['BASE_URL'] = "http://localhost:3000"
   # Settings specified here will take precedence over those in config/application.rb.
 
   # In the development environment your application's code is reloaded on
@@ -28,14 +29,22 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+
   # Store uploaded files on the local file system (see config/storage.yml for options).
-  config.active_storage.service = :local
+  config.action_mailer.raise_delivery_errors = true
 
-  # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
-
-  host = 'localhost:3000' # Local server
-  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
+  config.action_mailer.delivery_method = :smtp
+  host = 'http://localhost:3000'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+  :address => 'smtp.sendgrid.net',
+  :port => '587',
+  :authentication => :plain,
+  :user_name => 'apikey',
+  :password => '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',
+  :domain => 'heroku.com',
+  :enable_starttls_auto => true
+  }
 
   config.action_mailer.perform_caching = false
 
