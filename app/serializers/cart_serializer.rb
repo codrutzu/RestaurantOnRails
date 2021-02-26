@@ -1,4 +1,4 @@
-class UserCartSerializer < ActiveModel::Serializer
+class CartSerializer < ActiveModel::Serializer
 
   attributes :id
 end
