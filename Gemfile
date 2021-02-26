@@ -28,11 +28,17 @@ gem 'cloudinary'
 
 gem 'faker', '2.11.0'
 
+gem 'carrierwave', '~> 2.0'
+
 gem 'will_paginate', '3.3.0'
 
 gem 'will_paginate-bootstrap4'
 
+gem 'pg', '1.2.3'
+
 gem 'rqrcode'
+
+gem 'active_model_serializers', '~> 0.10.2'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -40,7 +46,6 @@ gem 'bootsnap', '>= 1.4.2', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'sqlite3', '1.4.2'
 end
 
 group :development do
@@ -57,10 +62,6 @@ group :test do
   gem 'rails-controller-testing'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
-end
-
-group :production do
-  gem 'pg', '1.2.3'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
