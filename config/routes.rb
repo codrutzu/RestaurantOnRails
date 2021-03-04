@@ -50,7 +50,7 @@ Rails.application.routes.draw do
   get '/login', to: 'redesign#index'
   get '/register', to: 'redesign#index'
 
-  get 'password-update/:reset-token', to: 'redesign#index'
+  get 'password-update/:id', to: 'redesign#index'
   get '/my-orders', to: 'redesign#index'
 
   namespace :api do
