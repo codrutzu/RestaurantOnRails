@@ -7,6 +7,15 @@ class Api::V1::UsersController < ApplicationController
     render json: current_user, serializer: UserSerializer
   end
 
+  def orders
+    data = {
+      handled: ActiveModelSerializers::SerializableResource.new(current_user.orders.where(handled: true), each_serializer: OrderSerializer),
+      unhandled: ActiveModelSerializers::SerializableResource.new(current_user.orders.where(handled: false), each_serializer: OrderSerializer)
+    }
+
+    render json: data
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save

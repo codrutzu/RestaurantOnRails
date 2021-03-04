@@ -66,6 +66,7 @@
           v-if="loggedIn()"
           text
           :key="currentUser.id"
+          to="/my-orders"
         )
           span(
             class="menu-item"
@@ -91,8 +92,6 @@
             max-height="20"
             max-width="20"
           )
-
-
 
 
 </template>

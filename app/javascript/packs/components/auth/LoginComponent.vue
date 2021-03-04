@@ -29,6 +29,13 @@
                   type="password"
                   v-model="user.password"
                 )
+              v-flex.mb-3
+                v-btn.mt-4(
+                  text
+                  color="black"
+                  key="RESET"
+                  to="/reset-password"
+                ) Forgot your password?
               <input type="checkbox" v-model="rememberMe">
               <label for="checkbox" class="checkbox-title"> Remember me</label>
             v-layout(pb-6 mx-4 d-flex align-center)

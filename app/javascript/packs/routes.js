@@ -5,6 +5,9 @@ import CartComponent from './components/cart/index.vue'
 import QrCodeComponent from './components/order/show.vue'
 import LoginComponent from './components/auth/index.vue'
 import RegisterComponent from './components/auth/index.vue'
+import ResetPasswordComponent from './components/auth/reset_password.vue'
+import ResetPasswordUpdateComponent from './components/auth/reset_password_update.vue'
+import OrdersComponenet from './components/order/index.vue'
 
 const router = new VueRouter({
   mode: 'history',
@@ -37,6 +40,21 @@ const router = new VueRouter({
       path: '/register',
       component: RegisterComponent,
       name: 'register_path'
+    },
+    {
+      path: '/reset-password',
+      component: ResetPasswordComponent,
+      name: 'reset_password_path'
+    },
+    {
+      path: '/password-update/:id',
+      component: ResetPasswordUpdateComponent,
+      name: 'password_update_path'
+    },
+    {
+      path: '/my-orders',
+      component: OrdersComponenet,
+      name: 'my_orders_path'
     }
   ]
 })
