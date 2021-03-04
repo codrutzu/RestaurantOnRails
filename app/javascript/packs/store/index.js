@@ -77,6 +77,52 @@ const store = new Vuex.Store({
         console.log(errors)
         return Promise.reject(errors)
       })
+    },
+
+    async resetPassword({commit}, payload) {
+      const { email } = payload
+
+      let formData = new FormData();
+      formData.set('password_reset[email]', email);
+
+      try {
+
+        const response = await axios.post('/api/v1/reset_password', formData)
+        return response;
+      }
+      catch(error) {
+        console.log(error)
+        return Promise.reject(error)
+      }
+    },
+
+    async updatePassword({commit}, payload) {
+      const { password, password_confirmation, token } = payload
+
+      let formData = new FormData();
+      formData.set('user[password]', password)
+      formData.set('user[password_confirmation]', password_confirmation)
+
+      try {
+        const response = await axios.patch(`/api/v1/reset_password/${token}`, formData)
+        return response
+      }
+
+      catch(error) {
+        console.log(error)
+        return Promise.reject(error)
+      }
+    },
+
+    async getUserOrders({commit}) {
+      try {
+        const response = await axios.get('/api/v1/users/orders')
+        return response;
+      }
+
+      catch(error) {
+        return Promise.reject(error)
+      }
     }
   }
 })

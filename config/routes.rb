@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   # get '/login', to: 'sessions#new'
   delete '/logout', to: 'sessions#destroy'
 
+  get '/reset-password', to: 'redesign#index'
+
   # Cart products
   post 'add_product', to: 'cart_products#create'
   delete 'delete_product', to: 'cart_products#destroy'
@@ -36,7 +38,7 @@ Rails.application.routes.draw do
   # resources :account_activations, only: :edit
   # resources :password_resets, only: %i[new create edit update]
   # resources :orders, only: %i[new create]
-  # resources :order_products, only: :index
+  resources :order_products, only: :index
 
   namespace :admin do
     resources :users, only: %i[index destroy]
@@ -48,11 +50,15 @@ Rails.application.routes.draw do
   get '/login', to: 'redesign#index'
   get '/register', to: 'redesign#index'
 
+  get 'password-update/:reset-token', to: 'redesign#index'
+  get '/my-orders', to: 'redesign#index'
+
   namespace :api do
     namespace :v1 do
       resources :products, only: %i[index]
       resources :users, only: %i[show create] do
         get '/current_user', action: :show, on: :collection
+        get '/orders', action: :orders, on: :collection
       end
 
       resources :cart_products, only: %i[create]
@@ -66,6 +72,8 @@ Rails.application.routes.draw do
       resources :sessions, only: %i[create destroy] do
         delete '/', action: :destroy, on: :collection
       end
+
+      resources :reset_password, only: %i[create update]
     end
   end
 end
