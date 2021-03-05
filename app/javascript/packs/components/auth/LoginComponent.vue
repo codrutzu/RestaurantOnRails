@@ -21,6 +21,8 @@
                 label="Email"
                 name='email'
                 v-model="user.email"
+                v-validate="'required'"
+                :error-messages="errors.collect('email')"
               )
               v-flex.mb-3
                 v-text-field(
@@ -28,6 +30,8 @@
                   name="password"
                   type="password"
                   v-model="user.password"
+                  v-validate="'required'"
+                  :error-messages="errors.collect('password')"
                 )
               v-flex.mb-3
                 v-btn.mt-4(
@@ -72,8 +76,14 @@ export default {
 
   methods: {
     ...mapActions({
-      login: 'login'
+      login: 'login',
+      getCurrentUser: 'currentUser'
     }),
+
+    clearInputs() {
+      this.user.email = '',
+      this.user.password = ''
+    },
 
     submit() {
       this.login({
@@ -83,9 +93,15 @@ export default {
           rememberMe: this.rememberMe ? '1' : '0'
         }
       }).then(resp => {
-        console.log(resp)
-        if(resp.status == 200)
-          window.location.href = window.location.origin
+        if(resp.status == 200) {
+          this.getCurrentUser();
+          this.$router.push("/")
+          this.$toaster.success('You are now logged in!')
+        }
+        else {
+          this.clearInputs();
+          this.$toaster.error('Invalid username or password.')
+        }
       })
     }
   }

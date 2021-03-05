@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include ApiErrorHandling
   include UsersHelper
   include SessionsHelper
   include OrdersHelper

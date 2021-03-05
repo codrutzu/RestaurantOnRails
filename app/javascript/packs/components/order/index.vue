@@ -16,6 +16,10 @@
         :items-per-page="5"
         class="elevation-1"
       )
+    template(
+      v-slot:items
+    )
+      td test
 </template>
 
 <script>
@@ -29,7 +33,8 @@ export default {
       headers: [
         { text: 'Address', value: 'address' },
         { text: 'City', value: 'city' },
-        { text: 'Phone', value: 'phone' }
+        { text: 'Phone', value: 'phone' },
+        { text: 'Scan code', value: 'qr_codes', sortable: false }
       ]
     }
   },

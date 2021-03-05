@@ -33,3 +33,11 @@ export default {
   }
 };
 </script>
+
+<style>
+
+.v-toaster {
+  margin-top: 40px
+}
+
+</style>

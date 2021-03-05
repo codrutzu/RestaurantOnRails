@@ -58,7 +58,7 @@
 <script>
 
 import axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'PlatesComponent',
@@ -76,6 +76,10 @@ export default {
   },
 
   methods: {
+    ...mapActions({
+      incrementCartCount: 'incrementCartCount'
+    }),
+
     fetchProducts() {
       axios.get('/api/v1/products').then(response => {
         this.products = response.data
@@ -86,7 +90,9 @@ export default {
       axios
         .post('/api/v1/cart_products', { id: product.id }).then(
           response => {
-            console.log("bagabontzi")
+            if(response.status == 200) {
+              this.incrementCartCount()
+            }
           }
         )
     },

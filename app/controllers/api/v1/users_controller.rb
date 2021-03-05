@@ -1,6 +1,6 @@
 
 class Api::V1::UsersController < ApplicationController
-  before_action :authorize_user!, only: :show
+  before_action :authorize_user!, only: %i[orders]
   skip_before_action :verify_authenticity_token
 
   def show
@@ -18,7 +18,7 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    if @user.save
+    if @user.save!
       @user.send_activation_email
       render json: @user
     else

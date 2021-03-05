@@ -6,17 +6,23 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    currentUser: null
+    currentUser: null,
+    cartItemsCount: 0
   },
 
 
   getters: {
-    currentUser: state => state.currentUser
+    currentUser: state => state.currentUser,
+    cartItemsCount: state => state.cartItemsCount
   },
 
   mutations: {
     currentUser(state, user) {
       state.currentUser = user
+    },
+
+    cartItemsCount(state, newCount) {
+      state.cartItemsCount = newCount
     }
   },
 
@@ -25,6 +31,7 @@ const store = new Vuex.Store({
       let uri = `/api/v1/users/current_user`
       axios.get(uri).then(resp => {
         context.commit('currentUser', resp.data);
+        context.commit('cartItemsCount', resp.data['items_count'])
       })
       .catch(error => {
         context.commit('currentUser', 'noUser')
@@ -32,35 +39,67 @@ const store = new Vuex.Store({
       })
     },
 
-    login({context}, credentials) {
+    incrementCartCount(context) {
+      context.commit('cartItemsCount', context.state.cartItemsCount + 1)
+    },
+
+    decrementCartCount(context) {
+      context.commit('cartItemsCount', context.state.cartItemsCount - 1)
+    },
+
+    setCartCount(context, itemsCount) {
+      console.log(itemsCount)
+      context.commit('cartItemsCount', itemsCount)
+    },
+
+    emptyCart({context}, product_id) {
+      try {
+        const response = axios.patch(`api/v1/cart_products/${product_id}`)
+
+        return response;
+      }
+      catch(error) {
+        return error;
+      }
+    },
+
+    async login({context}, credentials) {
       const { email, password, rememberMe } = credentials['session']
       let formData = new FormData();
       formData.set('session[email]', email);
       formData.set('session[password]', password);
       formData.set('session[rememberMe]', rememberMe);
 
-      axios.post('/api/v1/sessions', formData).
-        then(resp => {
-          window.location.href = window.location.origin
-        })
-      .catch(errors => {
-        console.log(errors)
-        return Promise.reject(errors)
-      })
+      try {
+        const response = await axios.post('/api/v1/sessions', formData)
+        return response;
+      }
+      catch(error) {
+        return error;
+      }
     },
 
-    logout({context}) {
-      axios.delete('/api/v1/sessions').
-        then(resp => {
-          window.location.href = window.location.origin
-        })
-      .catch(errors => {
-        console.log(errors)
-        return Promise.reject(errors)
-      })
+    async logout({context}) {
+      try {
+        const resp = await axios.delete('/api/v1/sessions')
+        return resp
+      }
+      catch(error) {
+        return error
+      }
     },
 
-    register({commit}, payload) {
+    async emptyCart({context}, product_id) {
+      try {
+        const response = await axios.patch(`/api/v1/empty_cart/${product_id}`)
+        return response;
+      }
+      catch(error) {
+        return error
+      }
+    },
+
+    async register({commit}, payload) {
       const { email, password, password_confirmation, name } = payload
 
       let formData = new FormData();
@@ -69,14 +108,14 @@ const store = new Vuex.Store({
       formData.set('user[password_confirmation]', password_confirmation);
       formData.set('user[name]', name);
 
-      axios.post('/api/v1/users', formData)
-        .then(resp => {
-          console.log(resp)
-        })
-      .catch(errors => {
-        console.log(errors)
-        return Promise.reject(errors)
-      })
+      try {
+        const response = await axios.post('/api/v1/users', formData)
+        return response;
+      }
+      catch(error) {
+        return error.response.data.errors;
+      }
+
     },
 
     async resetPassword({commit}, payload) {
@@ -118,6 +157,17 @@ const store = new Vuex.Store({
       try {
         const response = await axios.get('/api/v1/users/orders')
         return response;
+      }
+
+      catch(error) {
+        return Promise.reject(error)
+      }
+    },
+
+    async getCartProducts({commit}) {
+      try {
+        const response = await axios.get('/api/v1/cart_products')
+        return response
       }
 
       catch(error) {
