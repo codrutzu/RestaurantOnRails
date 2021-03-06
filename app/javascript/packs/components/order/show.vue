@@ -14,6 +14,7 @@
 <script>
 
 import axios from 'axios';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'QrCodeComponent',
@@ -25,18 +26,21 @@ export default {
   },
 
   methods: {
-    getQrCode(id) {
-      axios.get(
-        `/api/v1/orders/${id}`
-      )
-        .then(resp => {
-          this.qrCode = resp.data
-        })
-    }
+    ...mapActions({
+      getQr: 'getQrCode'
+    })
   },
 
   created() {
-    this.getQrCode(this.$route.params.id)
+    this.getQr(this.$route.params.id).then(resp => {
+      if(resp.status == 200) {
+        this.qrCode = resp.data;
+      }
+      else {
+        this.$router.push("/")
+        this.$toaster.error(resp.data['message'])
+      }
+    })
   }
 
 }

@@ -1,5 +1,6 @@
 class OrderSerializer < ActiveModel::Serializer
-  attributes :address,
+  attributes :id,
+             :address,
              :city,
              :phone
 end

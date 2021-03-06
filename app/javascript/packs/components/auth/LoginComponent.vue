@@ -74,6 +74,16 @@ export default {
     }
   },
 
+
+  created() {
+    this.getCurrentUser().then(resp => {
+      if(resp.status == 200)
+      {
+        this.$router.push("/")
+      }
+    })
+  },
+
   methods: {
     ...mapActions({
       login: 'login',
@@ -81,8 +91,8 @@ export default {
     }),
 
     clearInputs() {
-      this.user.email = '',
-      this.user.password = ''
+      this.user.email = "",
+      this.user.password = ""
     },
 
     submit() {

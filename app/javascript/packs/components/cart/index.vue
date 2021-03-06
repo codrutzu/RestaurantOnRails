@@ -117,13 +117,16 @@ export default {
       if(resp.status == 200) {
         this.cart_products = resp.data;
       }
+      else {
+        this.$router.push("/")
+        this.$toaster.error(resp.data['message'])
+      }
     })
   },
 
   methods: {
     ...mapActions({
       getProducts: 'getCartProducts',
-      emptyCart: 'emptyCart',
       decrementCartCount: 'decrementCartCount',
       emptyCart: 'emptyCart',
       incrementCartCount: 'incrementCartCount',
@@ -140,7 +143,7 @@ export default {
 
             //redirect logic
             if (status == '200') {
-              this.emptyCart()
+              this.setCartCount(0)
               this.$router.replace(`/orders/${id}`);
             }
         })

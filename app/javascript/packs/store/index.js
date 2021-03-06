@@ -27,16 +27,18 @@ const store = new Vuex.Store({
   },
 
   actions: {
-    currentUser(context) {
+    async currentUser(context) {
       let uri = `/api/v1/users/current_user`
-      axios.get(uri).then(resp => {
-        context.commit('currentUser', resp.data);
-        context.commit('cartItemsCount', resp.data['items_count'])
-      })
-      .catch(error => {
-        context.commit('currentUser', 'noUser')
-        return Promise.reject(error)
-      })
+      try {
+        const response = await axios.get(uri);
+        context.commit('currentUser', response.data);
+        context.commit('cartItemsCount', response.data['items_count'])
+        return response
+      }
+      catch(error) {
+        context.commit('currentUser', 'noUser');
+        return error.response
+      }
     },
 
     incrementCartCount(context) {
@@ -125,13 +127,11 @@ const store = new Vuex.Store({
       formData.set('password_reset[email]', email);
 
       try {
-
         const response = await axios.post('/api/v1/reset_password', formData)
         return response;
       }
       catch(error) {
-        console.log(error)
-        return Promise.reject(error)
+        return error
       }
     },
 
@@ -148,8 +148,7 @@ const store = new Vuex.Store({
       }
 
       catch(error) {
-        console.log(error)
-        return Promise.reject(error)
+        return error
       }
     },
 
@@ -160,7 +159,19 @@ const store = new Vuex.Store({
       }
 
       catch(error) {
-        return Promise.reject(error)
+        return error.response
+      }
+    },
+
+    async getQrCode({commit}, id) {
+      try {
+        const response = await axios.get(
+          `/api/v1/orders/${id}`
+        )
+        return response;
+      }
+      catch(error) {
+        return error.response
       }
     },
 
@@ -171,7 +182,7 @@ const store = new Vuex.Store({
       }
 
       catch(error) {
-        return Promise.reject(error)
+        return error.response
       }
     }
   }

@@ -33,19 +33,35 @@ export default {
     };
   },
 
+  created() {
+    this.getCurrentUser().then(resp => {
+      if(resp.status == 200)
+      {
+        this.$router.push("/")
+      }
+    })
+  },
+
   methods: {
     ...mapActions({
       resetPassword: "resetPassword",
+      getCurrentUser: 'currentUser'
     }),
+
+    clearInputs() {
+      this.email = ""
+    },
 
     submit() {
       this.resetPassword({
         email: this.email,
-      }).then((resp) => {
-        console.log(resp);
+      }).then(resp => {
+        console.log('cevatest')
         if (resp.status == 200) {
-          console.log("mag")
           this.$router.replace("/");
+        }
+        else {
+          this.$toaster.error("Invalid email")
         }
       });
     },

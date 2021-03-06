@@ -6,14 +6,14 @@ class ApplicationController < ActionController::Base
 
   def authorize_user!
     unless logged_in?
-      render json: { message: 'You have to log in' }, status: :bad_request
+      render json: { message: 'You have to log in' }, status: 401
     end
   end
 
   def logged_in_user
     unless logged_in?
       store_location
-      render json: { message: 'Please log in' }, status: :bad_request
+      render json: { message: 'Please log in' }, status: 401
     end
   end
 
@@ -25,6 +25,6 @@ class ApplicationController < ActionController::Base
   def authenticate_order
     order = Order.find(params[:id])
     @user = order.user
-    redirect_to(root_url) unless current_user?(@user)
+    render json: { message: 'You have no access to this order'}, status: 401 unless current_user?(@user)
   end
 end

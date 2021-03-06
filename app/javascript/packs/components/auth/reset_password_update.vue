@@ -58,7 +58,15 @@ export default {
       updatePass: 'updatePassword'
     }),
 
+    validatePasswords() {
+      return (this.password != this.password_confirmation)
+    },
+
     submit() {
+      if (this.validatePasswords()) {
+        this.$toaster.error('Password doesnt match password confirmation')
+        return
+      }
       this.updatePass({
         password: this.password,
         password_confirmation: this.password_confirmation,
@@ -66,6 +74,9 @@ export default {
       }).then(resp => {
         if(resp.status == 200) {
           this.$router.push('/')
+        }
+        else {
+          this.$toaster.error('Something went wrong')
         }
       })
     }

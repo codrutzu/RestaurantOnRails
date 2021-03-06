@@ -84,9 +84,19 @@ export default {
     }
   },
 
+  created() {
+    this.getCurrentUser().then(resp => {
+      if(resp.status == 200)
+      {
+        this.$router.push("/")
+      }
+    })
+  },
+
   methods: {
     ...mapActions({
-      login: 'register'
+      login: 'register',
+      getCurrentUser: 'currentUser'
     }),
 
     submit() {

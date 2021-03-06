@@ -83,6 +83,7 @@
           span(
             class="menu-item"
           ) LOG IN
+          .v-active--point(v-if="authPath()")
         span(
           @click="handleLogout"
         )
@@ -146,6 +147,10 @@ export default {
 
     loggedIn() {
       return (this.currentUser != null && this.currentUser != "noUser")
+    },
+
+    authPath() {
+      return (this.activeRouteName === 'login_path') || (this.activeRouteName === 'register_path')
     },
 
     handleLogout() {
