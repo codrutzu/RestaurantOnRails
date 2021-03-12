@@ -1,56 +1,66 @@
 <template lang="pug">
-  .plates
-    v-container(grid-list-md mt-12)
-      v-layout(
-        row
-        wrap
-      )
-        v-flex(
-          v-for="product, index in products"
-          :key="product.id"
-          d-flex
-          justify-start
-        )
-          v-hover(v-slot="{hover}")
-            v-card.my-16.mx-6.product-card(
-              width="250"
-              height="360"
-              :class="{ 'on-hover': hover }"
-              v-model="index"
-            )
-              img(
-                :src="product.image"
-              )
-              v-card-text
-                .product-title
-                  | {{ product.title }}
-                .price
-                  | $ {{ product.price }}
-                .cart-button
+  v-container
+    .card-container
+      v-hover(v-slot="{hover}"
+                v-for="product, index in products"
+          :key="product.id")
+        v-card.my-16.mx-16.product-card(
 
-              .add-to-cart(
-                :class="{ 'visible': hover }"
-              )
-                span(
-                  v-if="currentUser != 'noUser'"
-                  v-on:click="handleAddToCart(product)"
-                ) Add to cart
-                span(
-                  v-on:click="handleIngredients(product)"
-                ) Ingredients
-          v-dialog(v-if="selectedProduct"
-            v-model="ingredientsDialog"
-            max-width='1049'
-            style="position: relative"
+          width="250"
+          height="360"
+          :class="{ 'on-hover': hover }"
+          v-model="index"
+        )
+          img(
+            :src="product.image"
           )
-            v-layout(column align-center)
-              v-card(
-                style="width: 100%; display: flex; flex-direction: column; align-items: center"
+          v-card-text
+            .product-title
+              | {{ product.title }}
+            .price
+              | $ {{ product.price }}
+            .cart-button
+
+          .add-to-cart(
+            :class="{ 'visible': hover }"
+          )
+            span(
+              v-if="currentUser != 'noUser'"
+              v-on:click="handleAddToCart(product)"
+            ) Add to cart
+            span(
+              v-on:click="handleIngredients(product)"
+            ) Ingredients
+      v-dialog(v-if="selectedProduct"
+        v-model="ingredientsDialog"
+        max-width='700'
+        style="position: relative"
+      )
+        v-layout(column align-center)
+          v-card.product-dialog(
+            style="width: 100%; display: flex; flex-direction: column; align-items: center"
+          )
+            div(
+              style="display: flex; width: 99%"
+            )
+              span.dialog-title.mt-4(
+                style="width: 100%; text-align: center"
               )
-                span.mt-4
-                  | {{ selectedProduct.title }}
-                v-card-text
-                  | {{ selectedProduct.description }}
+                | {{ selectedProduct.title }}
+              v-spacer
+              span
+                v-icon(
+                  v-on:click="ingredientsDialog = false"
+                  dense
+                ) mdi-close
+            v-card-text(
+              style="text-align: center; white-space: pre-line; padding: 2em 1.5em"
+            ) {{ selectedProduct.description }}
+            v-spacer
+            span(
+              style="padding: 1em"
+              v-html=""
+            ) {{ selectedProduct.weight }} g
 
 </template>
 
@@ -92,6 +102,7 @@ export default {
           response => {
             if(response.status == 200) {
               this.incrementCartCount()
+              this.$toaster.success('Item added', { timeout: 2000 } )
             }
           }
         )
@@ -126,12 +137,30 @@ export default {
   justify-content: flex-end;
 }
 
-.layout {
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 124px;
+}
+
+
+.container {
+  display: flex;
   justify-content: center;
+}
+
+.dialog-title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-left: 20px;
 }
 
 img {
   width: 160px;
+}
+
+.product-dialog {
+  border-radius: 10px;
 }
 
 .v-card img {

@@ -12,6 +12,7 @@
           v-form
             v-layout(mx-16 mt-6 flex-column justify-center)
               v-text-field(
+                dark
                 label="Address"
                 name='address'
                 v-model="order.address"
@@ -19,6 +20,7 @@
                 :error-messages="errors.collect('address')"
               )
               v-autocomplete(
+                dark
                 :items="RomaniaCities"
                 v-model="order.city"
                 label="City"
@@ -27,23 +29,116 @@
                 :error-messages="errors.collect('city')"
               )
               v-text-field(
+                dark
                 label="Phone"
                 name="Phone"
                 v-model="order.phone"
                 v-validate="{ required: true, regex: /^(07[0-8]{1}[0-9]{1}){1}[0-9]{6}$/}"
                 :error-messages="errors.collect('Phone')"
               )
-            v-layout(pb-6 mx-4 d-flex align-center)
-              v-flex(order-xs1 order-sm1)
-              v-flex(order-xs2 order-sm2)
-              v-flex(order-xs3 order-sm3)
+            v-layout(
+              flex-column
+              justify-center
+            )
+              div.mt-6(
+                style="font-size: 21px"
+              ) Card details
+              v-flex.bank-cards.my-6
+                v-img.card-logo#mc-logo(
+                  contain
+                  max-width="40"
+                  max-height="40"
+                  v-on:click="handleMC()"
+                  :src="require('../../images/mc_symbol.svg')"
+                )
+                v-img.card-logo#visa-logo(
+                  contain
+                  max-width="40"
+                  max-height="40"
+                  v-on:click="handleVisa()"
+                  :src="require('../../images/visa.svg')"
+                )
+              v-flex.card-details(
+                flex-column
+                justify-center
+                style="width: 70%; margin: 0 auto;"
+              )
+                span(
+                  style="font-size: 12px"
+                ) Name on card
+                v-text-field(
+                  dark
+                  name="card_name"
+                  v-model="card.name"
+                  v-validate="'required'"
+                  :error-messages="errors.collect('card_name')"
+                )
+                span(
+                  style="font-size: 12px"
+                ) Card number
+                v-text-field(
+                  dark
+                  name="card_number"
+                  v-model="card.number"
+                  placeholder="9432-4352-6543-6688"
+                  v-validate="{ required: true, regex: /^([0-9]{4})-([0-9]){4}-([0-9]){4}-([0-9]){4}$/}"
+                  :error-messages="errors.collect('card_number')"
+                )
+                v-flex(
+                  d-flex
+                )
+                  v-flex(
+                    flex-column
+                    justify-start
+                  )
+                    span(
+                      style="font-size: 12px"
+                    ) Expiration date
+                    v-flex(
+                      d-flex
+                    )
+                      v-select(
+                        dark
+                        style="max-width: 100px; margin-right: 20px"
+                        :items="months"
+                        label="mm"
+                        name="month"
+                      )
+                      v-select(
+                        dark
+                        width="30"
+                        style="max-width: 100px"
+                        :items="Array.from({length:10},(v,k)=>k+2020)"
+                        name="year"
+                        label="yyyy"
+                      )
+                v-flex(
+                  flex-column
+                  justify-start
+                )
+                  span(
+                    style="font-size: 12px"
+                  ) CVV
+                  v-text-field(
+                    style="width: 150px"
+                    dark
+                    name="cvv"
+                    v-model="card.cvv"
+                    placeholder="777"
+                    v-validate="{ required: true, regex: /^[1-9]{3}$/ }"
+                    :error-messages="errors.collect('cvv')"
+                  )
+
+            v-card-actions
                 v-btn.mt-4(
                   @click="submit"
-                  rounded depressed block
-                  color="#521414"
+                  depressed block
+                  color="#FDC07B"
                   :disabled="cart_products.length == 0"
+                  style="font-size: 20px"
                   class="white--text"
-                ) Submit
+                  height="90"
+                ) CHECKOUT
       v-flex.flex-md-column
         div.mb-2(
           style="font-size: 30px; font-weight: bold"
@@ -86,11 +181,20 @@
                 style="margin-right: 20px"
                 v-on:click="handleEmptyCart(product.product_id)"
               ) mdi-delete
-
-
-
-
-
+        v-flex(
+          d-flex
+          justify-space-between
+          align-center
+          style="max-width: 600px; margin: 1.5em auto"
+        )
+          span(
+            style="font-size: 20px; cursor: pointer"
+            v-on:click="backToShopping()"
+          ) Continue shopping
+          v-spacer
+          span.total(
+            style="font-size: 28px; font-weight: 600; color: #FDC07B"
+          ) {{ cart_products.reduce((a, b) => a + parseFloat(b.price), 0) }} $
 </template>
 
 <script>
@@ -108,7 +212,11 @@ export default {
         city: '',
         phone: ''
       },
-      cart_products: []
+      card: {
+        number: '',
+      },
+      cart_products: [],
+      months: ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
     }
   },
 
@@ -133,7 +241,32 @@ export default {
       setCartCount: 'setCartCount'
     }),
 
+    handleVisa() {
+      const visa = document.getElementById('visa-logo')
+      visa.style.filter = 'brightness(0) invert(1)';
+
+      const mc = document.getElementById('mc-logo')
+      mc.style.filter = 'brightness(1) invert(0)';
+    },
+
+    handleMC() {
+      const mc = document.getElementById('mc-logo')
+      mc.style.filter = 'brightness(0) invert(1)';
+
+      const visa = document.getElementById('visa-logo')
+      visa.style.filter = 'brightness(1) invert(0)';
+    },
+
+    backToShopping() {
+      this.$router.push("/")
+    },
+
     submit() {
+      this.$validator.validateAll()
+      if (!this.errors.any()) {
+        this.$toaster.error('Please complete all fields');
+        return
+      }
       axios
         .post('/api/v1/orders', { order: this.order })
         .then(response => {
@@ -156,6 +289,7 @@ export default {
         .then(resp => {
             if(resp.status == 200) {
               this.cart_products = resp.data
+              this.$toaster.success('Product has been added to cart', { timeout: 1500 })
             }
         })
     },
@@ -167,6 +301,7 @@ export default {
         .then(resp => {
           if(resp.status == 200) {
             this.cart_products = resp.data
+            this.$toaster.error('Product has been removed from cart', { timeout: 1500 })
           }
         })
     },
@@ -177,6 +312,7 @@ export default {
           if(resp.status == 200) {
             this.cart_products = resp.data['products']
             this.setCartCount(resp.data['products_count'])
+            this.$toaster.error('Products have been removed from cart', { timeout: 1500 })
           }
         })
     }
@@ -202,17 +338,46 @@ export default {
 }
 
 .checkout-form {
-  min-width: 400px;
+  min-width: 600px;
+  padding: 0;
+}
+
+.row {
+  background-color: rgba(0, 0, 0, 0.02);
+  align-items: center;
+}
+
+.card-details {
+  text-align: left;
 }
 
 .v-image {
   margin-left: -2px;
 }
 
+.card-logo {
+  cursor: pointer;
+  margin: 0 1.3em;
+}
+
+.card-logo:hover {
+  filter: brightness(0) invert(1);
+}
+
+.v-card__actions {
+  padding: 0
+}
+
 .v-card {
   border-radius: 20px;
   margin: auto;
   box-shadow: 0 1px 0px -100px rgba(0,0,0,.2),0 10px 5px 1px rgba(0,0,0, 0),0 4px 18px 3px rgba(0,0,0, 0.1)!important
+}
+
+.purchase-form {
+  color: white;
+  background-color: rgba(0,0,0, 0.82);
+  border-radius: 5px;
 }
 
 .font-weight-bold {
@@ -230,6 +395,11 @@ export default {
 
 .product-bin:hover {
   color: red;
+}
+
+.bank-cards {
+  display: flex;
+  justify-content: center;
 }
 
 .product-desc {
