@@ -18,30 +18,39 @@
         v-form
           v-layout(mx-16 mt-6 flex-column justify-center)
             v-flex.mb-3
-                v-text-field(
-                  label="Name"
-                  name="name"
-                  v-model="user.name"
-                )
+              v-text-field(
+                label="Name"
+                name="name"
+                type="text"
+                v-validate="'required'"
+                v-model="user.name"
+                :error-messages="errors.collect('name')"
+              )
             v-flex.mb-3
               v-text-field(
                 label="Email"
+                v-validate="'required|email'"
                 name='email'
                 v-model="user.email"
+                :error-messages="errors.collect('email')"
               )
               v-flex.mb-3
                 v-text-field(
                   label="Password"
                   name="password"
                   type="password"
+                  v-validate="'required'"
                   v-model="user.password"
+                  :error-messages="errors.collect('password')"
                 )
               v-flex.mb-3
                 v-text-field(
                   label="Password"
-                  name="password"
+                  name="password_confirmation"
                   type="password"
+                  v-validate="'required'"
                   v-model="user.password_confirmation"
+                  :error-messages="errors.collect('password_confirmation')"
                 )
             v-layout(pb-6 mx-4 d-flex align-center)
               v-flex(order-xs1 order-sm1)
@@ -75,9 +84,19 @@ export default {
     }
   },
 
+  created() {
+    this.getCurrentUser().then(resp => {
+      if(resp.status == 200)
+      {
+        this.$router.push("/")
+      }
+    })
+  },
+
   methods: {
     ...mapActions({
-      login: 'register'
+      login: 'register',
+      getCurrentUser: 'currentUser'
     }),
 
     submit() {
@@ -87,9 +106,13 @@ export default {
           password_confirmation: this.user.password_confirmation,
           name: this.user.name
       }).then(resp => {
-        console.log(resp)
-        if(resp.status == 200)
-          window.location.href = window.location.origin + '/login'
+        if(resp.status == 200) {
+          this.$toaster.success('Your account was successfully created!')
+          this.$router.push('/login')
+        }
+        else {
+          this.$toaster.error(resp.join("\n"))
+        }
       })
     }
   }

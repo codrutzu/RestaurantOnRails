@@ -1,4 +1,6 @@
 class CartProduct < ApplicationRecord
+  default_scope { joins(:product).merge(Product.cheap) }
+
   belongs_to :cart
   belongs_to :product
 

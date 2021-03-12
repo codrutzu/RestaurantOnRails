@@ -14,6 +14,8 @@ class Api::V1::OrdersController < ApplicationController
       add_product_from_order @order
       delete_user_order @order.user
       render json: @order.id
+    else
+      render json: { message: 'Wrong data' }, status: :bad_request
     end
   end
 

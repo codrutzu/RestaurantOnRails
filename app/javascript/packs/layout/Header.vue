@@ -21,11 +21,11 @@
           text
           key="HOME"
           to="/home"
-
         )
           span(
             class="menu-item"
           ) HOME
+          .v-active--point(v-if="activeRouteName === 'home_page_path'")
 
 
         v-btn.navItem(
@@ -35,12 +35,12 @@
           to="/cart"
         )
           v-badge(
-            v-if="currentUser.items_count > 0"
+            v-if="showBadge()"
             bordered
             color="red"
             overlap
             right
-            :content="currentUser.items_count"
+            :content="cartItemsCount"
           )
             span(
               class="menu-item"
@@ -49,6 +49,7 @@
             v-else
             class="menu-item"
           ) CART
+          .v-active--point(v-if="activeRouteName === 'cart_path'")
 
 
         v-btn.navItem(
@@ -71,6 +72,7 @@
           span(
             class="menu-item"
           ) {{ currentUser.name }}
+          .v-active--point(v-if="activeRouteName === 'my_orders_path'")
 
         v-btn.navItem(
           v-else
@@ -81,6 +83,7 @@
           span(
             class="menu-item"
           ) LOG IN
+          .v-active--point(v-if="authPath()")
         span(
           @click="handleLogout"
         )
@@ -114,13 +117,17 @@ export default {
     window.onscroll = () => {
       this.changeColor();
     };
-    console.log("Header")
   },
 
   methods: {
     ...mapActions({
-      logout: 'logout'
+      logout: 'logout',
+     getCurrentUser: 'currentUser'
     }),
+
+    showBadge() {
+      return (this.cartItemsCount > 0) && (this.activeRouteName != 'cart_path')
+    },
 
     changeColor() {
       if (
@@ -142,15 +149,26 @@ export default {
       return (this.currentUser != null && this.currentUser != "noUser")
     },
 
+    authPath() {
+      return (this.activeRouteName === 'login_path') || (this.activeRouteName === 'register_path')
+    },
+
     handleLogout() {
-      this.logout();
+      this.logout().then(resp => {
+        if(resp.status == 200) {
+          this.getCurrentUser();
+          this.$toaster.info('You are now logged out.')
+          router.push('/')
+        }
+      })
     }
   },
 
 
   computed: {
     ...mapGetters({
-      currentUser: 'currentUser'
+      currentUser: 'currentUser',
+      cartItemsCount: 'cartItemsCount'
     }),
 
     logoUrl() {
@@ -183,14 +201,16 @@ export default {
   margin-left: 1.5em;
   cursor: pointer;
 }
+
 .v-active--point {
   background-color: #fa357b;
   border-radius: 100%;
   width: 6px;
   height: 6px;
   position: absolute;
-  left: -20%;
+  bottom: -10px;
 }
+
 .navItem {
   position: relative;
   padding: 1em;

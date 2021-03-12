@@ -18,12 +18,19 @@ import Vuetify from 'vuetify'
 import 'vuetify/dist/vuetify.min.css'
 import router from './routes.js'
 import App from './app.vue'
+import VeeValidate from 'vee-validate'
 import store from './store'
+import Toaster from 'v-toaster'
+import '@mdi/font/css/materialdesignicons.css'
+
+import 'v-toaster/dist/v-toaster.css'
+
+Vue.use(Toaster, {timeout: 5000})
 
 
 Vue.use(Vuetify)
 Vue.use(VueRouter)
-
+Vue.use(VeeValidate)
 
 new Vue({
   store,

@@ -6,6 +6,6 @@ class UserSerializer < ActiveModel::Serializer
   end
 
   def items_count
-    object&.cart&.products&.count
+    CartProduct.where(cart_id: object.cart.id).sum(:quantity) unless object.cart.nil?
   end
 end
