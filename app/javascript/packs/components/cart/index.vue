@@ -70,8 +70,6 @@
                   dark
                   name="card_name"
                   v-model="card.name"
-                  v-validate="'required'"
-                  :error-messages="errors.collect('card_name')"
                 )
                 span(
                   style="font-size: 12px"
@@ -81,8 +79,7 @@
                   name="card_number"
                   v-model="card.number"
                   placeholder="9432-4352-6543-6688"
-                  v-validate="{ required: true, regex: /^([0-9]{4})-([0-9]){4}-([0-9]){4}-([0-9]){4}$/}"
-                  :error-messages="errors.collect('card_number')"
+                  v-validate="{ regex: /^([0-9]{4})-([0-9]){4}-([0-9]){4}-([0-9]){4}$/}"
                 )
                 v-flex(
                   d-flex
@@ -125,8 +122,7 @@
                     name="cvv"
                     v-model="card.cvv"
                     placeholder="777"
-                    v-validate="{ required: true, regex: /^[1-9]{3}$/ }"
-                    :error-messages="errors.collect('cvv')"
+                    v-validate="{ regex: /^[1-9]{3}$/ }"
                   )
 
             v-card-actions
@@ -263,10 +259,6 @@ export default {
 
     submit() {
       this.$validator.validateAll()
-      if (!this.errors.any()) {
-        this.$toaster.error('Please complete all fields');
-        return
-      }
       axios
         .post('/api/v1/orders', { order: this.order })
         .then(response => {
@@ -345,6 +337,7 @@ export default {
 .row {
   background-color: rgba(0, 0, 0, 0.02);
   align-items: center;
+  margin-bottom: 200px !important;
 }
 
 .card-details {
