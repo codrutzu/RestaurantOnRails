@@ -148,7 +148,7 @@
         )
           v-flex
             v-card.d-flex(
-              max-width="600px"
+              max-width="550px"
               elevation="10"
             )
               v-flex.d-flex.pa-5.align-center
@@ -181,7 +181,7 @@
           d-flex
           justify-space-between
           align-center
-          style="max-width: 600px; margin: 1.5em auto"
+          style="max-width: 550px; margin: 1.5em auto"
         )
           span(
             style="font-size: 20px; cursor: pointer"
@@ -326,11 +326,10 @@ export default {
 
 .container {
   margin-top: 200px;
-  padding: 0 10%;
 }
 
 .checkout-form {
-  min-width: 600px;
+  min-width: 500px;
   padding: 0;
 }
 
