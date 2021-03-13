@@ -11,47 +11,53 @@
     )
       v-card.card-border-medium(
       )
-        div.pt-12.mx-16.font-weight-bold.text-center(
+        v-img(
+          :src="require('../../images/login.svg')"
+        )
+        div.pt-12.pb-6.font-weight-bold.text-center(
         :class="{ 'mb-4': $vuetify.breakpoint.xsOnly}"
-        ) You need to sign in order to be able to order
+        style="font-size: 18px; margin: 20px 80px"
+        ) You need to sign to place an order
         v-form
-          v-layout(mx-16 mt-6 flex-column justify-center)
-            v-flex.mb-3
+          v-layout(mt-6 flex-column justify-center)
+            v-flex.mb-6(
+              style="padding: 0 20%"
+            )
               v-text-field(
                 label="Email"
                 name='email'
                 v-model="user.email"
+                append-icon="mdi-account"
                 v-validate="'required'"
                 :error-messages="errors.collect('email')"
               )
-              v-flex.mb-3
+              v-flex.mb-6
                 v-text-field(
                   label="Password"
                   name="password"
-                  type="password"
+                  :type="marker ? 'password' : 'text'"
                   v-model="user.password"
                   v-validate="'required'"
+                  :append-icon="marker ? 'mdi-eye-off' : 'mdi-eye'"
+                  @click:append="toggleMarker()"
                   :error-messages="errors.collect('password')"
                 )
-              v-flex.mb-3
-                v-btn.mt-4(
-                  text
-                  color="black"
-                  key="RESET"
-                  to="/reset-password"
-                ) Forgot your password?
               <input type="checkbox" v-model="rememberMe">
               <label for="checkbox" class="checkbox-title"> Remember me</label>
-            v-layout(pb-6 mx-4 d-flex align-center)
-              v-flex(order-xs1 order-sm1)
-              v-flex(order-xs2 order-sm2)
-              v-flex(order-xs3 order-sm3)
-                v-btn.mt-4(
-                  @click="submit"
-                  rounded depressed block
-                  color="#521414"
-                  class="white--text"
-                ) Submit
+            v-layout(pt-12 mb-4 mx-6 d-flex align-center justify-space-between)
+              v-btn.mt-4(
+                text
+                color="black"
+                key="RESET"
+                to="/reset-password"
+              ) Forgot your password?
+              v-btn.mt-4(
+                @click="submit"
+                depressed
+                style="border-radius: 10px"
+                color="#521414"
+                class="white--text"
+              ) Log in
 
 </template>
 
@@ -69,6 +75,7 @@ export default {
         email: '',
         password: ''
       },
+      marker: true,
       rememberMe: false
 
     }
@@ -93,6 +100,10 @@ export default {
     clearInputs() {
       this.user.email = "",
       this.user.password = ""
+    },
+
+    toggleMarker() {
+      this.marker = !this.marker;
     },
 
     submit() {
@@ -120,6 +131,17 @@ export default {
 </script>
 
 <style>
+
+.card-border-medium {
+  position: relative;
+}
+
+.card-border-medium .v-image{
+  max-width: 200px;
+  position: absolute;
+  left: 70px;
+  top: -90px;
+}
 
 .checkbox-title {
   margin-left: 8px;
