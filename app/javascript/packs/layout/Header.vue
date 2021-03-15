@@ -141,7 +141,6 @@ export default {
     },
 
     routeRedirect() {
-      console.log("test")
       window.location.href = window.location.origin + '/cart'
     },
 
@@ -158,7 +157,7 @@ export default {
         if(resp.status == 200) {
           this.getCurrentUser();
           this.$toaster.info('You are now logged out.')
-          router.push('/')
+          this.$router.push('/')
         }
       })
     }
@@ -203,7 +202,7 @@ export default {
 }
 
 .v-active--point {
-  background-color: #fa357b;
+  background-color: #5d1616;
   border-radius: 100%;
   width: 6px;
   height: 6px;

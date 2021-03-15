@@ -16,6 +16,9 @@
           = form.label :weight
           = form.number_field :weight, class: 'field'
         .form-group
+          = form.label :category
+          = form.select :category_id, options_from_collection_for_select(Category.all, 'id', 'name')
+        .form-group
           = form.label :image
           = form.file_field :image, class: 'field'
         .actions

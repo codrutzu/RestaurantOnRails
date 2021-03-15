@@ -37,7 +37,12 @@ export default {
 <style>
 
 .v-toaster {
-  margin-top: 40px
+  margin-top: 50px;
+  margin-right: 20px;
+}
+
+.v-toast {
+  width: 300px;
 }
 
 </style>

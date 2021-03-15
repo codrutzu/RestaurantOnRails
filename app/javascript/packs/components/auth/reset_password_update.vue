@@ -5,11 +5,12 @@
   )
     v-flex(
       md-8
+      mt-16
       d-flex
       align-end
       justify-center
     )
-      v-card.card-border-medium(
+      v-card.mt-16.card-border-medium(
       )
         div.pt-12.mx-16.font-weight-bold.text-center(
         :class="{ 'mb-4': $vuetify.breakpoint.xsOnly}"
@@ -30,13 +31,10 @@
                 name='password_confirmation'
                 v-model="password_confirmation"
               )
-            v-layout(pb-6 mx-4 d-flex align-center)
-              v-flex(order-xs1 order-sm1)
-              v-flex(order-xs2 order-sm2)
-              v-flex(order-xs3 order-sm3)
+            v-layout(pb-6 mx-4 d-flex align-center justify-center)
                 v-btn.mt-4(
                   @click="submit"
-                  rounded depressed block
+                  depressed
                   color="#521414"
                   class="white--text"
                 ) Submit

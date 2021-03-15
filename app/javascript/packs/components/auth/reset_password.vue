@@ -1,25 +1,33 @@
 <template lang="pug">
-v-container(fluid, justify-space-around)
-  v-flex(md-8, d-flex, align-end, justify-center)
-    v-card.card-border-medium
-      .pt-12.mx-16.font-weight-bold.text-center(
-        :class="{ 'mb-4': $vuetify.breakpoint.xsOnly }"
-      ) Just enter the email you used to sign up and we'll send you a link to reset it
+  v-container(fluid, justify-space-around)
+    v-flex(md-8 d-flex align-center justify-center
+      style="margin-top: 100px"
+    )
       v-form
-        v-layout(mx-16, mt-6, flex-column, justify-center)
-          v-flex.mb-3
-            v-text-field(label="Email", name="email", v-model="email")
-          v-layout(pb-6, mx-4, d-flex, align-center)
-            v-flex(order-xs1, order-sm1)
-            v-flex(order-xs2, order-sm2)
-            v-flex(order-xs3, order-sm3)
-              v-btn.mt-4.white--text(
-                @click="submit",
-                rounded,
-                depressed,
-                block,
-                color="#521414"
-              ) Submit
+        h2(
+          style="font-weight: 700; margin-bottom: 10px"
+        ) Forgot your password?
+        h6.my-6(
+          style="color: #656565"
+        ) Enter the email you used to sign up
+        v-text-field(
+          dense
+          outlined
+          name="email"
+          v-model="email"
+          style="width: 290px; margin: 0 auto;"
+        )
+        v-btn.mt-4(
+          @click="submit"
+          depressed
+          style="width: 100px"
+          color="#521414"
+          class="white--text"
+        ) Send
+      v-img(
+        :src="illustration_url"
+      )
+
 </template>
 
 <script>
@@ -29,7 +37,7 @@ export default {
 
   data() {
     return {
-      email: "",
+      email: ""
     };
   },
 
@@ -56,18 +64,28 @@ export default {
       this.resetPassword({
         email: this.email,
       }).then(resp => {
-        console.log('cevatest')
         if (resp.status == 200) {
           this.$router.replace("/");
         }
         else {
-          this.$toaster.error("Invalid email")
+          this.$toaster.error("The email does not exist")
         }
       });
     },
   },
+
+  computed: {
+    illustration_url() {
+      return require('../../images/reset_password.svg')
+    }
+  }
 };
 </script>
 
 <style scoped>
+
+.v-image {
+  max-width: 350px;
+}
+
 </style>

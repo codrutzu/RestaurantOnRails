@@ -37,5 +37,9 @@ new Vue({
   router: router,
   template: '<App/>',
   components: { App },
-  vuetify: new Vuetify()
+  vuetify: new Vuetify( {
+    theme: {light: {
+      'primar--text': "#081424"
+    }}
+  })
 }).$mount('#app');
