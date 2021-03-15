@@ -8,10 +8,10 @@
       flat
     )
       .categories
-        span(
+        span.category(
           v-for="category in categories"
           v-on:click="filterByCategories(category)"
-          style="font-size: 18px; font-weight: 600; cursor: pointer; color: #696969"
+          style="font-size: 18px; font-weight: 600; cursor: pointer"
         ) {{ category.name }}
     .card-container
       v-hover(v-slot="{hover}"
@@ -161,7 +161,8 @@ export default {
 .product-card {
   position: relative;
   background: rgb(83,20,20);
-  background: linear-gradient(10deg, rgba(83,20,20,1) 0%, rgba(24,24,172,1) 100%);
+  background-color: #8EC5FC;
+  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
   border-radius: 20px;
   text-align: center;
   display: flex;
@@ -196,6 +197,14 @@ header {
   justify-content: space-around;
 }
 
+.category {
+  color: #696969;
+}
+
+.category:hover {
+  color: rgba(255,255,255, 0.8) !important;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -211,7 +220,8 @@ header {
 }
 
 img {
-  width: 160px;
+  width: 150px;
+  height: 150px;
 }
 
 .product-dialog {
@@ -289,7 +299,7 @@ img {
 
 .v-card__text .price {
   font-size: 28px;
-  color: #CBC9C9;
+  color: #f1f1f1;
   padding-bottom: 20px;
 }
 
