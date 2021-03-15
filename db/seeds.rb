@@ -60,3 +60,15 @@ if Rails.env.development?
                                )
   end
 end
+
+if Rails.env.production?
+  5.times do |n|
+    Product.create!(title: "Pizza #{n}",
+                               description: Faker::Lorem.paragraphs.join("\n"),
+                               price: Faker::Number.number(digits: 2),
+                               weight: Faker::Number.number(digits: 3),
+                               remote_image_url: "https://res.cloudinary.com/ddgjr1vra/image/upload/v1614413775/na8c1ogqbvdmkqj9tlbj.png",
+                               category: Category.find_or_create_by!(name: 'Pizza')
+                               )
+  end
+end
