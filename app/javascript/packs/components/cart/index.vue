@@ -148,7 +148,8 @@
         )
           v-flex
             v-card.d-flex(
-              max-width="550px"
+              max-width="750px"
+              min-width="550px"
               elevation="10"
             )
               v-flex.d-flex.pa-5.align-center
@@ -181,13 +182,20 @@
           d-flex
           justify-space-between
           align-center
-          style="max-width: 550px; margin: 1.5em auto"
+          style="max-width: 700px; margin: 1.5em auto"
         )
+          .back-to-shop.mr-3(
+            style="cursor: pointer"
+            v-on:click="backToShopping()"
+          )
           span(
-            style="font-size: 20px; cursor: pointer"
+            style="font-size: 20px; font-weight: 600; cursor: pointer"
             v-on:click="backToShopping()"
           ) Continue shopping
           v-spacer
+          span(
+            style="font-size: 24px; font-weight: 700; margin-right:10px"
+          ) Total:
           span.total(
             style="font-size: 28px; font-weight: 600; color: #FDC07B"
           ) {{ cart_products.reduce((a, b) => a + parseFloat(b.price), 0) }} $
@@ -354,6 +362,15 @@ export default {
 
 .card-logo:hover {
   filter: brightness(0) invert(1);
+}
+
+.back-to-shop {
+  border: solid black;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  transform: rotate(135deg);
+  -webkit-transform: rotate(135deg);
 }
 
 .v-card__actions {

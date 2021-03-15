@@ -25,7 +25,7 @@
           class="white--text"
         ) Send
       v-img(
-        :src="require('../../images/reset_password.svg')"
+        :src="illustration_url"
       )
 
 </template>
@@ -37,7 +37,7 @@ export default {
 
   data() {
     return {
-      email: "",
+      email: ""
     };
   },
 
@@ -68,11 +68,17 @@ export default {
           this.$router.replace("/");
         }
         else {
-          this.$toaster.error("Invalid email")
+          this.$toaster.error("The email does not exist")
         }
       });
     },
   },
+
+  computed: {
+    illustration_url() {
+      return require('../../images/reset_password.svg')
+    }
+  }
 };
 </script>
 

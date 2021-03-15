@@ -1,8 +1,21 @@
 <template lang="pug">
-  v-container
+  v-container(
+    flex-column
+    align-center
+  )
+    v-toolbar.mb-16(
+      dark
+      flat
+    )
+      .categories
+        span(
+          v-for="category in categories"
+          v-on:click="filterByCategories(category)"
+          style="font-size: 18px; font-weight: 600; cursor: pointer; color: #696969"
+        ) {{ category.name }}
     .card-container
       v-hover(v-slot="{hover}"
-                v-for="product, index in products"
+                v-for="product, index in filteredProducts"
           :key="product.id")
         v-card.my-16.mx-16.product-card(
 
@@ -77,11 +90,15 @@ export default {
     return {
       products: [],
       ingredientsDialog: false,
-      selectedProduct: null
+      selectedProduct: null,
+      categories: [],
+      filteredProducts: [],
+      filters: []
     }
   },
 
   mounted() {
+    this.fetchCategories();
     this.fetchProducts();
   },
 
@@ -90,9 +107,25 @@ export default {
       incrementCartCount: 'incrementCartCount'
     }),
 
+    filterByCategories(category) {
+      this.filters.includes(category.name) ? event.target.style.color = '#696969' : event.target.style.color = "#FFFFFF";
+      this.filters.indexOf(category.name) === -1 ? this.filters.push(category.name) : this.filters.splice(this.filters.indexOf(category.name), 1);
+      if(this.filters.length == 0)
+        this.filteredProducts = this.products
+      else
+        this.filteredProducts = this.products.filter(x => this.filters.includes(x.category))
+    },
+
     fetchProducts() {
       axios.get('/api/v1/products').then(response => {
-        this.products = response.data
+        this.products = response.data;
+        this.filteredProducts = this.products;
+      })
+    },
+
+    fetchCategories() {
+      axios.get('/api/v1/categories').then(response => {
+        this.categories = response.data
       })
     },
 
@@ -137,16 +170,38 @@ export default {
   justify-content: flex-end;
 }
 
+header {
+  position: sticky;
+  z-index: 1;
+  top: 53px;
+  width: 100%;
+}
+
+.v-toolbar__content {
+  display: flex;
+  justify-content: space-around;
+}
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 124px;
+  justify-content: center;
+  padding: 0 8%;
 }
 
+.categories {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
 
 .container {
   display: flex;
   justify-content: center;
+  margin: 0;
+  padding: 0;
+  min-width: 100%;
 }
 
 .dialog-title {

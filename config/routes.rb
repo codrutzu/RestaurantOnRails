@@ -61,6 +61,8 @@ Rails.application.routes.draw do
         get '/orders', action: :orders, on: :collection
       end
 
+      resources :categories, only: %i[index]
+
       resources :cart_products, only: %i[create index destroy]
 
       patch '/empty_cart/:id', to: 'cart_products#empty_cart'
