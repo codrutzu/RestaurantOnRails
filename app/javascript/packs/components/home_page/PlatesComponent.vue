@@ -18,7 +18,7 @@
                 v-for="product, index in filteredProducts"
           :key="product.id")
         v-card.my-16.mx-16.product-card(
-
+          elevation="8"
           width="250"
           height="360"
           :class="{ 'on-hover': hover }"
@@ -160,11 +160,11 @@ export default {
 
 .product-card {
   position: relative;
-  background: rgb(83,20,20);
-  background-color: #8EC5FC;
-  background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+  /* background: rgb(83,20,20); */
+  /* background-image: linear-gradient(-225deg, #FFFEFF 0%, #D7FFFE 100%); */
   border-radius: 20px;
   text-align: center;
+  color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,6 +184,7 @@ header {
 }
 
 .card-container {
+  color: black !important;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 124px;
@@ -221,6 +222,7 @@ header {
 
 img {
   width: 150px;
+  /* filter: grayscale(100%); */
 }
 
 .product-dialog {
@@ -245,7 +247,7 @@ img {
 .v-card__text .product-title {
   font-size: 40px;
   font-weight: 600;
-  color: white;
+  color: black;
   padding-bottom: 30px;
 }
 
@@ -273,7 +275,6 @@ img {
   opacity: 0;
   background-color: rgba(0,0,0, 0.1);
   width: 100%;
-  color: white;
   cursor: pointer;
   height: 40px;
   display: flex;
@@ -292,13 +293,13 @@ img {
 }
 
 .add-to-cart span:hover {
-  color: rgba(255,255,255, 0.7)
+  color: rgba(255,255,255, 0.9)
 }
 
 
 .v-card__text .price {
   font-size: 28px;
-  color: #f1f1f1;
+  color: black;
   padding-bottom: 20px;
 }
 

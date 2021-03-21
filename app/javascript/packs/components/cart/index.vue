@@ -40,24 +40,9 @@
               flex-column
               justify-center
             )
-              div.mt-6(
+              div.mt-6.mb-6(
                 style="font-size: 21px"
-              ) Card details
-              v-flex.bank-cards.my-6
-                v-img.card-logo#mc-logo(
-                  contain
-                  max-width="40"
-                  max-height="40"
-                  v-on:click="handleMC()"
-                  :src="require('../../images/mc_symbol.svg')"
-                )
-                v-img.card-logo#visa-logo(
-                  contain
-                  max-width="40"
-                  max-height="40"
-                  v-on:click="handleVisa()"
-                  :src="require('../../images/visa.svg')"
-                )
+              ) Pay with card (Coming soon)
               v-flex.card-details(
                 flex-column
                 justify-center
@@ -68,6 +53,7 @@
                 ) Name on card
                 v-text-field(
                   dark
+                  readonly
                   name="card_name"
                   v-model="card.name"
                 )
@@ -76,6 +62,7 @@
                 ) Card number
                 v-text-field(
                   dark
+                  readonly
                   name="card_number"
                   v-model="card.number"
                   placeholder="9432-4352-6543-6688"
@@ -95,6 +82,7 @@
                       d-flex
                     )
                       v-select(
+                        readonly
                         dark
                         style="max-width: 100px; margin-right: 20px"
                         :items="months"
@@ -102,6 +90,7 @@
                         name="month"
                       )
                       v-select(
+                        readonly
                         dark
                         width="30"
                         style="max-width: 100px"
@@ -117,6 +106,7 @@
                     style="font-size: 12px"
                   ) CVV
                   v-text-field(
+                    disabled
                     style="width: 150px"
                     dark
                     name="cvv"
