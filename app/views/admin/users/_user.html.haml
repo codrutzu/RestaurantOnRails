@@ -1,5 +1,5 @@
 %li
-  = link_to user.name, user, class: 'name'
+  = link_to user.name, api_v1_user_path(user), class: 'name'
   %span.email= user.email
 - if !user.admin?
   .infos
