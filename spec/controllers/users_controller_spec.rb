@@ -6,7 +6,6 @@ RSpec.configure do |c|
 end
 
 RSpec.describe 'UserController', type: :request do
-
   fixtures :users
   before do
     @user = users(:michael)
