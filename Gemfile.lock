@@ -95,7 +95,8 @@ GEM
     erubis (2.7.0)
     faker (2.11.0)
       i18n (>= 1.6, < 2)
-    ffi (1.15.0-x64-mingw32)
+    ffi (1.15.5)
+    ffi (1.15.5-x64-mingw32)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     haml (5.2.1)
@@ -117,7 +118,7 @@ GEM
       domain_name (~> 0.5)
     i18n (1.8.9)
       concurrent-ruby (~> 1.0)
-    image_processing (1.12.1)
+    image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
       ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.11.2)
@@ -143,6 +144,9 @@ GEM
     nio4r (2.5.7)
     nokogiri (1.11.2-x64-mingw32)
       racc (~> 1.4)
+    nokogiri (1.11.2-x86_64-linux)
+      racc (~> 1.4)
+    pg (1.2.3)
     pg (1.2.3-x64-mingw32)
     public_suffix (4.0.6)
     puma (4.3.7)
@@ -189,6 +193,11 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.20.3, < 2.0)
     rake (13.0.3)
+    rest-client (2.1.0)
+      http-accept (>= 1.7.0, < 2.0)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     rest-client (2.1.0-x64-mingw32)
       ffi (~> 1.9)
       http-accept (>= 1.7.0, < 2.0)
@@ -219,13 +228,15 @@ GEM
     rspec-support (3.10.2)
     ruby-graphviz (1.2.5)
       rexml
-    ruby-vips (2.1.0)
+    ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby_parser (3.15.1)
       sexp_processor (~> 4.9)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
     sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
@@ -259,6 +270,7 @@ GEM
       tzinfo (>= 1.0.0)
     unf (0.1.4)
       unf_ext
+    unf_ext (0.0.7.7)
     unf_ext (0.0.7.7-x64-mingw32)
     web-console (4.1.0)
       actionview (>= 6.0.0)
@@ -283,6 +295,7 @@ GEM
 
 PLATFORMS
   x64-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.2)
